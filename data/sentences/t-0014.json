@@ -1,0 +1,62 @@
+{
+  "id": "t-0014",
+  "shelf": "talk",
+  "en": "Shall I show you the way?",
+  "ja": "道をご案内しましょうか。",
+  "scene": "道に迷っている人に",
+  "grammar": [
+    "request",
+    "svoo"
+  ],
+  "aim": "Shall I 〜? は「私が〜しましょうか」という申し出。",
+  "pitfall": "形が疑問文なので、「あなたが案内してくれますか」と逆に読んでしまう。",
+  "chunks": [
+    {
+      "text": "Shall",
+      "role": "aux",
+      "plain": "〜しましょうか",
+      "why": "Shall I 〜? で、自分がすることを申し出る。"
+    },
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "show",
+      "role": "V"
+    },
+    {
+      "text": "you",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "the way",
+      "role": "O",
+      "plain": "何を"
+    }
+  ],
+  "words": [
+    {
+      "w": "show",
+      "lemma": "show",
+      "ja": "見せる・案内する"
+    },
+    {
+      "w": "way",
+      "lemma": "way",
+      "ja": "道・行き方"
+    }
+  ],
+  "question": {
+    "ask": "道を案内するのは誰？",
+    "choices": [
+      "この言葉を言った人",
+      "言われた相手",
+      "別の誰か"
+    ],
+    "answer": 0,
+    "explain": "主語は I。show の後ろの you が案内を受ける人、the way が見せる物です。"
+  }
+}

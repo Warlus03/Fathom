@@ -1,0 +1,60 @@
+{
+  "id": "t-0016",
+  "shelf": "talk",
+  "en": "It's going to rain this afternoon.",
+  "ja": "午後は雨になりそうですね。",
+  "scene": "空を見ながらの立ち話で",
+  "grammar": [
+    "future"
+  ],
+  "aim": "be going to は、今の様子から見て「起こりそうだ」にも使う。",
+  "pitfall": "rain を名詞（雨）と読んで「雨へ行く」と考えてしまう。ここでは動詞。",
+  "chunks": [
+    {
+      "text": "It's",
+      "role": "S",
+      "plain": "（天気の it）",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "going to",
+      "role": "aux",
+      "plain": "〜しそうだ",
+      "term": "be going to",
+      "why": "今の空模様から見て、そうなりそう。"
+    },
+    {
+      "text": "rain",
+      "role": "V",
+      "plain": "雨が降る",
+      "why": "going to の後ろなので動詞の原形。"
+    },
+    {
+      "text": "this afternoon",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "rain",
+      "lemma": "rain",
+      "ja": "雨が降る（名詞なら「雨」）"
+    },
+    {
+      "w": "afternoon",
+      "lemma": "afternoon",
+      "ja": "午後"
+    }
+  ],
+  "question": {
+    "ask": "雨について言っていることは？",
+    "choices": [
+      "午後に降りそうだ（まだ降っていない）",
+      "午後に降った",
+      "午後、雨の中を出かける"
+    ],
+    "answer": 0,
+    "explain": "be going to は「これから」のこと。降ったあとなら It rained this afternoon. です。"
+  }
+}

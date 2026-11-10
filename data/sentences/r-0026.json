@@ -1,0 +1,64 @@
+{
+  "id": "r-0026",
+  "shelf": "read",
+  "en": "I asked the AI to summarize the article.",
+  "ja": "AIにその記事を要約するよう頼みました。",
+  "scene": "AIの使い方を紹介する投稿で",
+  "grammar": [
+    "infinitive",
+    "past"
+  ],
+  "aim": "ask＋相手＋to〜 で「相手に〜するよう頼む」。to の後ろの動作をするのは、直前の相手。",
+  "pitfall": "文の主語が I なので、要約するのも I だと思ってしまう。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "asked",
+      "role": "V",
+      "plain": "頼んだ"
+    },
+    {
+      "text": "the AI",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "to summarize the article",
+      "role": "O",
+      "plain": "何をするように",
+      "term": "to＋動詞",
+      "why": "to の後ろの動作（要約する）をするのは、直前の the AI。"
+    }
+  ],
+  "words": [
+    {
+      "w": "asked",
+      "lemma": "ask",
+      "ja": "頼む・たずねる"
+    },
+    {
+      "w": "summarize",
+      "lemma": "summarize",
+      "ja": "要約する"
+    },
+    {
+      "w": "article",
+      "lemma": "article",
+      "ja": "記事"
+    }
+  ],
+  "question": {
+    "ask": "要約するのは誰？",
+    "choices": [
+      "AI",
+      "この文を書いた人",
+      "記事を書いた人"
+    ],
+    "answer": 0,
+    "explain": "頼んだのは I、頼まれたのは the AI。to summarize は、頼まれた側がすることです。"
+  }
+}

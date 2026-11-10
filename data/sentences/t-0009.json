@@ -1,0 +1,55 @@
+{
+  "id": "t-0009",
+  "shelf": "talk",
+  "en": "What are you looking for?",
+  "ja": "何をお探しですか。",
+  "scene": "困っていそうな人に声をかけるとき",
+  "grammar": [
+    "wh",
+    "progressive"
+  ],
+  "aim": "look for で「探す」。たずねたい「何を」が先頭に出て、文が for で終わる。",
+  "pitfall": "look を「見る」と読んで、「何を見ているの？」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "What",
+      "role": "q",
+      "plain": "何を（たずねる）",
+      "why": "for の後ろに来るはずの「何を」が、疑問詞になって先頭に出た。だから文が for で終わる。"
+    },
+    {
+      "text": "are",
+      "role": "aux",
+      "plain": "している最中（質問なので前へ）",
+      "term": "be動詞（進行形）"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "looking for",
+      "role": "V",
+      "plain": "探す",
+      "why": "are と組んで進行形。「今、探している」。"
+    }
+  ],
+  "words": [
+    {
+      "w": "looking for",
+      "lemma": "look for",
+      "ja": "〜を探す"
+    }
+  ],
+  "question": {
+    "ask": "聞かれているのは？",
+    "choices": [
+      "探している物",
+      "見ている方向",
+      "誰のために見ているか"
+    ],
+    "answer": 0,
+    "explain": "look for は「探す」。What がその「何を」にあたります。"
+  }
+}

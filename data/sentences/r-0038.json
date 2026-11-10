@@ -1,0 +1,54 @@
+{
+  "id": "r-0038",
+  "shelf": "read",
+  "en": "I think this is a bug.",
+  "ja": "これはバグだと思います。",
+  "scene": "不具合を報告する投稿で",
+  "grammar": [
+    "that",
+    "article"
+  ],
+  "aim": "think の後ろに文がまるごと入っている。that は省かれている。",
+  "pitfall": "I think を読み飛ばして、断定だと受け取ってしまう。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "think",
+      "role": "V",
+      "plain": "思う"
+    },
+    {
+      "text": "this is a bug",
+      "role": "O",
+      "plain": "何を（思っている中身）",
+      "term": "目的語（文）",
+      "why": "think の後ろに that が省かれている。中に主語（this）と動詞（is）がもう一組ある。"
+    }
+  ],
+  "words": [
+    {
+      "w": "think",
+      "lemma": "think",
+      "ja": "思う"
+    },
+    {
+      "w": "bug",
+      "lemma": "bug",
+      "ja": "不具合・バグ"
+    }
+  ],
+  "question": {
+    "ask": "この人の立場は？",
+    "choices": [
+      "バグだと思っているが、断定はしていない",
+      "バグだと確認した",
+      "バグではないと思っている"
+    ],
+    "answer": 0,
+    "explain": "I think を付けると「私はそう思う」という意見になります。断定なら This is a bug. です。"
+  }
+}

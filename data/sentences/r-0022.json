@@ -1,0 +1,63 @@
+{
+  "id": "r-0022",
+  "shelf": "read",
+  "en": "Don't click the link in that message.",
+  "ja": "そのメッセージの中のリンクは押さないでください。",
+  "scene": "詐欺メッセージへの注意を呼びかける投稿で",
+  "grammar": [
+    "imperative",
+    "negative",
+    "preposition"
+  ],
+  "aim": "Don't＋動詞で「〜しないで」。in that message は直前の the link の説明。",
+  "pitfall": "in that message を「そのメッセージの中で（押すな）」と動作の場所に読んでしまう。",
+  "chunks": [
+    {
+      "text": "Don't",
+      "role": "neg",
+      "plain": "〜しないで",
+      "term": "否定の命令"
+    },
+    {
+      "text": "click",
+      "role": "V"
+    },
+    {
+      "text": "the link",
+      "role": "O"
+    },
+    {
+      "text": "in that message",
+      "role": "M",
+      "plain": "どのリンク",
+      "why": "直前の the link を説明している。「そのメッセージの中の」リンク。"
+    }
+  ],
+  "words": [
+    {
+      "w": "click",
+      "lemma": "click",
+      "ja": "クリックする・押す"
+    },
+    {
+      "w": "link",
+      "lemma": "link",
+      "ja": "リンク"
+    },
+    {
+      "w": "message",
+      "lemma": "message",
+      "ja": "メッセージ"
+    }
+  ],
+  "question": {
+    "ask": "押してはいけないのは？",
+    "choices": [
+      "そのメッセージの中にあるリンク",
+      "すべてのリンク",
+      "メッセージそのもの"
+    ],
+    "answer": 0,
+    "explain": "the link in that message で「そのメッセージの中のリンク」。名詞の直後の in 〜 は、その名詞をしぼり込む説明です。"
+  }
+}

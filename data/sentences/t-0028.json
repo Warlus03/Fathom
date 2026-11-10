@@ -1,0 +1,54 @@
+{
+  "id": "t-0028",
+  "shelf": "talk",
+  "en": "It's nice to meet you.",
+  "ja": "お会いできてうれしいです。",
+  "scene": "初めて会った人に",
+  "grammar": [
+    "it-to"
+  ],
+  "aim": "決まり文句も骨組みは同じ。It は仮の主語で、中身は to 以下。",
+  "pitfall": "It を「それ」と訳そうとして、何を指すのか探してしまう。",
+  "chunks": [
+    {
+      "text": "It's",
+      "role": "S",
+      "plain": "（仮の主語）",
+      "term": "仮の主語＋be動詞",
+      "why": "この it は何も指していない。本当の主語は後ろの to 以下。"
+    },
+    {
+      "text": "nice",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "to meet you",
+      "role": "x",
+      "plain": "何をするのが",
+      "term": "本当の主語（to＋動詞）"
+    }
+  ],
+  "words": [
+    {
+      "w": "nice",
+      "lemma": "nice",
+      "ja": "よい・うれしい"
+    },
+    {
+      "w": "meet",
+      "lemma": "meet",
+      "ja": "会う"
+    }
+  ],
+  "question": {
+    "ask": "「nice」だと言っているのは何？",
+    "choices": [
+      "あなたに会うこと",
+      "あなたの人柄",
+      "今日の天気"
+    ],
+    "answer": 0,
+    "explain": "to meet you（あなたに会うこと）＝ nice。It は形だけの主語です。"
+  }
+}

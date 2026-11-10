@@ -1,0 +1,47 @@
+{
+  "id": "t-0010",
+  "shelf": "talk",
+  "en": "Have a nice day!",
+  "ja": "良い一日を。",
+  "scene": "立ち話の別れぎわに",
+  "grammar": [
+    "imperative",
+    "article"
+  ],
+  "aim": "動詞で始まる文は命令とは限らない。相手のためを願う言葉にもなる。",
+  "pitfall": "have を「持つ」と訳して意味が取れなくなる。have は「（時間を）過ごす」にも使う。",
+  "chunks": [
+    {
+      "text": "Have",
+      "role": "V",
+      "plain": "過ごす",
+      "why": "動詞の原形で始まる呼びかけ。命令ではなく、相手のためを願う決まった言い方。"
+    },
+    {
+      "text": "a nice day",
+      "role": "O"
+    }
+  ],
+  "words": [
+    {
+      "w": "Have",
+      "lemma": "have",
+      "ja": "（時間を）過ごす"
+    },
+    {
+      "w": "nice",
+      "lemma": "nice",
+      "ja": "よい・すてきな"
+    }
+  ],
+  "question": {
+    "ask": "この言葉の働きは？",
+    "choices": [
+      "別れぎわに、相手の良い一日を願うあいさつ",
+      "今日は良い日だった、という報告",
+      "良い一日だったか、という質問"
+    ],
+    "answer": 0,
+    "explain": "主語がなく動詞から始まるので、相手への呼びかけ。報告なら I had a nice day. 、質問なら Did you have a nice day? です。"
+  }
+}

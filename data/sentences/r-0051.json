@@ -1,0 +1,69 @@
+{
+  "id": "r-0051",
+  "shelf": "read",
+  "en": "If I were you, I would wait.",
+  "ja": "私があなたなら、待ちますね。",
+  "scene": "買うかどうか迷っている人への返信で",
+  "grammar": [
+    "subjunctive",
+    "conjunction"
+  ],
+  "aim": "If I were you, I would 〜 は「私なら〜する」＝やわらかい助言。",
+  "pitfall": "were と would を過去の話と読んでしまう。今の、仮の話。",
+  "chunks": [
+    {
+      "text": "If",
+      "role": "conj",
+      "plain": "もし"
+    },
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "were",
+      "role": "V",
+      "plain": "＝（仮に〜だったら）",
+      "term": "be動詞（仮定法）",
+      "why": "現実でないこと（私はあなたではない）なので、主語が I でも were。"
+    },
+    {
+      "text": "you",
+      "role": "C",
+      "plain": "何"
+    },
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "would",
+      "role": "aux",
+      "plain": "〜するだろう（仮の話）",
+      "why": "will の過去形。仮の話であることを示している。"
+    },
+    {
+      "text": "wait",
+      "role": "V"
+    }
+  ],
+  "words": [
+    {
+      "w": "wait",
+      "lemma": "wait",
+      "ja": "待つ"
+    }
+  ],
+  "question": {
+    "ask": "この人が相手に伝えたいことは？",
+    "choices": [
+      "待ったほうがいい、という助言",
+      "自分は待つつもりだ、という予定",
+      "自分は昔、待っていた、という思い出"
+    ],
+    "answer": 0,
+    "explain": "「私があなたの立場なら待つ」＝あなたも待ったほうがいい、という助言です。"
+  }
+}

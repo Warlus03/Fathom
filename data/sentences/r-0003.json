@@ -1,0 +1,59 @@
+{
+  "id": "r-0003",
+  "shelf": "read",
+  "en": "She sent me the link.",
+  "ja": "彼女が私にそのリンクを送ってくれました。",
+  "scene": "友人とのやりとりを説明する投稿で",
+  "grammar": [
+    "svoo",
+    "past",
+    "pronoun"
+  ],
+  "aim": "動詞の後ろに名詞が2つ。1つ目が受け取る人、2つ目が渡す物。",
+  "pitfall": "「に」「を」にあたる言葉がないので、順番を見ないと誰が受け取ったか分からない。",
+  "chunks": [
+    {
+      "text": "She",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "sent",
+      "role": "V",
+      "why": "send（送る）の過去形。-ed を付けない不規則動詞。"
+    },
+    {
+      "text": "me",
+      "role": "O",
+      "plain": "誰に",
+      "why": "I ではなく me。動詞の後ろに来たときの形。"
+    },
+    {
+      "text": "the link",
+      "role": "O",
+      "plain": "何を"
+    }
+  ],
+  "words": [
+    {
+      "w": "sent",
+      "lemma": "send",
+      "ja": "送る（sent は過去形）"
+    },
+    {
+      "w": "link",
+      "lemma": "link",
+      "ja": "リンク"
+    }
+  ],
+  "question": {
+    "ask": "リンクを受け取ったのは誰？",
+    "choices": [
+      "この文を書いた人",
+      "彼女",
+      "まだ誰も受け取っていない"
+    ],
+    "answer": 0,
+    "explain": "sent の直後の me が受け取る人、その次の the link が送られた物。送ったのは She です。"
+  }
+}

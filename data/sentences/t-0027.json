@@ -1,0 +1,59 @@
+{
+  "id": "t-0027",
+  "shelf": "talk",
+  "en": "How long have you been in Japan?",
+  "ja": "日本に来てどのくらいになりますか。",
+  "scene": "外国から来た人との立ち話で",
+  "grammar": [
+    "perfect",
+    "wh"
+  ],
+  "aim": "How long＋現在完了で「今までどのくらいの間」。",
+  "pitfall": "「これからどのくらいいる予定か」と読んでしまう。have been は今までのこと。",
+  "chunks": [
+    {
+      "text": "How long",
+      "role": "q",
+      "plain": "どのくらいの間（たずねる）"
+    },
+    {
+      "text": "have",
+      "role": "aux",
+      "plain": "（今まで）",
+      "term": "have（現在完了）"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "been",
+      "role": "V",
+      "plain": "いる",
+      "term": "be動詞の過去分詞"
+    },
+    {
+      "text": "in Japan",
+      "role": "M",
+      "plain": "どこに"
+    }
+  ],
+  "words": [
+    {
+      "w": "How long",
+      "lemma": "how long",
+      "ja": "どのくらいの間"
+    }
+  ],
+  "question": {
+    "ask": "聞かれているのは？",
+    "choices": [
+      "日本に来てから今までの期間",
+      "これから日本にいる予定の期間",
+      "日本のどこにいたか"
+    ],
+    "answer": 0,
+    "explain": "have been は「今までずっといる」。これからの予定なら How long will you be in Japan? です。"
+  }
+}

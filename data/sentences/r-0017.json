@@ -1,0 +1,57 @@
+{
+  "id": "r-0017",
+  "shelf": "read",
+  "en": "You must not share your password.",
+  "ja": "パスワードを人に教えてはいけません。",
+  "scene": "セキュリティの注意書きで",
+  "grammar": [
+    "obligation",
+    "negative"
+  ],
+  "aim": "must not は禁止。「しなくてよい」（don't have to）とは違う。",
+  "pitfall": "must（しなければならない）の否定だからと、「しなくてよい」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "You",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "must not",
+      "role": "neg",
+      "plain": "〜してはいけない",
+      "term": "助動詞＋否定",
+      "why": "「しないこと」が必須、つまり禁止。"
+    },
+    {
+      "text": "share",
+      "role": "V"
+    },
+    {
+      "text": "your password",
+      "role": "O"
+    }
+  ],
+  "words": [
+    {
+      "w": "share",
+      "lemma": "share",
+      "ja": "共有する・人に教える"
+    },
+    {
+      "w": "password",
+      "lemma": "password",
+      "ja": "パスワード"
+    }
+  ],
+  "question": {
+    "ask": "パスワードについて、どう言っていますか？",
+    "choices": [
+      "人に教えてはいけない",
+      "人に教えなくてもよい",
+      "人に教えなければならない"
+    ],
+    "answer": 0,
+    "explain": "must not は禁止です。「教えなくてもよい」なら don't have to になります。"
+  }
+}

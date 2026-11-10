@@ -1,0 +1,64 @@
+{
+  "id": "r-0043",
+  "shelf": "read",
+  "en": "This is the tool I use every day.",
+  "ja": "これが、私が毎日使っているツールです。",
+  "scene": "愛用の道具を紹介する投稿で",
+  "grammar": [
+    "relative"
+  ],
+  "aim": "名詞の直後に、いきなり別の主語と動詞が来たら、その名詞の説明。",
+  "pitfall": "This is the tool. と I use every day. の2文に切ってしまい、use の「何を」が見つからなくなる。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "the tool",
+      "role": "C",
+      "plain": "何"
+    },
+    {
+      "text": "I use every day",
+      "role": "M",
+      "plain": "どんなツール",
+      "term": "関係代名詞（省略）のかたまり",
+      "why": "the tool (that) I use every day. that が省かれている。use の「何を」は、前にある the tool。"
+    }
+  ],
+  "words": [
+    {
+      "w": "tool",
+      "lemma": "tool",
+      "ja": "道具・ツール"
+    },
+    {
+      "w": "use",
+      "lemma": "use",
+      "ja": "使う"
+    },
+    {
+      "w": "every day",
+      "lemma": "every day",
+      "ja": "毎日"
+    }
+  ],
+  "question": {
+    "ask": "I use every day は、何を説明している？",
+    "choices": [
+      "the tool（どんなツールか）",
+      "This（いつの話か）",
+      "I（どんな人か）"
+    ],
+    "answer": 0,
+    "explain": "the tool の直後に置かれて「私が毎日使っている」ツール、と説明しています。"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "t-0007",
+  "shelf": "talk",
+  "en": "Could you take our picture?",
+  "ja": "私たちの写真を撮っていただけますか。",
+  "scene": "観光中の人に頼まれて",
+  "grammar": [
+    "request",
+    "pronoun"
+  ],
+  "aim": "Could you 〜? は丁寧な依頼。過去の話ではない。",
+  "pitfall": "Could を「できましたか」と過去の質問に読んでしまう。",
+  "chunks": [
+    {
+      "text": "Could",
+      "role": "aux",
+      "plain": "丁寧に頼む",
+      "why": "can の過去形だが、過去の意味はない。一歩引いた、丁寧な頼み方。"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "take",
+      "role": "V"
+    },
+    {
+      "text": "our picture",
+      "role": "O",
+      "why": "our＝私たちの。写るのは頼んでいる側。"
+    }
+  ],
+  "words": [
+    {
+      "w": "take",
+      "lemma": "take",
+      "ja": "（写真を）撮る"
+    },
+    {
+      "w": "picture",
+      "lemma": "picture",
+      "ja": "写真"
+    }
+  ],
+  "question": {
+    "ask": "写真に写るのは誰？",
+    "choices": [
+      "頼んでいる人たち",
+      "頼まれた人",
+      "誰も写らない風景"
+    ],
+    "answer": 0,
+    "explain": "take の主語は you（頼まれた人）なので、撮るのは相手。our picture は「私たちの写真」で、写るのは頼んだ側です。"
+  }
+}

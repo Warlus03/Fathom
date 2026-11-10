@@ -1,0 +1,54 @@
+{
+  "id": "t-0015",
+  "shelf": "talk",
+  "en": "We call him Taro.",
+  "ja": "私たちは彼をタロウと呼んでいます。",
+  "scene": "家族や犬を紹介するとき",
+  "grammar": [
+    "svoc",
+    "pronoun"
+  ],
+  "aim": "call A B で「AをBと呼ぶ」。him ＝ Taro の関係。",
+  "pitfall": "call を「電話する」と読んで「彼に電話する」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "We",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "call",
+      "role": "V",
+      "plain": "〜と呼ぶ"
+    },
+    {
+      "text": "him",
+      "role": "O",
+      "plain": "誰を",
+      "why": "he ではなく him。動詞の後ろに来たときの形。"
+    },
+    {
+      "text": "Taro",
+      "role": "C",
+      "plain": "何と",
+      "why": "him ＝ Taro。He is Taro. が成り立つ。"
+    }
+  ],
+  "words": [
+    {
+      "w": "call",
+      "lemma": "call",
+      "ja": "呼ぶ（「電話する」の意味もある）"
+    }
+  ],
+  "question": {
+    "ask": "Taro とは？",
+    "choices": [
+      "彼の呼び名",
+      "彼に電話をかけた人の名前",
+      "私たちのグループの名前"
+    ],
+    "answer": 0,
+    "explain": "call の後ろに名詞が2つ並び、him ＝ Taro の関係。電話なら We call him. で終わります。"
+  }
+}

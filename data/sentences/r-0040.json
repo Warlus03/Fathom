@@ -1,0 +1,80 @@
+{
+  "id": "r-0040",
+  "shelf": "read",
+  "en": "The answer sounds correct, but it's wrong.",
+  "ja": "その答えは正しそうに聞こえるけれど、間違っています。",
+  "scene": "AIの回答についての注意を書いた投稿で",
+  "grammar": [
+    "svc",
+    "conjunction"
+  ],
+  "aim": "sound＋形容詞は「〜に聞こえる・〜そうだ」。is（〜だ）とは違う。",
+  "pitfall": "sounds correct を「正しい」と読んで、後半と矛盾して止まる。",
+  "chunks": [
+    {
+      "text": "The answer",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "sounds",
+      "role": "V",
+      "plain": "〜に聞こえる",
+      "why": "そう聞こえる、という印象を言っているだけで、事実とは限らない。"
+    },
+    {
+      "text": "correct",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "but",
+      "role": "conj",
+      "plain": "しかし"
+    },
+    {
+      "text": "it's",
+      "role": "S",
+      "plain": "何が",
+      "term": "主語＋be動詞",
+      "why": "こちらは is。印象ではなく、事実として言っている。"
+    },
+    {
+      "text": "wrong",
+      "role": "C",
+      "plain": "どういう状態"
+    }
+  ],
+  "words": [
+    {
+      "w": "answer",
+      "lemma": "answer",
+      "ja": "答え"
+    },
+    {
+      "w": "sounds",
+      "lemma": "sound",
+      "ja": "〜に聞こえる・〜そうだ"
+    },
+    {
+      "w": "correct",
+      "lemma": "correct",
+      "ja": "正しい"
+    },
+    {
+      "w": "wrong",
+      "lemma": "wrong",
+      "ja": "間違っている"
+    }
+  ],
+  "question": {
+    "ask": "実際のところ、その答えは？",
+    "choices": [
+      "間違っている",
+      "正しい",
+      "まだ分からない"
+    ],
+    "answer": 0,
+    "explain": "sounds correct は「正しそうに聞こえる」という印象。事実は but の後ろの it's wrong です。"
+  }
+}

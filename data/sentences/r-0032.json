@@ -1,0 +1,55 @@
+{
+  "id": "r-0032",
+  "shelf": "read",
+  "en": "This video was made with AI.",
+  "ja": "この動画はAIを使って作られました。",
+  "scene": "動画に付いた説明で",
+  "grammar": [
+    "passive",
+    "past"
+  ],
+  "aim": "be動詞＋過去分詞で「〜された」。誰が作ったかは言っていない。",
+  "pitfall": "with AI を「AIによって」と読んで、AIが自分で作ったと取ってしまう。with は道具。",
+  "chunks": [
+    {
+      "text": "This video",
+      "role": "S",
+      "plain": "何が",
+      "why": "作られた側が主語。"
+    },
+    {
+      "text": "was made",
+      "role": "V",
+      "plain": "作られた",
+      "term": "動詞（受け身）"
+    },
+    {
+      "text": "with AI",
+      "role": "M",
+      "plain": "何を使って",
+      "why": "with は道具・手段。作った人を言うなら by を使う。"
+    }
+  ],
+  "words": [
+    {
+      "w": "made",
+      "lemma": "make",
+      "ja": "作る（made は過去分詞も同じ形）"
+    },
+    {
+      "w": "with",
+      "lemma": "with",
+      "ja": "〜を使って・〜と一緒に"
+    }
+  ],
+  "question": {
+    "ask": "この文から分かることは？",
+    "choices": [
+      "この動画は、AIを使って作られた",
+      "この動画が、AIを作った",
+      "誰がこの動画を作ったか"
+    ],
+    "answer": 0,
+    "explain": "主語の This video は作られた側。with AI は道具で、作った人はこの文には出てきません。"
+  }
+}

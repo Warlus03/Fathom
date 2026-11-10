@@ -1,0 +1,58 @@
+{
+  "id": "t-0022",
+  "shelf": "talk",
+  "en": "My son made me this card.",
+  "ja": "息子が私にこのカードを作ってくれたんです。",
+  "scene": "持ち物をほめられて",
+  "grammar": [
+    "svoo",
+    "past"
+  ],
+  "aim": "make も「人に・物を」の形で使える。me が受け取る人。",
+  "pitfall": "make A B（AをBにする）と見た目が同じ。me ＝ this card は成り立たないので、こちらは「私に・カードを」。",
+  "chunks": [
+    {
+      "text": "My son",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "made",
+      "role": "V",
+      "why": "make の過去形。"
+    },
+    {
+      "text": "me",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "this card",
+      "role": "O",
+      "plain": "何を",
+      "why": "I am this card. は成り立たない。だから「AをBにする」ではなく「人に・物を」の形。"
+    }
+  ],
+  "words": [
+    {
+      "w": "made",
+      "lemma": "make",
+      "ja": "作る（made は過去形）"
+    },
+    {
+      "w": "card",
+      "lemma": "card",
+      "ja": "カード"
+    }
+  ],
+  "question": {
+    "ask": "カードをもらったのは？",
+    "choices": [
+      "話している人",
+      "息子",
+      "書かれていない"
+    ],
+    "answer": 0,
+    "explain": "made の直後の me が受け取る人、this card が作られた物。作ったのは My son です。"
+  }
+}

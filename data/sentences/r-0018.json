@@ -1,0 +1,58 @@
+{
+  "id": "r-0018",
+  "shelf": "read",
+  "en": "This doesn't look right.",
+  "ja": "これは何かおかしい気がします。",
+  "scene": "AIの出力を見た人の投稿で",
+  "grammar": [
+    "svc",
+    "negative"
+  ],
+  "aim": "look＋形容詞（〜に見える）の否定。「正しく見えない」＝おかしい。",
+  "pitfall": "right を「右」、look を「見る」と読んで意味が取れなくなる。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "doesn't",
+      "role": "neg",
+      "plain": "〜しない",
+      "term": "否定（does＋not）"
+    },
+    {
+      "text": "look",
+      "role": "V",
+      "plain": "〜に見える"
+    },
+    {
+      "text": "right",
+      "role": "C",
+      "plain": "どういう状態"
+    }
+  ],
+  "words": [
+    {
+      "w": "look",
+      "lemma": "look",
+      "ja": "〜に見える（後ろが形容詞のとき）"
+    },
+    {
+      "w": "right",
+      "lemma": "right",
+      "ja": "正しい・適切な（「右」だけではない）"
+    }
+  ],
+  "question": {
+    "ask": "書いた人が感じていることは？",
+    "choices": [
+      "何かがおかしい",
+      "これは右を向いていない",
+      "これを見たくない"
+    ],
+    "answer": 0,
+    "explain": "This ＝ right（正しい）に「見えない」。つまり、どこか間違っていそうだ、という意味です。"
+  }
+}

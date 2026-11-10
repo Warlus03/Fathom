@@ -1,0 +1,57 @@
+{
+  "id": "t-0018",
+  "shelf": "talk",
+  "en": "Let's have coffee sometime.",
+  "ja": "そのうちコーヒーでも飲みましょう。",
+  "scene": "立ち話の終わりに",
+  "grammar": [
+    "imperative"
+  ],
+  "aim": "Let's＋動詞で「一緒に〜しよう」。話し手も相手も含む。",
+  "pitfall": "sometime（いつか）なので、具体的な約束とは限らない。親しみを示すあいさつに近いこともある。",
+  "chunks": [
+    {
+      "text": "Let's",
+      "role": "x",
+      "plain": "一緒に〜しよう",
+      "term": "誘い（Let us）",
+      "why": "Let us の短い形。us なので、話し手と相手の両方が含まれる。"
+    },
+    {
+      "text": "have",
+      "role": "V",
+      "plain": "飲む"
+    },
+    {
+      "text": "coffee",
+      "role": "O"
+    },
+    {
+      "text": "sometime",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "have",
+      "lemma": "have",
+      "ja": "（飲み物を）飲む・（食事を）とる"
+    },
+    {
+      "w": "sometime",
+      "lemma": "sometime",
+      "ja": "いつか・そのうち"
+    }
+  ],
+  "question": {
+    "ask": "コーヒーを飲むのは？",
+    "choices": [
+      "話している人と相手が、一緒に",
+      "相手だけ",
+      "話している人だけ"
+    ],
+    "answer": 0,
+    "explain": "Let's は Let us。「私たちで〜しよう」という誘いです。"
+  }
+}

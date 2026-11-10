@@ -1,0 +1,57 @@
+{
+  "id": "r-0027",
+  "shelf": "read",
+  "en": "I use AI to save time.",
+  "ja": "時間を節約するためにAIを使っています。",
+  "scene": "仕事の工夫を紹介する投稿で",
+  "grammar": [
+    "infinitive",
+    "verb"
+  ],
+  "aim": "骨組みが終わった後の to＋動詞は「〜するために」（目的）。",
+  "pitfall": "save を「保存する」と読んで「時間を保存する」で止まる。時間やお金には「節約する」。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "use",
+      "role": "V"
+    },
+    {
+      "text": "AI",
+      "role": "O"
+    },
+    {
+      "text": "to save time",
+      "role": "M",
+      "plain": "何のために",
+      "term": "to＋動詞（目的）",
+      "why": "I use AI. で骨組みは完成している。その後ろの to＋動詞は目的を足している。"
+    }
+  ],
+  "words": [
+    {
+      "w": "use",
+      "lemma": "use",
+      "ja": "使う"
+    },
+    {
+      "w": "save",
+      "lemma": "save",
+      "ja": "節約する（「保存する」「救う」の意味もある）"
+    }
+  ],
+  "question": {
+    "ask": "「時間を節約すること」は、この文でどんな位置づけ？",
+    "choices": [
+      "AIを使う目的",
+      "AIを使うための条件",
+      "AIを使ってみた感想"
+    ],
+    "answer": 0,
+    "explain": "to save time は「時間を節約するために」。なぜ使うのか、を足しています。"
+  }
+}

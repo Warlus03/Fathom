@@ -1,0 +1,59 @@
+{
+  "id": "r-0014",
+  "shelf": "read",
+  "en": "A lot of people are talking about this.",
+  "ja": "たくさんの人がこのことを話題にしています。",
+  "scene": "話題のニュースを紹介する投稿で",
+  "grammar": [
+    "progressive",
+    "preposition"
+  ],
+  "aim": "主語が長くても、are ＋ ing を見つければ「今〜している」と分かる。",
+  "pitfall": "A lot of people を1語ずつ読んで、どこまでが主語か見失う。",
+  "chunks": [
+    {
+      "text": "A lot of people",
+      "role": "S",
+      "plain": "誰が",
+      "why": "a lot of で「たくさんの」。people までが主語のかたまり。"
+    },
+    {
+      "text": "are talking",
+      "role": "V",
+      "plain": "している最中",
+      "term": "動詞（進行形）"
+    },
+    {
+      "text": "about this",
+      "role": "M",
+      "plain": "何について"
+    }
+  ],
+  "words": [
+    {
+      "w": "A lot of",
+      "lemma": "a lot of",
+      "ja": "たくさんの"
+    },
+    {
+      "w": "talking",
+      "lemma": "talk",
+      "ja": "話す"
+    },
+    {
+      "w": "about",
+      "lemma": "about",
+      "ja": "〜について"
+    }
+  ],
+  "question": {
+    "ask": "今の状況は？",
+    "choices": [
+      "多くの人が、今これを話題にしている",
+      "多くの人が、これについて話し終えた",
+      "多くの人が、これから話す予定だ"
+    ],
+    "answer": 0,
+    "explain": "are talking は進行形で「今、話している最中」。話し終えたなら talked、これからなら will talk です。"
+  }
+}

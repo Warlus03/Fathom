@@ -1,0 +1,54 @@
+{
+  "id": "r-0001",
+  "shelf": "read",
+  "en": "This app is free.",
+  "ja": "このアプリは無料です。",
+  "scene": "アプリの紹介文で",
+  "grammar": [
+    "be",
+    "adjective"
+  ],
+  "aim": "A is B の形。is の右側が、主語の性質を言っている。",
+  "pitfall": "free を「自由」とだけ覚えていると意味が取れない。値段の話では「無料」。",
+  "chunks": [
+    {
+      "text": "This app",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞",
+      "why": "主語が This app（ひとつ）なので is。"
+    },
+    {
+      "text": "free",
+      "role": "C",
+      "plain": "どういう状態"
+    }
+  ],
+  "words": [
+    {
+      "w": "app",
+      "lemma": "app",
+      "ja": "アプリ"
+    },
+    {
+      "w": "free",
+      "lemma": "free",
+      "ja": "無料の（「自由な」の意味もある）"
+    }
+  ],
+  "question": {
+    "ask": "この文が伝えているのは？",
+    "choices": [
+      "このアプリは無料だ",
+      "このアプリを無料にしてほしい",
+      "無料のアプリを探している"
+    ],
+    "answer": 0,
+    "explain": "This app ＝ free。is は「イコール」の働きで、「してほしい」「探している」のような動作は表しません。"
+  }
+}

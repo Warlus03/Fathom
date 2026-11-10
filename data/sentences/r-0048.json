@@ -1,0 +1,65 @@
+{
+  "id": "r-0048",
+  "shelf": "read",
+  "en": "He showed us how it works.",
+  "ja": "彼は私たちに、それがどう動くのかを見せてくれました。",
+  "scene": "発表会の感想で",
+  "grammar": [
+    "svoo",
+    "indirect",
+    "pronoun"
+  ],
+  "aim": "show＋人＋物 の「物」の位置に、how〜 のかたまりが入っている。",
+  "pitfall": "how it works を「彼の働き方」と読んでしまう。works の主語は it。",
+  "chunks": [
+    {
+      "text": "He",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "showed",
+      "role": "V"
+    },
+    {
+      "text": "us",
+      "role": "O",
+      "plain": "誰に",
+      "why": "we ではなく us。動詞の後ろに来たときの形。"
+    },
+    {
+      "text": "how it works",
+      "role": "O",
+      "plain": "何を",
+      "term": "間接疑問",
+      "why": "「それがどう動くのか」。how の後ろは普通の語順で、主語は it。"
+    }
+  ],
+  "words": [
+    {
+      "w": "showed",
+      "lemma": "show",
+      "ja": "見せる"
+    },
+    {
+      "w": "how",
+      "lemma": "how",
+      "ja": "どのように"
+    },
+    {
+      "w": "works",
+      "lemma": "work",
+      "ja": "動く・機能する"
+    }
+  ],
+  "question": {
+    "ask": "見せてもらったのは？",
+    "choices": [
+      "それが動く仕組み",
+      "彼の仕事ぶり",
+      "彼の職場"
+    ],
+    "answer": 0,
+    "explain": "how it works で「それがどう動くか」。works の主語は he ではなく it です。"
+  }
+}

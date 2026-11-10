@@ -1,0 +1,56 @@
+{
+  "id": "t-0025",
+  "shelf": "talk",
+  "en": "This cake was made by my mother.",
+  "ja": "このケーキは母が作ったんです。",
+  "scene": "おすそ分けを渡すとき",
+  "grammar": [
+    "passive",
+    "past"
+  ],
+  "aim": "受け身で、作った人を言いたいときは by を付ける。",
+  "pitfall": "by を「〜のそばで」と読んで、母のそばで作られたと取ってしまう。",
+  "chunks": [
+    {
+      "text": "This cake",
+      "role": "S",
+      "plain": "何が",
+      "why": "作られた側が主語。"
+    },
+    {
+      "text": "was made",
+      "role": "V",
+      "plain": "作られた",
+      "term": "動詞（受け身）",
+      "why": "be動詞＋過去分詞で「〜された」。"
+    },
+    {
+      "text": "by my mother",
+      "role": "M",
+      "plain": "誰によって",
+      "why": "受け身の文の by の後ろが、実際にした人。"
+    }
+  ],
+  "words": [
+    {
+      "w": "made",
+      "lemma": "make",
+      "ja": "作る（made は過去分詞も同じ形）"
+    },
+    {
+      "w": "by",
+      "lemma": "by",
+      "ja": "〜によって"
+    }
+  ],
+  "question": {
+    "ask": "ケーキを作ったのは？",
+    "choices": [
+      "話している人の母",
+      "話している人",
+      "書かれていない"
+    ],
+    "answer": 0,
+    "explain": "受け身では、した人は by の後ろに来ます。My mother made this cake. と同じ出来事です。"
+  }
+}

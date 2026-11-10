@@ -1,0 +1,56 @@
+{
+  "id": "t-0001",
+  "shelf": "talk",
+  "en": "Are you from around here?",
+  "ja": "このあたりの方ですか。",
+  "scene": "初めて会った人との立ち話で",
+  "grammar": [
+    "be",
+    "question",
+    "preposition"
+  ],
+  "aim": "be動詞が文頭に出たら質問。You are 〜 をひっくり返した形。",
+  "pitfall": "from を「〜から来る（移動）」と取ると意味がずれる。be from は「〜の出身・〜の人」。",
+  "chunks": [
+    {
+      "text": "Are",
+      "role": "V",
+      "plain": "＝（質問なので前へ）",
+      "term": "be動詞",
+      "why": "You are 〜 の are を主語の前に出すと質問になる。"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "from around here",
+      "role": "C",
+      "plain": "どこの人",
+      "why": "be from 〜 で「〜の出身・〜の人」。"
+    }
+  ],
+  "words": [
+    {
+      "w": "from",
+      "lemma": "from",
+      "ja": "〜から・〜出身の"
+    },
+    {
+      "w": "around here",
+      "lemma": "around here",
+      "ja": "このあたり"
+    }
+  ],
+  "question": {
+    "ask": "何を聞かれましたか？",
+    "choices": [
+      "この近所の人かどうか",
+      "この近くに来たことがあるか",
+      "ここから何が見えるか"
+    ],
+    "answer": 0,
+    "explain": "You are from around here.（あなたはこのあたりの人だ）を質問にした形です。"
+  }
+}

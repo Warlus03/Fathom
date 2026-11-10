@@ -1,0 +1,66 @@
+{
+  "id": "t-0023",
+  "shelf": "talk",
+  "en": "Could you say that again more slowly?",
+  "ja": "もう一度、もう少しゆっくり言っていただけますか。",
+  "scene": "聞き取れなかったとき",
+  "grammar": [
+    "request",
+    "comparison"
+  ],
+  "aim": "聞き取れないときの頼み方。more slowly で「もっとゆっくり」。",
+  "pitfall": "Could を過去の質問、more を「もっとたくさん」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "Could",
+      "role": "aux",
+      "plain": "丁寧に頼む"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "say",
+      "role": "V"
+    },
+    {
+      "text": "that",
+      "role": "O"
+    },
+    {
+      "text": "again",
+      "role": "M",
+      "plain": "もう一度"
+    },
+    {
+      "text": "more slowly",
+      "role": "M",
+      "plain": "どのように",
+      "why": "slowly のように -ly で終わる副詞は、-er ではなく more で比べる。"
+    }
+  ],
+  "words": [
+    {
+      "w": "again",
+      "lemma": "again",
+      "ja": "もう一度"
+    },
+    {
+      "w": "slowly",
+      "lemma": "slowly",
+      "ja": "ゆっくり"
+    }
+  ],
+  "question": {
+    "ask": "頼んでいることは？",
+    "choices": [
+      "今の言葉を、もっとゆっくり、もう一度言うこと",
+      "もっとたくさん話すこと",
+      "前にゆっくり言えたかどうか、答えること"
+    ],
+    "answer": 0,
+    "explain": "say that again（それをもう一度言う）に、more slowly（もっとゆっくり）が足されています。"
+  }
+}

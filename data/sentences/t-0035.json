@@ -1,0 +1,58 @@
+{
+  "id": "t-0035",
+  "shelf": "talk",
+  "en": "Do you know where the city hall is?",
+  "ja": "市役所がどこにあるか、ご存じですか。",
+  "scene": "道で声をかけられて",
+  "grammar": [
+    "indirect",
+    "question"
+  ],
+  "aim": "質問が文の中に入ると、語順が普通の文に戻る（where the city hall is）。",
+  "pitfall": "「知っていますか」に「はい」とだけ答えて終わってしまう。場所を教えてほしい、という丁寧なたずね方。",
+  "chunks": [
+    {
+      "text": "Do",
+      "role": "aux",
+      "plain": "質問の合図"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "know",
+      "role": "V"
+    },
+    {
+      "text": "where the city hall is",
+      "role": "O",
+      "plain": "何を",
+      "term": "間接疑問",
+      "why": "Where is the city hall? が文の中に入ると、is が後ろに戻る。"
+    }
+  ],
+  "words": [
+    {
+      "w": "know",
+      "lemma": "know",
+      "ja": "知っている"
+    },
+    {
+      "w": "city hall",
+      "lemma": "city hall",
+      "ja": "市役所"
+    }
+  ],
+  "question": {
+    "ask": "この人が本当に知りたいのは？",
+    "choices": [
+      "市役所の場所",
+      "相手が物知りかどうか",
+      "市役所とは何か"
+    ],
+    "answer": 0,
+    "explain": "know の「何を」が where the city hall is（市役所がどこにあるか）。知っていれば教えてほしい、という意味です。"
+  }
+}

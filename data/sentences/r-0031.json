@@ -1,0 +1,64 @@
+{
+  "id": "r-0031",
+  "shelf": "read",
+  "en": "Why does it keep crashing?",
+  "ja": "どうして何度も落ちるんでしょうか。",
+  "scene": "アプリの不具合に困っている人の投稿で",
+  "grammar": [
+    "wh",
+    "gerund",
+    "s3"
+  ],
+  "aim": "keep＋ing で「〜し続ける・何度も〜する」。",
+  "pitfall": "keep を「保つ」と読んで「落ちないように保つ」と逆に取ってしまう。",
+  "chunks": [
+    {
+      "text": "Why",
+      "role": "q",
+      "plain": "なぜ（たずねる）"
+    },
+    {
+      "text": "does",
+      "role": "aux",
+      "plain": "質問の合図"
+    },
+    {
+      "text": "it",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "keep",
+      "role": "V",
+      "plain": "〜し続ける"
+    },
+    {
+      "text": "crashing",
+      "role": "O",
+      "term": "目的語（ing 形）",
+      "why": "keep の後ろは ing 形。実際に起きていることが繰り返されている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "keep",
+      "lemma": "keep",
+      "ja": "〜し続ける（「保つ」の意味もある）"
+    },
+    {
+      "w": "crashing",
+      "lemma": "crash",
+      "ja": "（アプリなどが）落ちる・突然止まる"
+    }
+  ],
+  "question": {
+    "ask": "落ちる回数について分かることは？",
+    "choices": [
+      "何度も繰り返し落ちている",
+      "一度だけ落ちた",
+      "落ちないように保たれている"
+    ],
+    "answer": 0,
+    "explain": "keep crashing で「落ち続ける」。一度きりなら Why did it crash? です。"
+  }
+}

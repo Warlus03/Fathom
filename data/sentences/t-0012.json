@@ -1,0 +1,53 @@
+{
+  "id": "t-0012",
+  "shelf": "talk",
+  "en": "When does the next bus come?",
+  "ja": "次のバスはいつ来ますか。",
+  "scene": "バス停で聞かれて",
+  "grammar": [
+    "wh",
+    "s3"
+  ],
+  "aim": "疑問詞＋does＋主語＋動詞の原形。動詞が文末に離れている。",
+  "pitfall": "does の直後の the next bus が主語だと気づかず、come を見失う。",
+  "chunks": [
+    {
+      "text": "When",
+      "role": "q",
+      "plain": "いつ（たずねる）"
+    },
+    {
+      "text": "does",
+      "role": "aux",
+      "plain": "質問の合図",
+      "why": "主語が the next bus（ひとつ）なので does。"
+    },
+    {
+      "text": "the next bus",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "come",
+      "role": "V",
+      "why": "does が s を引き受けたので原形。"
+    }
+  ],
+  "words": [
+    {
+      "w": "next",
+      "lemma": "next",
+      "ja": "次の"
+    }
+  ],
+  "question": {
+    "ask": "この人が知りたいのは？",
+    "choices": [
+      "次のバスが来る時刻",
+      "次のバスが来る場所",
+      "次のバスの行き先"
+    ],
+    "answer": 0,
+    "explain": "When は時をたずねます。場所なら Where、行き先なら Where does the next bus go? です。"
+  }
+}

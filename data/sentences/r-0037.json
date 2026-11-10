@@ -1,0 +1,54 @@
+{
+  "id": "r-0037",
+  "shelf": "read",
+  "en": "It's hard to explain this in English.",
+  "ja": "これを英語で説明するのは難しいです。",
+  "scene": "日本の習慣を紹介しようとしている投稿で",
+  "grammar": [
+    "it-to"
+  ],
+  "aim": "It's＋形容詞＋to〜。難しいのは「to 以下のこと」。",
+  "pitfall": "「それは難しい」で止まって、何が難しいのかを取りそこねる。",
+  "chunks": [
+    {
+      "text": "It's",
+      "role": "S",
+      "plain": "（仮の主語）",
+      "term": "仮の主語＋be動詞",
+      "why": "この it は何も指していない。本当の主語は後ろの to 以下。"
+    },
+    {
+      "text": "hard",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "to explain this in English",
+      "role": "x",
+      "plain": "何をするのが",
+      "term": "本当の主語（to＋動詞）"
+    }
+  ],
+  "words": [
+    {
+      "w": "hard",
+      "lemma": "hard",
+      "ja": "難しい（「かたい」の意味もある）"
+    },
+    {
+      "w": "explain",
+      "lemma": "explain",
+      "ja": "説明する"
+    }
+  ],
+  "question": {
+    "ask": "難しいのは何？",
+    "choices": [
+      "これを英語で説明すること",
+      "英語という言葉そのもの",
+      "前に話に出た何か（It が指す物）"
+    ],
+    "answer": 0,
+    "explain": "to explain this in English（これを英語で説明すること）＝ hard。It は形だけの主語です。"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "id": "t-0017",
+  "shelf": "talk",
+  "en": "She teaches my son English.",
+  "ja": "彼女はうちの息子に英語を教えてくれています。",
+  "scene": "近所の人を紹介するとき",
+  "grammar": [
+    "svoo",
+    "s3",
+    "pronoun"
+  ],
+  "aim": "teach の後ろに名詞が2つ。人が先、教える内容が後。",
+  "pitfall": "my son English を「私の息子の英語」とひとかたまりに読んでしまう。",
+  "chunks": [
+    {
+      "text": "She",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "teaches",
+      "role": "V",
+      "why": "主語が She なので s（ch で終わる語は es）。"
+    },
+    {
+      "text": "my son",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "English",
+      "role": "O",
+      "plain": "何を"
+    }
+  ],
+  "words": [
+    {
+      "w": "teaches",
+      "lemma": "teach",
+      "ja": "教える"
+    },
+    {
+      "w": "son",
+      "lemma": "son",
+      "ja": "息子"
+    }
+  ],
+  "question": {
+    "ask": "英語を習っているのは？",
+    "choices": [
+      "話している人の息子",
+      "彼女",
+      "話している人"
+    ],
+    "answer": 0,
+    "explain": "teaches の直後の my son が教わる人、その次の English が教える内容です。"
+  }
+}

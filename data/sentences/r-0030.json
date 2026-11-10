@@ -1,0 +1,44 @@
+{
+  "id": "r-0030",
+  "shelf": "read",
+  "en": "Thanks for sharing this.",
+  "ja": "これを共有してくれてありがとう。",
+  "scene": "役に立つ投稿への返信で",
+  "grammar": [
+    "gerund",
+    "preposition"
+  ],
+  "aim": "前置詞の後ろに動詞を置くときは ing 形。for sharing で「共有したことに対して」。",
+  "pitfall": "sharing を進行形と思って、今共有している最中だと読んでしまう。",
+  "chunks": [
+    {
+      "text": "Thanks",
+      "role": "x",
+      "plain": "ありがとう",
+      "term": "お礼の言葉"
+    },
+    {
+      "text": "for sharing this",
+      "role": "M",
+      "plain": "何に対して",
+      "why": "前置詞 for の後ろには名詞が要るので、share を ing 形にしている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "sharing",
+      "lemma": "share",
+      "ja": "共有する・みんなに知らせる"
+    }
+  ],
+  "question": {
+    "ask": "共有したのは誰？",
+    "choices": [
+      "お礼を言われている相手",
+      "お礼を言っている人",
+      "まだ誰も共有していない"
+    ],
+    "answer": 0,
+    "explain": "相手がしてくれたこと（sharing this）に対して、お礼を言っています。"
+  }
+}

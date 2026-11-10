@@ -1,0 +1,58 @@
+{
+  "id": "r-0019",
+  "shelf": "read",
+  "en": "Can you see the image?",
+  "ja": "画像は見えていますか。",
+  "scene": "画像付きの投稿で",
+  "grammar": [
+    "can",
+    "question"
+  ],
+  "aim": "can を前に出した質問。ここでは「見える状態か」を確かめている。",
+  "pitfall": "「見てください」という依頼に読んでしまう。see は自然に目に入ること。",
+  "chunks": [
+    {
+      "text": "Can",
+      "role": "aux",
+      "plain": "できる（質問なので前へ）",
+      "why": "助動詞は、主語の前に出すだけで質問になる。do は使わない。"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "see",
+      "role": "V",
+      "plain": "見える",
+      "why": "see は「自然に目に入る」。意識して見るなら look at。"
+    },
+    {
+      "text": "the image",
+      "role": "O"
+    }
+  ],
+  "words": [
+    {
+      "w": "see",
+      "lemma": "see",
+      "ja": "見える・目に入る"
+    },
+    {
+      "w": "image",
+      "lemma": "image",
+      "ja": "画像"
+    }
+  ],
+  "question": {
+    "ask": "この人がしていることは？",
+    "choices": [
+      "画像が相手に表示されているか、確かめている",
+      "画像をじっくり見てほしいと頼んでいる",
+      "画像を見てもよい、と許可している"
+    ],
+    "answer": 0,
+    "explain": "see は「見える」。じっくり見てほしいなら Can you look at the image? 、許可なら You can see the image. です。"
+  }
+}

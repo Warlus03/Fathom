@@ -1,0 +1,59 @@
+{
+  "id": "r-0034",
+  "shelf": "read",
+  "en": "I've used it for three months.",
+  "ja": "それを3か月使っています。",
+  "scene": "製品レビューの書き出しで",
+  "grammar": [
+    "perfect",
+    "preposition"
+  ],
+  "aim": "I've used ＝ I have used。3か月前から今まで続いている。",
+  "pitfall": "used を過去形と読んで「3か月使った（もうやめた）」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "I've",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋have"
+    },
+    {
+      "text": "used",
+      "role": "V",
+      "plain": "使ってきた",
+      "term": "過去分詞（現在完了）",
+      "why": "have＋過去分詞。使い始めてから今までがつながっている。"
+    },
+    {
+      "text": "it",
+      "role": "O"
+    },
+    {
+      "text": "for three months",
+      "role": "M",
+      "plain": "どのくらいの間"
+    }
+  ],
+  "words": [
+    {
+      "w": "used",
+      "lemma": "use",
+      "ja": "使う"
+    },
+    {
+      "w": "for",
+      "lemma": "for",
+      "ja": "〜の間"
+    }
+  ],
+  "question": {
+    "ask": "この人と「それ」の関係は？",
+    "choices": [
+      "3か月前に使い始めて、今も使っている",
+      "3か月間使って、もうやめた",
+      "3か月後に使い始める"
+    ],
+    "answer": 0,
+    "explain": "現在完了は今につながっています。やめた話なら I used it for three months.（過去形）です。"
+  }
+}

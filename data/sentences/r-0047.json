@@ -1,0 +1,59 @@
+{
+  "id": "r-0047",
+  "shelf": "read",
+  "en": "I don't know what this means.",
+  "ja": "これがどういう意味なのか分かりません。",
+  "scene": "見慣れない表示に戸惑う投稿で",
+  "grammar": [
+    "indirect",
+    "negative"
+  ],
+  "aim": "know の「何を」に、質問のかたまり（what this means）が入っている。",
+  "pitfall": "what を見て質問文だと思ってしまう。文全体は「分からない」と述べているだけ。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "don't",
+      "role": "neg",
+      "plain": "〜しない",
+      "term": "否定（do＋not）"
+    },
+    {
+      "text": "know",
+      "role": "V"
+    },
+    {
+      "text": "what this means",
+      "role": "O",
+      "plain": "何を（分からない中身）",
+      "term": "間接疑問",
+      "why": "文の一部になった質問。語順は What does this mean? ではなく、普通の順（this means）。"
+    }
+  ],
+  "words": [
+    {
+      "w": "know",
+      "lemma": "know",
+      "ja": "知っている・分かる"
+    },
+    {
+      "w": "means",
+      "lemma": "mean",
+      "ja": "意味する"
+    }
+  ],
+  "question": {
+    "ask": "この人が分からないのは？",
+    "choices": [
+      "これが何を意味するのか",
+      "これがどこにあるのか",
+      "何を質問すればいいのか"
+    ],
+    "answer": 0,
+    "explain": "what this means で「これが何を意味するのか」。それが know の相手です。"
+  }
+}

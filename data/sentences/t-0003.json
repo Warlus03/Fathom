@@ -1,0 +1,73 @@
+{
+  "id": "t-0003",
+  "shelf": "talk",
+  "en": "Go straight and turn left at the corner.",
+  "ja": "まっすぐ行って、角で左に曲がってください。",
+  "scene": "道を教えるとき",
+  "grammar": [
+    "imperative",
+    "conjunction",
+    "preposition"
+  ],
+  "aim": "動詞から始まる文は相手への呼びかけ。and で2つの動作を順につないでいる。",
+  "pitfall": "at the corner が「まっすぐ行く」にもかかると思ってしまう。直前の turn left の説明。",
+  "chunks": [
+    {
+      "text": "Go",
+      "role": "V",
+      "why": "主語なしで動詞の原形から始まる。道案内ではごく普通の言い方で、失礼ではない。"
+    },
+    {
+      "text": "straight",
+      "role": "M",
+      "plain": "どのように"
+    },
+    {
+      "text": "and",
+      "role": "conj",
+      "plain": "そして"
+    },
+    {
+      "text": "turn",
+      "role": "V"
+    },
+    {
+      "text": "left",
+      "role": "M",
+      "plain": "どちらへ"
+    },
+    {
+      "text": "at the corner",
+      "role": "M",
+      "plain": "どこで",
+      "why": "at は「一点」。角という地点で。"
+    }
+  ],
+  "words": [
+    {
+      "w": "straight",
+      "lemma": "straight",
+      "ja": "まっすぐ"
+    },
+    {
+      "w": "turn",
+      "lemma": "turn",
+      "ja": "曲がる・向きを変える"
+    },
+    {
+      "w": "corner",
+      "lemma": "corner",
+      "ja": "角"
+    }
+  ],
+  "question": {
+    "ask": "左に曲がるのはどこ？",
+    "choices": [
+      "まっすぐ進んだ先の角",
+      "今いる場所ですぐ",
+      "角を通り過ぎたあと"
+    ],
+    "answer": 0,
+    "explain": "and は順番につなぎます。まず Go straight、それから turn left。at the corner が曲がる地点です。"
+  }
+}

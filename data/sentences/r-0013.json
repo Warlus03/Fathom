@@ -1,0 +1,59 @@
+{
+  "id": "r-0013",
+  "shelf": "read",
+  "en": "It will be available next week.",
+  "ja": "来週から利用できるようになります。",
+  "scene": "新機能の告知で",
+  "grammar": [
+    "future",
+    "be"
+  ],
+  "aim": "will が見えたら「これからの話」。今はまだそうなっていない。",
+  "pitfall": "will be を読み飛ばして「今使える」と受け取ってしまう。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "will",
+      "role": "aux",
+      "plain": "これから",
+      "why": "未来を表す。助動詞の後ろは原形なので、is ではなく be。"
+    },
+    {
+      "text": "be",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "available",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "next week",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "available",
+      "lemma": "available",
+      "ja": "利用できる・手に入る"
+    }
+  ],
+  "question": {
+    "ask": "今の時点で使えますか？",
+    "choices": [
+      "まだ使えない。来週から使えるようになる",
+      "もう使える",
+      "先週まで使えた"
+    ],
+    "answer": 0,
+    "explain": "will be は「これから〜になる」。next week（来週）がその時期です。今使えるなら It is available. です。"
+  }
+}

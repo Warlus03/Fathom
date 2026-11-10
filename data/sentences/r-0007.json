@@ -1,0 +1,49 @@
+{
+  "id": "r-0007",
+  "shelf": "read",
+  "en": "I can't log in.",
+  "ja": "ログインできません。",
+  "scene": "困っている人の投稿で",
+  "grammar": [
+    "can",
+    "negative"
+  ],
+  "aim": "can't は「can＋not」で「できない」。助動詞には直接 not を付ける。",
+  "pitfall": "don't（しない）と can't（できない）を混同する。can't はやろうとしてもできない。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "can't",
+      "role": "neg",
+      "plain": "〜できない",
+      "term": "助動詞＋否定",
+      "why": "can＋not。助動詞なので do は使わず、直接 not を付ける。"
+    },
+    {
+      "text": "log in",
+      "role": "V",
+      "why": "助動詞の後ろは必ず原形。"
+    }
+  ],
+  "words": [
+    {
+      "w": "log in",
+      "lemma": "log in",
+      "ja": "ログインする"
+    }
+  ],
+  "question": {
+    "ask": "この人の状況は？",
+    "choices": [
+      "ログインしようとしても、できない",
+      "ログインするつもりがない",
+      "まだログインしていないだけ"
+    ],
+    "answer": 0,
+    "explain": "can't は「できない」。「するつもりがない」なら I don't log in. や I won't log in. になります。"
+  }
+}

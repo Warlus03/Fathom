@@ -1,0 +1,59 @@
+{
+  "id": "r-0049",
+  "shelf": "read",
+  "en": "It's not as hard as it looks.",
+  "ja": "見た目ほど難しくありません。",
+  "scene": "初心者を励ます投稿で",
+  "grammar": [
+    "comparison",
+    "negative"
+  ],
+  "aim": "not as … as 〜 で「〜ほど…ではない」。",
+  "pitfall": "as … as（同じくらい）だけを見て、「見た目と同じくらい難しい」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "It's",
+      "role": "S",
+      "plain": "何が",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "not",
+      "role": "neg",
+      "plain": "打ち消す"
+    },
+    {
+      "text": "as hard",
+      "role": "C",
+      "plain": "同じくらい難しい"
+    },
+    {
+      "text": "as it looks",
+      "role": "M",
+      "plain": "何と比べて",
+      "why": "2つ目の as の後ろが比べる相手。「それが（難しそうに）見える」程度。"
+    }
+  ],
+  "words": [
+    {
+      "w": "hard",
+      "lemma": "hard",
+      "ja": "難しい"
+    },
+    {
+      "w": "looks",
+      "lemma": "look",
+      "ja": "〜に見える"
+    }
+  ],
+  "question": {
+    "ask": "実際の難しさは？",
+    "choices": [
+      "見た目ほど難しくない",
+      "見た目どおり難しい",
+      "見た目より難しい"
+    ],
+    "answer": 0,
+    "explain": "as hard as it looks（見た目と同じくらい難しい）を not で打ち消しています。"
+  }
+}

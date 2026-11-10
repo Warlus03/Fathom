@@ -1,0 +1,61 @@
+{
+  "id": "t-0005",
+  "shelf": "talk",
+  "en": "It was really cold this morning.",
+  "ja": "今朝は本当に寒かったですね。",
+  "scene": "近所の人との立ち話で",
+  "grammar": [
+    "be",
+    "past",
+    "adjective"
+  ],
+  "aim": "was は is の過去。もう過ぎた時間の話だと分かる。",
+  "pitfall": "It を「それ」と訳そうとして止まる。天気の it は何も指していない。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "（天気の it）",
+      "why": "天気・気温・時刻を言うときの it。何も指していないので「それ」とは訳さない。英語の文には主語が必要なので、形だけ置いている。"
+    },
+    {
+      "text": "was",
+      "role": "V",
+      "plain": "＝（〜だった）",
+      "term": "be動詞",
+      "why": "is の過去形。"
+    },
+    {
+      "text": "really cold",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "this morning",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "really",
+      "lemma": "really",
+      "ja": "本当に・とても"
+    },
+    {
+      "w": "cold",
+      "lemma": "cold",
+      "ja": "寒い・冷たい"
+    }
+  ],
+  "question": {
+    "ask": "寒かったのはいつのこと？",
+    "choices": [
+      "今朝（もう過ぎた時間）",
+      "ちょうど今",
+      "明日の朝"
+    ],
+    "answer": 0,
+    "explain": "was は過去の形。this morning は、もう過ぎた今朝のことを言っています。今のことなら It is cold. です。"
+  }
+}

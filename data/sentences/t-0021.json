@@ -1,0 +1,62 @@
+{
+  "id": "t-0021",
+  "shelf": "talk",
+  "en": "You have to change trains at Shinjuku.",
+  "ja": "新宿で電車を乗り換えないといけません。",
+  "scene": "行き方を聞かれて",
+  "grammar": [
+    "obligation",
+    "preposition"
+  ],
+  "aim": "have to でひとかたまり。「〜しなければならない」。",
+  "pitfall": "have を「持つ」と読んで、to の後ろとつながらなくなる。",
+  "chunks": [
+    {
+      "text": "You",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "have to",
+      "role": "aux",
+      "plain": "〜しなければならない",
+      "why": "have to の後ろは動詞の原形。事情や決まりによる必要を表す。"
+    },
+    {
+      "text": "change",
+      "role": "V"
+    },
+    {
+      "text": "trains",
+      "role": "O",
+      "why": "乗り換えには電車が2本関わるので複数形。"
+    },
+    {
+      "text": "at Shinjuku",
+      "role": "M",
+      "plain": "どこで"
+    }
+  ],
+  "words": [
+    {
+      "w": "have to",
+      "lemma": "have to",
+      "ja": "〜しなければならない"
+    },
+    {
+      "w": "change",
+      "lemma": "change",
+      "ja": "替える・乗り換える"
+    }
+  ],
+  "question": {
+    "ask": "新宿ですることは？",
+    "choices": [
+      "別の電車に乗り換える",
+      "電車を降りて、そこが目的地",
+      "電車の中でそのまま待つ"
+    ],
+    "answer": 0,
+    "explain": "change trains で「電車を乗り換える」。have to はそれが必要だ、と言っています。"
+  }
+}

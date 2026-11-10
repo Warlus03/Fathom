@@ -1,0 +1,60 @@
+{
+  "id": "t-0034",
+  "shelf": "talk",
+  "en": "The man walking the dog is my neighbor.",
+  "ja": "犬を散歩させているあの男性は、近所の人です。",
+  "scene": "通りを見ながら話すとき",
+  "grammar": [
+    "participle",
+    "be"
+  ],
+  "aim": "名詞の直後の ing 形は、その名詞の説明。文の動詞は is。",
+  "pitfall": "walking を文の動詞と思って「男性が歩いている」で止まり、is が余ってしまう。",
+  "chunks": [
+    {
+      "text": "The man",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "walking the dog",
+      "role": "M",
+      "plain": "どの男性",
+      "term": "ing 形のかたまり",
+      "why": "前に be動詞がないので進行形ではない。直前の The man を説明している。"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "my neighbor",
+      "role": "C",
+      "plain": "何"
+    }
+  ],
+  "words": [
+    {
+      "w": "walking",
+      "lemma": "walk",
+      "ja": "（犬などを）散歩させる"
+    },
+    {
+      "w": "neighbor",
+      "lemma": "neighbor",
+      "ja": "近所の人"
+    }
+  ],
+  "question": {
+    "ask": "近所の人なのは？",
+    "choices": [
+      "犬を散歩させている男性",
+      "犬",
+      "話している人"
+    ],
+    "answer": 0,
+    "explain": "骨組みは The man is my neighbor. 。walking the dog が、どの男性かを説明しています。"
+  }
+}

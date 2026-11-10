@@ -1,0 +1,69 @@
+{
+  "id": "r-0046",
+  "shelf": "read",
+  "en": "I saw a post explaining this trick.",
+  "ja": "このコツを説明している投稿を見ました。",
+  "scene": "便利な使い方を紹介する投稿で",
+  "grammar": [
+    "participle",
+    "past",
+    "article"
+  ],
+  "aim": "a post の直後の ing 形が、どんな投稿かを説明している。",
+  "pitfall": "explaining の主語を I だと思って「私が説明しながら見た」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "saw",
+      "role": "V",
+      "why": "see の過去形。不規則動詞。"
+    },
+    {
+      "text": "a post",
+      "role": "O"
+    },
+    {
+      "text": "explaining this trick",
+      "role": "M",
+      "plain": "どんな投稿",
+      "term": "ing 形のかたまり",
+      "why": "直前の a post を説明している。説明しているのは投稿。"
+    }
+  ],
+  "words": [
+    {
+      "w": "saw",
+      "lemma": "see",
+      "ja": "見る（saw は過去形）"
+    },
+    {
+      "w": "post",
+      "lemma": "post",
+      "ja": "投稿"
+    },
+    {
+      "w": "explaining",
+      "lemma": "explain",
+      "ja": "説明する"
+    },
+    {
+      "w": "trick",
+      "lemma": "trick",
+      "ja": "コツ・技"
+    }
+  ],
+  "question": {
+    "ask": "このコツを説明しているのは？",
+    "choices": [
+      "投稿",
+      "この文を書いた人",
+      "コツを考えた人"
+    ],
+    "answer": 0,
+    "explain": "explaining this trick は直前の a post にかかります。書いた人はそれを「見た」だけです。"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "r-0033",
+  "shelf": "read",
+  "en": "My account was suspended for no reason.",
+  "ja": "理由もなくアカウントを停止されました。",
+  "scene": "SNSへの不満を書いた投稿で",
+  "grammar": [
+    "passive",
+    "past"
+  ],
+  "aim": "受け身は「誰がしたか」を言わずに済ませられる。",
+  "pitfall": "My account を動作をする側と読んで「アカウントが何かを停止した」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "My account",
+      "role": "S",
+      "plain": "何が",
+      "why": "停止された側が主語。"
+    },
+    {
+      "text": "was suspended",
+      "role": "V",
+      "plain": "停止された",
+      "term": "動詞（受け身）",
+      "why": "誰が停止したかは書かれていない。言う必要がない、または分からないときに受け身を使う。"
+    },
+    {
+      "text": "for no reason",
+      "role": "M",
+      "plain": "なぜ"
+    }
+  ],
+  "words": [
+    {
+      "w": "account",
+      "lemma": "account",
+      "ja": "アカウント"
+    },
+    {
+      "w": "suspended",
+      "lemma": "suspend",
+      "ja": "一時停止する・凍結する"
+    },
+    {
+      "w": "reason",
+      "lemma": "reason",
+      "ja": "理由"
+    }
+  ],
+  "question": {
+    "ask": "アカウントを停止したのは？",
+    "choices": [
+      "この文には書かれていない（運営側と考えられる）",
+      "この文を書いた人",
+      "アカウント自身"
+    ],
+    "answer": 0,
+    "explain": "受け身なので、した側は出てきません。by 〜 が付いていれば、そこに書かれます。"
+  }
+}

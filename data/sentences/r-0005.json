@@ -1,0 +1,58 @@
+{
+  "id": "r-0005",
+  "shelf": "read",
+  "en": "Does this work offline?",
+  "ja": "これはオフラインでも動きますか。",
+  "scene": "アプリの紹介への返信で",
+  "grammar": [
+    "question",
+    "s3"
+  ],
+  "aim": "文頭の Does は「質問です」の合図。",
+  "pitfall": "work を「働く」と読んで止まる。機械やアプリが主語なら「動く・機能する」。",
+  "chunks": [
+    {
+      "text": "Does",
+      "role": "aux",
+      "plain": "質問の合図",
+      "why": "一般動詞の質問は do を主語の前に置く。主語が this（ひとつ）なので does。"
+    },
+    {
+      "text": "this",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "work",
+      "role": "V",
+      "why": "does が s を引き受けたので、work は原形（works にしない）。"
+    },
+    {
+      "text": "offline",
+      "role": "M",
+      "plain": "どんな条件で"
+    }
+  ],
+  "words": [
+    {
+      "w": "work",
+      "lemma": "work",
+      "ja": "動く・機能する（「働く」だけではない）"
+    },
+    {
+      "w": "offline",
+      "lemma": "offline",
+      "ja": "ネットにつながずに"
+    }
+  ],
+  "question": {
+    "ask": "この人がしていることは？",
+    "choices": [
+      "オフラインで動くかどうかを質問している",
+      "オフラインで動くと説明している",
+      "オフラインで作業してと頼んでいる"
+    ],
+    "answer": 0,
+    "explain": "Does が文頭にあるので質問。説明なら This works offline. 、頼むなら Work offline. になります。"
+  }
+}

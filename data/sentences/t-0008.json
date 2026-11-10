@@ -1,0 +1,65 @@
+{
+  "id": "t-0008",
+  "shelf": "talk",
+  "en": "It takes about ten minutes on foot.",
+  "ja": "歩いて10分くらいかかります。",
+  "scene": "道を聞かれて答えるとき",
+  "grammar": [
+    "verb",
+    "s3",
+    "preposition"
+  ],
+  "aim": "take＋時間で「（時間が）かかる」。It は何も指していない。",
+  "pitfall": "takes を「取る」、It を「それ」と訳して意味が取れなくなる。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "（時間の it）",
+      "why": "時間や距離を言うときの it。何も指していない。"
+    },
+    {
+      "text": "takes",
+      "role": "V",
+      "plain": "（時間が）かかる",
+      "why": "主語が It なので s が付く。"
+    },
+    {
+      "text": "about ten minutes",
+      "role": "O",
+      "plain": "どのくらい"
+    },
+    {
+      "text": "on foot",
+      "role": "M",
+      "plain": "どうやって"
+    }
+  ],
+  "words": [
+    {
+      "w": "takes",
+      "lemma": "take",
+      "ja": "（時間が）かかる"
+    },
+    {
+      "w": "about",
+      "lemma": "about",
+      "ja": "およそ・〜くらい"
+    },
+    {
+      "w": "on foot",
+      "lemma": "on foot",
+      "ja": "歩いて"
+    }
+  ],
+  "question": {
+    "ask": "この文が伝えているのは？",
+    "choices": [
+      "歩くと10分ほどかかる",
+      "10分ほど歩いてから何かを受け取る",
+      "立ったまま10分ほど待つ"
+    ],
+    "answer": 0,
+    "explain": "take の後ろに時間が来たら「かかる」。on foot は「歩いて」という手段です。"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "t-0006",
+  "shelf": "talk",
+  "en": "Is there a convenience store near here?",
+  "ja": "この近くにコンビニはありますか。",
+  "scene": "道で声をかけられて",
+  "grammar": [
+    "there",
+    "question",
+    "preposition"
+  ],
+  "aim": "There is 〜 の質問。Is が前に出ても、there に「そこ」の意味はない。",
+  "pitfall": "there を「そこに」と訳して、どこのことかを探してしまう。",
+  "chunks": [
+    {
+      "text": "Is",
+      "role": "V",
+      "plain": "ある（質問なので前へ）",
+      "term": "be動詞",
+      "why": "There is 〜 の is を前に出して質問にしている。"
+    },
+    {
+      "text": "there",
+      "role": "x",
+      "plain": "（場所を埋める there）",
+      "term": "形式上の主語",
+      "why": "「そこに」の意味はない。「〜がある」と言うための部品。"
+    },
+    {
+      "text": "a convenience store",
+      "role": "S",
+      "plain": "何が",
+      "why": "a が付いている＝特定の店ではなく、どれか一軒。"
+    },
+    {
+      "text": "near here",
+      "role": "M",
+      "plain": "どこに"
+    }
+  ],
+  "words": [
+    {
+      "w": "convenience store",
+      "lemma": "convenience store",
+      "ja": "コンビニ"
+    },
+    {
+      "w": "near",
+      "lemma": "near",
+      "ja": "〜の近くに"
+    }
+  ],
+  "question": {
+    "ask": "何を聞かれましたか？",
+    "choices": [
+      "この近くにコンビニがあるかどうか",
+      "そこにある店がコンビニかどうか",
+      "コンビニは近いと教えてくれた"
+    ],
+    "answer": 0,
+    "explain": "There is a convenience store near here.（この近くにコンビニがある）を質問にした形です。"
+  }
+}

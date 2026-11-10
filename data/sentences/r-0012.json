@@ -1,0 +1,66 @@
+{
+  "id": "r-0012",
+  "shelf": "read",
+  "en": "Their new tool is really useful.",
+  "ja": "彼らの新しいツールは本当に役に立つ。",
+  "scene": "ある会社の新製品についての投稿で",
+  "grammar": [
+    "pronoun",
+    "adjective",
+    "be"
+  ],
+  "aim": "their＋名詞で「彼らの〜」。主語が3語のかたまりになっている。",
+  "pitfall": "their を there（そこ）や they're（they are）と混同する。音は同じでも役目が違う。",
+  "chunks": [
+    {
+      "text": "Their new tool",
+      "role": "S",
+      "plain": "何が",
+      "why": "their は持ち主を表す形。必ず後ろに名詞が続く。"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "really useful",
+      "role": "C",
+      "plain": "どういう状態",
+      "why": "really は useful を強める副詞。外しても文は成り立つ。"
+    }
+  ],
+  "words": [
+    {
+      "w": "their",
+      "lemma": "their",
+      "ja": "彼らの・その人たちの"
+    },
+    {
+      "w": "tool",
+      "lemma": "tool",
+      "ja": "道具・ツール"
+    },
+    {
+      "w": "really",
+      "lemma": "really",
+      "ja": "本当に・とても"
+    },
+    {
+      "w": "useful",
+      "lemma": "useful",
+      "ja": "役に立つ"
+    }
+  ],
+  "question": {
+    "ask": "新しいツールは誰のもの？",
+    "choices": [
+      "前に話に出た人たち（会社など）のもの",
+      "これを書いた人のもの",
+      "あそこに置いてあるもの"
+    ],
+    "answer": 0,
+    "explain": "Their は「彼らの」。書いた人のものなら My、場所の「あそこ」なら there で、つづりが違います。"
+  }
+}

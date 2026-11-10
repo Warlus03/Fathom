@@ -1,0 +1,68 @@
+{
+  "id": "r-0015",
+  "shelf": "read",
+  "en": "They gave everyone a free trial.",
+  "ja": "彼らは全員に無料のお試しを提供しました。",
+  "scene": "サービスのキャンペーンを伝える投稿で",
+  "grammar": [
+    "svoo",
+    "past",
+    "article"
+  ],
+  "aim": "gave の後ろに名詞が2つ。1つ目が受け取る人、2つ目が物。",
+  "pitfall": "everyone を主語のように読んで「全員が無料お試しをあげた」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "They",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "gave",
+      "role": "V",
+      "why": "give（与える）の過去形。不規則動詞。"
+    },
+    {
+      "text": "everyone",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "a free trial",
+      "role": "O",
+      "plain": "何を"
+    }
+  ],
+  "words": [
+    {
+      "w": "gave",
+      "lemma": "give",
+      "ja": "与える（gave は過去形）"
+    },
+    {
+      "w": "everyone",
+      "lemma": "everyone",
+      "ja": "全員"
+    },
+    {
+      "w": "free",
+      "lemma": "free",
+      "ja": "無料の"
+    },
+    {
+      "w": "trial",
+      "lemma": "trial",
+      "ja": "お試し"
+    }
+  ],
+  "question": {
+    "ask": "無料のお試しを受け取ったのは？",
+    "choices": [
+      "全員",
+      "They が指す側",
+      "まだ誰も受け取っていない"
+    ],
+    "answer": 0,
+    "explain": "gave の直後の everyone が受け取る人、その次の a free trial が渡された物です。"
+  }
+}

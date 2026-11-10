@@ -1,0 +1,62 @@
+{
+  "id": "r-0021",
+  "shelf": "read",
+  "en": "I'm going to try it tonight.",
+  "ja": "今夜それを試してみるつもりです。",
+  "scene": "新しいアプリを知った人の返信で",
+  "grammar": [
+    "future"
+  ],
+  "aim": "be going to ＋動詞で「〜するつもり」。もう決めてある予定。",
+  "pitfall": "going を「行く」と読んで、どこかへ出かける話だと思ってしまう。",
+  "chunks": [
+    {
+      "text": "I'm",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "going to",
+      "role": "aux",
+      "plain": "〜するつもり",
+      "term": "be going to",
+      "why": "I'm と組んで「〜する予定だ」。行く、という動きの意味はない。"
+    },
+    {
+      "text": "try",
+      "role": "V"
+    },
+    {
+      "text": "it",
+      "role": "O"
+    },
+    {
+      "text": "tonight",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "try",
+      "lemma": "try",
+      "ja": "試す"
+    },
+    {
+      "w": "tonight",
+      "lemma": "tonight",
+      "ja": "今夜"
+    }
+  ],
+  "question": {
+    "ask": "この人の予定は？",
+    "choices": [
+      "今夜試す、ともう決めている",
+      "今ちょうど試している",
+      "今夜どこかへ出かける"
+    ],
+    "answer": 0,
+    "explain": "be going to の後ろに動詞（try）が続いているので「〜するつもり」。出かけるなら going to の後ろは場所です。"
+  }
+}

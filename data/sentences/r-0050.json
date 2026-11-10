@@ -1,0 +1,53 @@
+{
+  "id": "r-0050",
+  "shelf": "read",
+  "en": "I wish I had more time.",
+  "ja": "もっと時間があればいいのに。",
+  "scene": "忙しい毎日についての投稿で",
+  "grammar": [
+    "subjunctive"
+  ],
+  "aim": "今のことなのに had（過去形）。現実と違うことを表す形。",
+  "pitfall": "had を見て「昔は時間があった」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "wish",
+      "role": "V",
+      "plain": "〜ならいいのにと思う"
+    },
+    {
+      "text": "I had more time",
+      "role": "O",
+      "plain": "何を（願う中身）",
+      "term": "仮定法",
+      "why": "今のことなのに過去形 had。現実（時間が足りない）から離れていることを、過去形で表している。"
+    }
+  ],
+  "words": [
+    {
+      "w": "wish",
+      "lemma": "wish",
+      "ja": "〜ならいいのにと思う"
+    },
+    {
+      "w": "more",
+      "lemma": "more",
+      "ja": "もっと多くの"
+    }
+  ],
+  "question": {
+    "ask": "今、この人に時間は？",
+    "choices": [
+      "足りていない",
+      "十分にある",
+      "昔はあった、という話で今は分からない"
+    ],
+    "answer": 0,
+    "explain": "I wish の後ろは現実と違うこと。「もっとあればいいのに」＝今は足りていません。"
+  }
+}

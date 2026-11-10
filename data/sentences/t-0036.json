@@ -1,0 +1,59 @@
+{
+  "id": "t-0036",
+  "shelf": "talk",
+  "en": "I wish I could speak English better.",
+  "ja": "英語をもっと上手に話せたらいいんですけど。",
+  "scene": "外国から来た人との会話で",
+  "grammar": [
+    "subjunctive",
+    "comparison"
+  ],
+  "aim": "I wish＋過去形で「（実際は違うけれど）〜ならいいのに」。",
+  "pitfall": "could を「できた」と過去の話に読んでしまう。今の話。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "wish",
+      "role": "V",
+      "plain": "〜ならいいのにと思う"
+    },
+    {
+      "text": "I could speak English better",
+      "role": "O",
+      "plain": "何を（願う中身）",
+      "term": "仮定法",
+      "why": "can の過去形 could。過去の話ではなく、現実（今は思うようにできない）から離れていることを表す。better は well の「もっと」の形。"
+    }
+  ],
+  "words": [
+    {
+      "w": "wish",
+      "lemma": "wish",
+      "ja": "〜ならいいのにと思う"
+    },
+    {
+      "w": "speak",
+      "lemma": "speak",
+      "ja": "話す"
+    },
+    {
+      "w": "better",
+      "lemma": "well",
+      "ja": "上手に（better は「もっと上手に」）"
+    }
+  ],
+  "question": {
+    "ask": "今、この人の英語は？",
+    "choices": [
+      "思うようには話せない",
+      "上手に話せる",
+      "昔は話せた"
+    ],
+    "answer": 0,
+    "explain": "I wish の後ろは「現実と違うこと」。今は思うように話せないから、こう言っています。"
+  }
+}

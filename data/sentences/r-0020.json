@@ -1,0 +1,63 @@
+{
+  "id": "r-0020",
+  "shelf": "read",
+  "en": "It makes my work easier.",
+  "ja": "それのおかげで仕事が楽になります。",
+  "scene": "便利なツールの感想で",
+  "grammar": [
+    "svoc",
+    "comparison"
+  ],
+  "aim": "make A B で「AをBにする」。my work ＝ easier の関係。",
+  "pitfall": "makes my work を「私の仕事を作る」と読んで、easier が余ってしまう。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "makes",
+      "role": "V",
+      "plain": "〜にする",
+      "why": "後ろに「A＋B」が続くと「AをBにする」。主語が It なので s。"
+    },
+    {
+      "text": "my work",
+      "role": "O"
+    },
+    {
+      "text": "easier",
+      "role": "C",
+      "plain": "どういう状態に",
+      "why": "easy＋er で「より楽な」。my work is easier. の関係になっている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "makes",
+      "lemma": "make",
+      "ja": "（ある状態に）する"
+    },
+    {
+      "w": "work",
+      "lemma": "work",
+      "ja": "仕事・作業"
+    },
+    {
+      "w": "easier",
+      "lemma": "easy",
+      "ja": "簡単な・楽な（easier は「より楽な」）"
+    }
+  ],
+  "question": {
+    "ask": "楽になるのは何？",
+    "choices": [
+      "私の仕事",
+      "It が指すもの",
+      "私の性格"
+    ],
+    "answer": 0,
+    "explain": "my work ＝ easier。It（そのツール）が、仕事をその状態に「する」と言っています。"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "r-0024",
+  "shelf": "read",
+  "en": "People call it a game changer.",
+  "ja": "人々はそれを「ゲームチェンジャー」と呼んでいます。",
+  "scene": "新技術を紹介する投稿で",
+  "grammar": [
+    "svoc"
+  ],
+  "aim": "call A B で「AをBと呼ぶ」。it ＝ a game changer の関係。",
+  "pitfall": "game changer を文字どおり「ゲームを変える人」と読む。状況を一変させる物事のたとえ。",
+  "chunks": [
+    {
+      "text": "People",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "call",
+      "role": "V",
+      "plain": "〜と呼ぶ"
+    },
+    {
+      "text": "it",
+      "role": "O",
+      "plain": "何を"
+    },
+    {
+      "text": "a game changer",
+      "role": "C",
+      "plain": "何と"
+    }
+  ],
+  "words": [
+    {
+      "w": "call",
+      "lemma": "call",
+      "ja": "呼ぶ（「電話する」の意味もある）"
+    },
+    {
+      "w": "game changer",
+      "lemma": "game changer",
+      "ja": "状況を大きく変える物事"
+    }
+  ],
+  "question": {
+    "ask": "「game changer」と呼ばれているのは？",
+    "choices": [
+      "it が指しているもの",
+      "人々",
+      "新しいゲーム"
+    ],
+    "answer": 0,
+    "explain": "call の後ろの it が呼ばれる対象、a game changer がその呼び名です。"
+  }
+}

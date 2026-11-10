@@ -1,0 +1,60 @@
+{
+  "id": "t-0033",
+  "shelf": "talk",
+  "en": "This is the bus that goes to the station.",
+  "ja": "これが駅へ行くバスです。",
+  "scene": "バス停で聞かれて",
+  "grammar": [
+    "relative",
+    "s3"
+  ],
+  "aim": "the bus の直後の that から、バスの説明が始まる。",
+  "pitfall": "that を「あれ」と読んで「これはバス、あれは駅へ行く」と2つに分けてしまう。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "the bus",
+      "role": "C",
+      "plain": "何"
+    },
+    {
+      "text": "that goes to the station",
+      "role": "M",
+      "plain": "どんなバス",
+      "term": "関係代名詞のかたまり",
+      "why": "that から後ろが the bus の説明。goes の主語は the bus（ひとつ）なので es が付く。"
+    }
+  ],
+  "words": [
+    {
+      "w": "goes",
+      "lemma": "go",
+      "ja": "行く"
+    },
+    {
+      "w": "station",
+      "lemma": "station",
+      "ja": "駅"
+    }
+  ],
+  "question": {
+    "ask": "この文から分かることは？",
+    "choices": [
+      "このバスは駅へ行く",
+      "このバスは駅から来た",
+      "駅へはバスでしか行けない"
+    ],
+    "answer": 0,
+    "explain": "the bus that goes to the station で「駅へ行くバス」。to は行き先を表します。"
+  }
+}

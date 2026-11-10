@@ -1,0 +1,65 @@
+{
+  "id": "r-0023",
+  "shelf": "read",
+  "en": "It quickly became popular.",
+  "ja": "それはあっという間に人気になりました。",
+  "scene": "流行したアプリを振り返る投稿で",
+  "grammar": [
+    "svc",
+    "past",
+    "adjective"
+  ],
+  "aim": "become＋形容詞で「〜になる」。It ＝ popular の関係。",
+  "pitfall": "quickly に引っぱられて動詞を見失う。副詞は骨組みの外。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "quickly",
+      "role": "M",
+      "plain": "どのように",
+      "why": "副詞。外しても It became popular. で文が成り立つ。"
+    },
+    {
+      "text": "became",
+      "role": "V",
+      "plain": "〜になった",
+      "why": "become の過去形。不規則動詞。"
+    },
+    {
+      "text": "popular",
+      "role": "C",
+      "plain": "どういう状態に"
+    }
+  ],
+  "words": [
+    {
+      "w": "quickly",
+      "lemma": "quickly",
+      "ja": "すぐに・短い間に"
+    },
+    {
+      "w": "became",
+      "lemma": "become",
+      "ja": "〜になる（became は過去形）"
+    },
+    {
+      "w": "popular",
+      "lemma": "popular",
+      "ja": "人気のある"
+    }
+  ],
+  "question": {
+    "ask": "何が起きましたか？",
+    "choices": [
+      "短い間に人気が出た",
+      "人気者がすぐにやって来た",
+      "人気がすぐになくなった"
+    ],
+    "answer": 0,
+    "explain": "It ＝ popular に「なった」。quickly はその変化が速かったことを足しています。"
+  }
+}

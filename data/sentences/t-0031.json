@@ -1,0 +1,83 @@
+{
+  "id": "t-0031",
+  "shelf": "talk",
+  "en": "He doesn't speak Japanese, but he understands a little.",
+  "ja": "彼は日本語を話しませんが、少しは分かります。",
+  "scene": "家族や友人を紹介するとき",
+  "grammar": [
+    "negative",
+    "conjunction",
+    "s3"
+  ],
+  "aim": "but の前後で2つの文に分ける。前は否定、後ろは肯定。",
+  "pitfall": "doesn't が文の最後までかかると思って、「分からない」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "He",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "doesn't",
+      "role": "neg",
+      "plain": "〜しない",
+      "term": "否定（does＋not）"
+    },
+    {
+      "text": "speak",
+      "role": "V"
+    },
+    {
+      "text": "Japanese",
+      "role": "O"
+    },
+    {
+      "text": "but",
+      "role": "conj",
+      "plain": "しかし",
+      "why": "ここで文が切り替わる。doesn't の打ち消しは but の手前まで。"
+    },
+    {
+      "text": "he",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "understands",
+      "role": "V",
+      "why": "こちらは否定ではないので、動詞に直接 s が付く。"
+    },
+    {
+      "text": "a little",
+      "role": "M",
+      "plain": "どのくらい"
+    }
+  ],
+  "words": [
+    {
+      "w": "speak",
+      "lemma": "speak",
+      "ja": "話す"
+    },
+    {
+      "w": "understands",
+      "lemma": "understand",
+      "ja": "理解する"
+    },
+    {
+      "w": "a little",
+      "lemma": "a little",
+      "ja": "少し"
+    }
+  ],
+  "question": {
+    "ask": "彼の日本語は？",
+    "choices": [
+      "話さないが、聞けば少し分かる",
+      "話すが、聞き取れない",
+      "まったく分からない"
+    ],
+    "answer": 0,
+    "explain": "but の前が「話さない」、後ろが「少し分かる」。否定は前半だけです。"
+  }
+}

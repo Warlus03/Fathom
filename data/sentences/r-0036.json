@@ -1,0 +1,61 @@
+{
+  "id": "r-0036",
+  "shelf": "read",
+  "en": "It hasn't been fixed yet.",
+  "ja": "それはまだ修正されていません。",
+  "scene": "不具合の状況を伝える投稿で",
+  "grammar": [
+    "perfect",
+    "passive",
+    "negative"
+  ],
+  "aim": "現在完了（has＋過去分詞）と受け身（be＋過去分詞）が重なった形。",
+  "pitfall": "部品が多くて止まる。has not ＋ been fixed と2つに分ければ読める。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "hasn't",
+      "role": "neg",
+      "plain": "（今まで）〜していない",
+      "term": "has＋not"
+    },
+    {
+      "text": "been fixed",
+      "role": "V",
+      "plain": "直された",
+      "term": "受け身（been＋過去分詞）",
+      "why": "受け身の be動詞が、has の後ろなので過去分詞 been になっている。"
+    },
+    {
+      "text": "yet",
+      "role": "M",
+      "plain": "今のところ"
+    }
+  ],
+  "words": [
+    {
+      "w": "fixed",
+      "lemma": "fix",
+      "ja": "直す・修正する"
+    },
+    {
+      "w": "yet",
+      "lemma": "yet",
+      "ja": "まだ（否定文で）"
+    }
+  ],
+  "question": {
+    "ask": "今の状態は？",
+    "choices": [
+      "まだ直っていない",
+      "もう直った",
+      "直さないと決まった"
+    ],
+    "answer": 0,
+    "explain": "hasn't 〜 yet で「今のところまだ〜されていない」。これから直る可能性は残っています。"
+  }
+}

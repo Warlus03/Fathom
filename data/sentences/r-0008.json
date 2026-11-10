@@ -1,0 +1,54 @@
+{
+  "id": "r-0008",
+  "shelf": "read",
+  "en": "They are testing a new feature.",
+  "ja": "彼らは新しい機能をテストしているところです。",
+  "scene": "サービスの動向を伝える投稿で",
+  "grammar": [
+    "progressive",
+    "article"
+  ],
+  "aim": "be動詞＋ing で「今している途中」。",
+  "pitfall": "are を「〜です」と訳して止まる。後ろに ing が続いたら、セットで「〜している」。",
+  "chunks": [
+    {
+      "text": "They",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "are testing",
+      "role": "V",
+      "plain": "している最中",
+      "term": "動詞（進行形）",
+      "why": "be動詞＋ing で「今している途中」。まだ終わっていない。"
+    },
+    {
+      "text": "a new feature",
+      "role": "O",
+      "why": "a が付いている＝読む人がまだ知らない、新機能のひとつ。"
+    }
+  ],
+  "words": [
+    {
+      "w": "testing",
+      "lemma": "test",
+      "ja": "試す・テストする"
+    },
+    {
+      "w": "feature",
+      "lemma": "feature",
+      "ja": "機能"
+    }
+  ],
+  "question": {
+    "ask": "新しい機能は今どういう段階？",
+    "choices": [
+      "テストしている最中",
+      "テストが終わった",
+      "これからテストする予定"
+    ],
+    "answer": 0,
+    "explain": "are testing は進行形。終わったなら tested、これからなら will test や are going to test になります。"
+  }
+}

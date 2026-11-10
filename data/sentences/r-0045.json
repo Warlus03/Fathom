@@ -1,0 +1,74 @@
+{
+  "id": "r-0045",
+  "shelf": "read",
+  "en": "The feature announced yesterday is already live.",
+  "ja": "昨日発表された機能は、もう公開されています。",
+  "scene": "新機能を伝える投稿で",
+  "grammar": [
+    "participle"
+  ],
+  "aim": "名詞の直後の過去分詞は「〜された」という説明。文の動詞は is。",
+  "pitfall": "announced を文の動詞（過去形）と読んで「機能が発表した」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "The feature",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "announced yesterday",
+      "role": "M",
+      "plain": "どの機能",
+      "term": "過去分詞のかたまり",
+      "why": "機能は発表「される」側なので、これは過去分詞（〜された）。直前の The feature を説明している。"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "already",
+      "role": "M",
+      "plain": "すでに"
+    },
+    {
+      "text": "live",
+      "role": "C",
+      "plain": "どういう状態"
+    }
+  ],
+  "words": [
+    {
+      "w": "feature",
+      "lemma": "feature",
+      "ja": "機能"
+    },
+    {
+      "w": "announced",
+      "lemma": "announce",
+      "ja": "発表する"
+    },
+    {
+      "w": "already",
+      "lemma": "already",
+      "ja": "すでに"
+    },
+    {
+      "w": "live",
+      "lemma": "live（形容詞）",
+      "ja": "公開中の・稼働中の（この意味では「ライブ」と読む）"
+    }
+  ],
+  "question": {
+    "ask": "昨日あったことは？",
+    "choices": [
+      "その機能の発表",
+      "その機能の公開開始",
+      "その機能の終了"
+    ],
+    "answer": 0,
+    "explain": "yesterday は announced にかかります。文の動詞は is で、「今はもう公開中」と言っています。"
+  }
+}

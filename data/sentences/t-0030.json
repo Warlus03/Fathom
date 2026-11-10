@@ -1,0 +1,54 @@
+{
+  "id": "t-0030",
+  "shelf": "talk",
+  "en": "I'm glad you like it.",
+  "ja": "気に入ってもらえてうれしいです。",
+  "scene": "おすそ分けのお礼を言われて",
+  "grammar": [
+    "that"
+  ],
+  "aim": "glad の後ろに that が省かれている。you like it が「うれしい理由」。",
+  "pitfall": "主語と動詞が2組あるので、誰が like なのか混ざってしまう。",
+  "chunks": [
+    {
+      "text": "I'm",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "glad",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "you like it",
+      "role": "x",
+      "plain": "何がうれしいのか",
+      "term": "that を省いた文",
+      "why": "I'm glad (that) you like it. 中に主語（you）と動詞（like）がもう一組ある。"
+    }
+  ],
+  "words": [
+    {
+      "w": "glad",
+      "lemma": "glad",
+      "ja": "うれしい"
+    },
+    {
+      "w": "like",
+      "lemma": "like",
+      "ja": "気に入る・好む"
+    }
+  ],
+  "question": {
+    "ask": "気に入ったのは誰？",
+    "choices": [
+      "相手",
+      "話している人",
+      "どちらでもない"
+    ],
+    "answer": 0,
+    "explain": "like の主語は you。うれしい（glad）のは I です。"
+  }
+}

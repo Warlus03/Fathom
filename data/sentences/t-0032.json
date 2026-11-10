@@ -1,0 +1,76 @@
+{
+  "id": "t-0032",
+  "shelf": "talk",
+  "en": "If it rains tomorrow, the festival will be canceled.",
+  "ja": "明日雨が降ったら、お祭りは中止になります。",
+  "scene": "町内の行事について話すとき",
+  "grammar": [
+    "conjunction",
+    "future",
+    "passive"
+  ],
+  "aim": "If 〜, … で「もし〜なら、…」。コンマの前が条件、後ろが結果。",
+  "pitfall": "will be canceled だけを読んで、中止が決まったと受け取ってしまう。",
+  "chunks": [
+    {
+      "text": "If",
+      "role": "conj",
+      "plain": "もし"
+    },
+    {
+      "text": "it",
+      "role": "S",
+      "plain": "（天気の it）"
+    },
+    {
+      "text": "rains",
+      "role": "V",
+      "plain": "雨が降る",
+      "why": "明日のことでも、if の中は現在形。条件を述べているだけで、予測ではないから。"
+    },
+    {
+      "text": "tomorrow",
+      "role": "M",
+      "plain": "いつ"
+    },
+    {
+      "text": "the festival",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "will be canceled",
+      "role": "V",
+      "plain": "中止される",
+      "term": "未来＋受け身",
+      "why": "will＋be＋過去分詞で「〜されるだろう」。"
+    }
+  ],
+  "words": [
+    {
+      "w": "rains",
+      "lemma": "rain",
+      "ja": "雨が降る"
+    },
+    {
+      "w": "festival",
+      "lemma": "festival",
+      "ja": "祭り"
+    },
+    {
+      "w": "canceled",
+      "lemma": "cancel",
+      "ja": "中止する"
+    }
+  ],
+  "question": {
+    "ask": "お祭りはどうなりますか？",
+    "choices": [
+      "雨なら中止。今はまだ決まっていない",
+      "中止が決まった",
+      "雨でも行われる"
+    ],
+    "answer": 0,
+    "explain": "If が付いているので、中止は「雨が降った場合」の話です。"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "t-0002",
+  "shelf": "talk",
+  "en": "Where is the station?",
+  "ja": "駅はどこですか。",
+  "scene": "道で声をかけられて",
+  "grammar": [
+    "wh",
+    "be",
+    "article"
+  ],
+  "aim": "疑問詞は文の先頭。Where が見えた時点で「場所を聞かれている」と分かる。",
+  "pitfall": "is の後ろの the station が主語。語順が普通の文と逆になっている。",
+  "chunks": [
+    {
+      "text": "Where",
+      "role": "q",
+      "plain": "どこ（たずねる）"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "ある",
+      "term": "be動詞",
+      "why": "質問なので、be動詞が主語より前に出ている。"
+    },
+    {
+      "text": "the station",
+      "role": "S",
+      "plain": "何が",
+      "why": "the が付いている＝お互いに分かる「あの駅」。このあたりの最寄り駅のこと。"
+    }
+  ],
+  "words": [
+    {
+      "w": "station",
+      "lemma": "station",
+      "ja": "駅"
+    }
+  ],
+  "question": {
+    "ask": "この人が知りたいのは？",
+    "choices": [
+      "駅の場所",
+      "駅の名前",
+      "駅までかかる時間"
+    ],
+    "answer": 0,
+    "explain": "Where は場所をたずねる言葉。名前なら What、時間なら How long で始まります。"
+  }
+}

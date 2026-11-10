@@ -1,0 +1,65 @@
+{
+  "id": "r-0011",
+  "shelf": "read",
+  "en": "The new model is faster than the old one.",
+  "ja": "新しいモデルは、古いモデルより速い。",
+  "scene": "AIの新モデルを試した人の投稿で",
+  "grammar": [
+    "comparison",
+    "be"
+  ],
+  "aim": "-er than で「〜より…」。than の後ろが比べる相手。",
+  "pitfall": "than の後ろを主語と取り違えて、逆に読んでしまう。",
+  "chunks": [
+    {
+      "text": "The new model",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "faster",
+      "role": "C",
+      "plain": "どういう状態",
+      "why": "fast（速い）＋er で「より速い」。"
+    },
+    {
+      "text": "than the old one",
+      "role": "M",
+      "plain": "何と比べて",
+      "why": "than の後ろが比べる相手。one は model の繰り返しを避けた言い方。"
+    }
+  ],
+  "words": [
+    {
+      "w": "model",
+      "lemma": "model",
+      "ja": "モデル（AIの型、製品の機種）"
+    },
+    {
+      "w": "faster",
+      "lemma": "fast",
+      "ja": "速い（faster は「より速い」）"
+    },
+    {
+      "w": "than",
+      "lemma": "than",
+      "ja": "〜より"
+    }
+  ],
+  "question": {
+    "ask": "速いのはどちら？",
+    "choices": [
+      "新しいモデル",
+      "古いモデル",
+      "どちらも同じ"
+    ],
+    "answer": 0,
+    "explain": "主語の The new model が faster。than の後ろの the old one は、比べられている相手です。"
+  }
+}

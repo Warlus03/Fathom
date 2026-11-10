@@ -1,0 +1,56 @@
+{
+  "id": "r-0028",
+  "shelf": "read",
+  "en": "There are many ways to use it.",
+  "ja": "それの使い方はたくさんあります。",
+  "scene": "ツールの活用法を紹介する投稿で",
+  "grammar": [
+    "there",
+    "infinitive"
+  ],
+  "aim": "名詞の直後の to＋動詞は、その名詞の説明（〜するための）。",
+  "pitfall": "to use it を「それを使うために」（目的）と読んで、文がつながらなくなる。",
+  "chunks": [
+    {
+      "text": "There are",
+      "role": "x",
+      "plain": "〜がある",
+      "term": "There are",
+      "why": "後ろの主語が複数（ways）なので are。"
+    },
+    {
+      "text": "many ways",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "to use it",
+      "role": "M",
+      "plain": "どんな方法",
+      "term": "to＋動詞（名詞の説明）",
+      "why": "直前の ways を説明している。「それを使う」方法。"
+    }
+  ],
+  "words": [
+    {
+      "w": "ways",
+      "lemma": "way",
+      "ja": "方法・やり方（「道」の意味もある）"
+    },
+    {
+      "w": "use",
+      "lemma": "use",
+      "ja": "使う"
+    }
+  ],
+  "question": {
+    "ask": "たくさんあるのは？",
+    "choices": [
+      "使い方",
+      "it が指す物の数",
+      "使っている人"
+    ],
+    "answer": 0,
+    "explain": "ある物は many ways。to use it がその ways を「それを使う方法」としぼり込んでいます。"
+  }
+}

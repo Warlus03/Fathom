@@ -1,0 +1,67 @@
+{
+  "id": "r-0044",
+  "shelf": "read",
+  "en": "This is the best explanation I've seen.",
+  "ja": "これは、今まで見た中でいちばん良い説明です。",
+  "scene": "分かりやすい解説への返信で",
+  "grammar": [
+    "comparison",
+    "relative",
+    "perfect"
+  ],
+  "aim": "the best（いちばん良い）＋「私が今までに見た」という範囲。",
+  "pitfall": "I've seen を「私は見た」と別の文に切ってしまい、best の範囲が分からなくなる。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "the best explanation",
+      "role": "C",
+      "plain": "何",
+      "why": "best は good の「いちばん」の形。不規則。"
+    },
+    {
+      "text": "I've seen",
+      "role": "M",
+      "plain": "どの範囲で",
+      "term": "関係代名詞（省略）のかたまり",
+      "why": "「私が今までに見た」説明。現在完了が「今までの経験すべて」という範囲を作っている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "best",
+      "lemma": "good",
+      "ja": "良い（best は「いちばん良い」）"
+    },
+    {
+      "w": "explanation",
+      "lemma": "explanation",
+      "ja": "説明"
+    },
+    {
+      "w": "seen",
+      "lemma": "see",
+      "ja": "見る（seen は過去分詞）"
+    }
+  ],
+  "question": {
+    "ask": "この人の評価は？",
+    "choices": [
+      "今まで見た中で、いちばん良い説明だ",
+      "もっと良い説明を見たことがある",
+      "説明を見るのはこれが初めてだ"
+    ],
+    "answer": 0,
+    "explain": "the best 〜 I've seen で「私が見てきた中でいちばんの〜」。強いほめ言葉です。"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "t-0011",
+  "shelf": "talk",
+  "en": "You'll see a post office on your right.",
+  "ja": "右手に郵便局が見えてきます。",
+  "scene": "道を教えるとき",
+  "grammar": [
+    "future",
+    "pronoun",
+    "preposition"
+  ],
+  "aim": "You'll ＝ You will。「進んでいくと、こうなりますよ」という予告。",
+  "pitfall": "your right を、説明している自分の右だと思ってしまう。",
+  "chunks": [
+    {
+      "text": "You'll",
+      "role": "S",
+      "plain": "誰が＋これから",
+      "term": "主語＋will",
+      "why": "You will の短い形。"
+    },
+    {
+      "text": "see",
+      "role": "V",
+      "plain": "見える"
+    },
+    {
+      "text": "a post office",
+      "role": "O"
+    },
+    {
+      "text": "on your right",
+      "role": "M",
+      "plain": "どこに",
+      "why": "your＝道を聞いた人の。進む人から見て右。"
+    }
+  ],
+  "words": [
+    {
+      "w": "post office",
+      "lemma": "post office",
+      "ja": "郵便局"
+    },
+    {
+      "w": "right",
+      "lemma": "right",
+      "ja": "右"
+    }
+  ],
+  "question": {
+    "ask": "郵便局はどちら側に見えますか？",
+    "choices": [
+      "道を進む人から見て右",
+      "説明している人から見て右",
+      "正面"
+    ],
+    "answer": 0,
+    "explain": "your right は「あなたの右」。進んでいく人（you）を基準にしています。"
+  }
+}

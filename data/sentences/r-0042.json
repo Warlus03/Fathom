@@ -1,0 +1,65 @@
+{
+  "id": "r-0042",
+  "shelf": "read",
+  "en": "The person who made this is a student.",
+  "ja": "これを作った人は学生です。",
+  "scene": "話題の作品についての投稿で",
+  "grammar": [
+    "relative"
+  ],
+  "aim": "who から this までが The person の説明。文全体の動詞は is。",
+  "pitfall": "動詞が made と is の2つあるので、どちらが文の動詞か迷う。",
+  "chunks": [
+    {
+      "text": "The person",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "who made this",
+      "role": "M",
+      "plain": "どんな人",
+      "term": "関係代名詞のかたまり",
+      "why": "who は「ここから、今の名詞の説明が始まる」合図。made はこの説明の中の動詞。"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞",
+      "why": "文全体の動詞。主語は The person。"
+    },
+    {
+      "text": "a student",
+      "role": "C",
+      "plain": "何"
+    }
+  ],
+  "words": [
+    {
+      "w": "person",
+      "lemma": "person",
+      "ja": "人"
+    },
+    {
+      "w": "made",
+      "lemma": "make",
+      "ja": "作る（made は過去形）"
+    },
+    {
+      "w": "student",
+      "lemma": "student",
+      "ja": "学生"
+    }
+  ],
+  "question": {
+    "ask": "学生なのは誰？",
+    "choices": [
+      "これを作った人",
+      "この文を書いた人",
+      "これを見ている人"
+    ],
+    "answer": 0,
+    "explain": "骨組みは The person is a student. 。who made this が、どの人かを説明しています。"
+  }
+}

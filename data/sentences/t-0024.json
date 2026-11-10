@@ -1,0 +1,57 @@
+{
+  "id": "t-0024",
+  "shelf": "talk",
+  "en": "I enjoy talking with my neighbors.",
+  "ja": "近所の人たちと話すのが楽しいんです。",
+  "scene": "この町の暮らしを聞かれて",
+  "grammar": [
+    "gerund",
+    "preposition"
+  ],
+  "aim": "enjoy の後ろの ing 形は「〜すること」。かたまり全体が「何を」になる。",
+  "pitfall": "talking を進行形（話している最中）と読んでしまう。前に be動詞がないので進行形ではない。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "enjoy",
+      "role": "V"
+    },
+    {
+      "text": "talking with my neighbors",
+      "role": "O",
+      "term": "目的語（ing 形）",
+      "why": "enjoy の後ろは ing 形。実際にしていることを楽しむので。"
+    }
+  ],
+  "words": [
+    {
+      "w": "enjoy",
+      "lemma": "enjoy",
+      "ja": "楽しむ"
+    },
+    {
+      "w": "talking",
+      "lemma": "talk",
+      "ja": "話す"
+    },
+    {
+      "w": "neighbors",
+      "lemma": "neighbor",
+      "ja": "近所の人"
+    }
+  ],
+  "question": {
+    "ask": "enjoy（楽しむ）の「何を」にあたるのは？",
+    "choices": [
+      "talking with my neighbors（近所の人と話すこと）",
+      "my neighbors（近所の人）だけ",
+      "I（私）"
+    ],
+    "answer": 0,
+    "explain": "talking から neighbors までがひとかたまりで「近所の人と話すこと」。それ全体が enjoy の相手です。"
+  }
+}

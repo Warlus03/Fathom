@@ -1,0 +1,59 @@
+{
+  "id": "r-0029",
+  "shelf": "read",
+  "en": "I stopped using that app.",
+  "ja": "あのアプリを使うのをやめました。",
+  "scene": "アプリの評判についての投稿で",
+  "grammar": [
+    "gerund",
+    "past"
+  ],
+  "aim": "stop＋ing で「〜するのをやめる」。",
+  "pitfall": "「使うために立ち止まった」と読んでしまう。それは stopped to use で、形が違う。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "stopped",
+      "role": "V",
+      "plain": "やめた",
+      "why": "stop の過去形（p を重ねて ed）。"
+    },
+    {
+      "text": "using that app",
+      "role": "O",
+      "term": "目的語（ing 形）",
+      "why": "それまでしていたことが相手なので ing 形。"
+    }
+  ],
+  "words": [
+    {
+      "w": "stopped",
+      "lemma": "stop",
+      "ja": "やめる・止まる"
+    },
+    {
+      "w": "using",
+      "lemma": "use",
+      "ja": "使う"
+    },
+    {
+      "w": "app",
+      "lemma": "app",
+      "ja": "アプリ"
+    }
+  ],
+  "question": {
+    "ask": "何が起きましたか？",
+    "choices": [
+      "そのアプリを使うのをやめた",
+      "そのアプリを使うために、手を止めた",
+      "そのアプリを使い始めた"
+    ],
+    "answer": 0,
+    "explain": "stopped using で「使うのをやめた」。ing 形は、それまで実際にしていたことを指します。"
+  }
+}

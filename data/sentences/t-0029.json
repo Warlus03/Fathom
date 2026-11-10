@@ -1,0 +1,54 @@
+{
+  "id": "t-0029",
+  "shelf": "talk",
+  "en": "It's dangerous to cross here.",
+  "ja": "ここを渡るのは危ないですよ。",
+  "scene": "道路を渡ろうとしている人に",
+  "grammar": [
+    "it-to"
+  ],
+  "aim": "It's＋形容詞＋to〜 で「〜するのは…だ」。",
+  "pitfall": "It が場所や物を指すと思って、「それは危険だ」で止まってしまう。",
+  "chunks": [
+    {
+      "text": "It's",
+      "role": "S",
+      "plain": "（仮の主語）",
+      "term": "仮の主語＋be動詞"
+    },
+    {
+      "text": "dangerous",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "to cross here",
+      "role": "x",
+      "plain": "何をするのが",
+      "term": "本当の主語（to＋動詞）",
+      "why": "危ないのは「ここを渡ること」。結論を先に言い、中身を後ろに回している。"
+    }
+  ],
+  "words": [
+    {
+      "w": "dangerous",
+      "lemma": "dangerous",
+      "ja": "危険な"
+    },
+    {
+      "w": "cross",
+      "lemma": "cross",
+      "ja": "渡る・横切る"
+    }
+  ],
+  "question": {
+    "ask": "危ないと言っているのは？",
+    "choices": [
+      "ここを渡ること",
+      "ここに立っていること",
+      "It が指す乗り物"
+    ],
+    "answer": 0,
+    "explain": "to cross here（ここを渡ること）＝ dangerous。It は形だけの主語です。"
+  }
+}

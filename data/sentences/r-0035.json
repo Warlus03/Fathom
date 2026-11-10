@@ -1,0 +1,59 @@
+{
+  "id": "r-0035",
+  "shelf": "read",
+  "en": "Have you tried the new version?",
+  "ja": "新しいバージョンは試しましたか。",
+  "scene": "アップデートについての投稿で",
+  "grammar": [
+    "perfect",
+    "question"
+  ],
+  "aim": "Have you＋過去分詞? で「（今までに）〜しましたか」。",
+  "pitfall": "文頭の Have を「持っていますか」と読んでしまう。後ろに過去分詞が続くかどうかで見分ける。",
+  "chunks": [
+    {
+      "text": "Have",
+      "role": "aux",
+      "plain": "（今までに）質問なので前へ",
+      "term": "have（現在完了）",
+      "why": "You have tried 〜 の have を前に出して質問にしている。"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "tried",
+      "role": "V",
+      "plain": "試した",
+      "term": "過去分詞"
+    },
+    {
+      "text": "the new version",
+      "role": "O"
+    }
+  ],
+  "words": [
+    {
+      "w": "tried",
+      "lemma": "try",
+      "ja": "試す"
+    },
+    {
+      "w": "version",
+      "lemma": "version",
+      "ja": "版・バージョン"
+    }
+  ],
+  "question": {
+    "ask": "聞かれているのは？",
+    "choices": [
+      "今までに試したかどうか",
+      "いつ試したか",
+      "新しい版を持っているかどうか"
+    ],
+    "answer": 0,
+    "explain": "Have you tried で「もう試した？」。持っているかを聞くなら Do you have the new version? です。"
+  }
+}

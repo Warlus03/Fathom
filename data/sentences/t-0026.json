@@ -1,0 +1,61 @@
+{
+  "id": "t-0026",
+  "shelf": "talk",
+  "en": "I've lived here for ten years.",
+  "ja": "ここに10年住んでいます。",
+  "scene": "「このあたりの方ですか」と聞かれて",
+  "grammar": [
+    "perfect",
+    "preposition"
+  ],
+  "aim": "have＋過去分詞＋for 〜 で「〜の間ずっと（今も）」。",
+  "pitfall": "lived を過去形と読んで「昔10年住んでいた」と取ってしまう。前に 've（have）がある。",
+  "chunks": [
+    {
+      "text": "I've",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋have",
+      "why": "I have の短い形。"
+    },
+    {
+      "text": "lived",
+      "role": "V",
+      "plain": "住んできた",
+      "term": "過去分詞（現在完了）",
+      "why": "have＋過去分詞で、過去から今までつながっていることを表す。"
+    },
+    {
+      "text": "here",
+      "role": "M",
+      "plain": "どこに"
+    },
+    {
+      "text": "for ten years",
+      "role": "M",
+      "plain": "どのくらいの間"
+    }
+  ],
+  "words": [
+    {
+      "w": "lived",
+      "lemma": "live",
+      "ja": "住む"
+    },
+    {
+      "w": "for",
+      "lemma": "for",
+      "ja": "〜の間"
+    }
+  ],
+  "question": {
+    "ask": "この人は今どこに住んでいますか？",
+    "choices": [
+      "ここ（10年前から今も）",
+      "別の場所（ここには昔10年いた）",
+      "これからここに住む"
+    ],
+    "answer": 0,
+    "explain": "I've lived は現在完了で、今も続いています。昔の話なら I lived here for ten years. です。"
+  }
+}

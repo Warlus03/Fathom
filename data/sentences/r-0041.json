@@ -1,0 +1,63 @@
+{
+  "id": "r-0041",
+  "shelf": "read",
+  "en": "If you have any questions, let me know.",
+  "ja": "質問があれば、知らせてください。",
+  "scene": "説明の投稿の最後に",
+  "grammar": [
+    "conjunction",
+    "imperative"
+  ],
+  "aim": "let me know で「私に知らせて」。動詞から始まる、相手への呼びかけ。",
+  "pitfall": "let me know を「私に知らせます」と読んで、向きを逆に取ってしまう。",
+  "chunks": [
+    {
+      "text": "If",
+      "role": "conj",
+      "plain": "もし"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "have",
+      "role": "V",
+      "plain": "ある・持っている"
+    },
+    {
+      "text": "any questions",
+      "role": "O"
+    },
+    {
+      "text": "let me know",
+      "role": "V",
+      "plain": "知らせて",
+      "term": "命令（let＋人＋動詞）",
+      "why": "主語がないので、相手（you）への呼びかけ。「私が知る状態にして」＝知らせて。"
+    }
+  ],
+  "words": [
+    {
+      "w": "questions",
+      "lemma": "question",
+      "ja": "質問"
+    },
+    {
+      "w": "let me know",
+      "lemma": "let me know",
+      "ja": "私に知らせる"
+    }
+  ],
+  "question": {
+    "ask": "「知らせる」のは、誰から誰へ？",
+    "choices": [
+      "読んでいる人から、書いた人へ",
+      "書いた人から、読んでいる人へ",
+      "質問した人どうし"
+    ],
+    "answer": 0,
+    "explain": "let me know は相手への呼びかけ。知る側は me（書いた人）、知らせる側は読んでいる人です。"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "t-0019",
+  "shelf": "talk",
+  "en": "The shop next to the bank is closed today.",
+  "ja": "銀行の隣の店は、今日は閉まっています。",
+  "scene": "道を聞かれて答えるとき",
+  "grammar": [
+    "be",
+    "preposition"
+  ],
+  "aim": "主語の後ろに説明が挟まっても、動詞（is）を見つければ骨組みが取れる。",
+  "pitfall": "is の直前にある the bank を主語だと思って、「銀行が閉まっている」と読んでしまう。",
+  "chunks": [
+    {
+      "text": "The shop",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "next to the bank",
+      "role": "M",
+      "plain": "どの店",
+      "why": "直前の The shop を説明するかたまり。ここまでが主語のまとまり。"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "closed",
+      "role": "C",
+      "plain": "どういう状態"
+    },
+    {
+      "text": "today",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "next to",
+      "lemma": "next to",
+      "ja": "〜の隣の"
+    },
+    {
+      "w": "bank",
+      "lemma": "bank",
+      "ja": "銀行"
+    },
+    {
+      "w": "closed",
+      "lemma": "closed",
+      "ja": "閉まっている"
+    }
+  ],
+  "question": {
+    "ask": "今日閉まっているのは？",
+    "choices": [
+      "銀行の隣の店",
+      "銀行",
+      "店と銀行の両方"
+    ],
+    "answer": 0,
+    "explain": "骨組みは The shop is closed. 。next to the bank は、どの店かを説明しているだけです。"
+  }
+}

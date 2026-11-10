@@ -1,0 +1,66 @@
+{
+  "id": "t-0020",
+  "shelf": "talk",
+  "en": "There's a nice park behind the station.",
+  "ja": "駅の裏に、いい公園がありますよ。",
+  "scene": "近所のおすすめを教えるとき",
+  "grammar": [
+    "there",
+    "preposition",
+    "adjective"
+  ],
+  "aim": "There's 〜 で「〜がある」。何があるかは後ろ、どこにあるかはさらに後ろ。",
+  "pitfall": "behind の前後を逆に読んで「公園の裏に駅がある」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "There's",
+      "role": "x",
+      "plain": "〜がある",
+      "term": "There is",
+      "why": "There is の短い形。相手がまだ知らないものを紹介する言い方。"
+    },
+    {
+      "text": "a nice park",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "behind the station",
+      "role": "M",
+      "plain": "どこに",
+      "why": "behind の後ろが基準になる場所。駅を基準にして、その裏。"
+    }
+  ],
+  "words": [
+    {
+      "w": "nice",
+      "lemma": "nice",
+      "ja": "よい・すてきな"
+    },
+    {
+      "w": "park",
+      "lemma": "park",
+      "ja": "公園"
+    },
+    {
+      "w": "behind",
+      "lemma": "behind",
+      "ja": "〜の後ろに・裏に"
+    },
+    {
+      "w": "station",
+      "lemma": "station",
+      "ja": "駅"
+    }
+  ],
+  "question": {
+    "ask": "この文が伝えているのは？",
+    "choices": [
+      "駅の裏に、いい公園がある",
+      "公園の裏に、駅がある",
+      "そこにあるのは、いい公園だ"
+    ],
+    "answer": 0,
+    "explain": "ある物は a nice park。behind the station は「駅の裏に」で、前置詞の後ろの名詞が基準の場所です。"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "t-0004",
+  "shelf": "talk",
+  "en": "I walk my dog here every morning.",
+  "ja": "毎朝ここで犬を散歩させているんです。",
+  "scene": "公園で話しかけられて",
+  "grammar": [
+    "verb"
+  ],
+  "aim": "同じ動詞でも、後ろに「何を」があるかどうかで意味が変わる。",
+  "pitfall": "walk を「歩く」とだけ読むと、my dog の役目が分からなくなる。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "walk",
+      "role": "V",
+      "why": "後ろに「何を」が来ると「〜を歩かせる・散歩させる」になる。"
+    },
+    {
+      "text": "my dog",
+      "role": "O"
+    },
+    {
+      "text": "here",
+      "role": "M",
+      "plain": "どこで"
+    },
+    {
+      "text": "every morning",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "walk",
+      "lemma": "walk",
+      "ja": "歩く／（犬などを）散歩させる"
+    },
+    {
+      "w": "every morning",
+      "lemma": "every morning",
+      "ja": "毎朝"
+    }
+  ],
+  "question": {
+    "ask": "この文から分かることは？",
+    "choices": [
+      "この人は毎朝ここで犬を散歩させている",
+      "この人は毎朝ここまで歩いて犬に会いに来る",
+      "この人の犬は毎朝ひとりでここを歩く"
+    ],
+    "answer": 0,
+    "explain": "walk のすぐ後ろに my dog（何を）があるので「犬を散歩させる」。主語は I なので、歩かせているのはこの人です。"
+  }
+}

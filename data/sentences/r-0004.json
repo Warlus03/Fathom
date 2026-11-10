@@ -1,0 +1,61 @@
+{
+  "id": "r-0004",
+  "shelf": "read",
+  "en": "The update doesn't work on my phone.",
+  "ja": "そのアップデートは私のスマホでは動きません。",
+  "scene": "不具合の報告で",
+  "grammar": [
+    "negative",
+    "s3",
+    "preposition"
+  ],
+  "aim": "doesn't は「does＋not」。一般動詞を打ち消すときの形。",
+  "pitfall": "work on を「〜に取り組む」と読むこともできるが、主語が物で on の後ろが機器なら「〜の上で動く」。",
+  "chunks": [
+    {
+      "text": "The update",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "doesn't",
+      "role": "neg",
+      "plain": "〜しない",
+      "term": "否定（does＋not）",
+      "why": "一般動詞には直接 not を付けられないので does を呼ぶ。主語が The update（ひとつ）なので do ではなく does。"
+    },
+    {
+      "text": "work",
+      "role": "V",
+      "why": "does が s を引き受けたので原形。"
+    },
+    {
+      "text": "on my phone",
+      "role": "M",
+      "plain": "どこで",
+      "why": "on は「接している・その上で」。機器の上で動く、という感覚。"
+    }
+  ],
+  "words": [
+    {
+      "w": "update",
+      "lemma": "update",
+      "ja": "更新・アップデート"
+    },
+    {
+      "w": "work",
+      "lemma": "work",
+      "ja": "動く・機能する（「働く」だけではない）"
+    }
+  ],
+  "question": {
+    "ask": "この人に起きていることは？",
+    "choices": [
+      "アップデートが自分のスマホで動かない",
+      "アップデートのせいで仕事ができない",
+      "スマホでは仕事をしないことにしている"
+    ],
+    "answer": 0,
+    "explain": "主語は The update。それが on my phone（私のスマホの上で）動かない、と言っています。"
+  }
+}

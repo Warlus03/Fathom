@@ -1,0 +1,61 @@
+{
+  "id": "r-0039",
+  "shelf": "read",
+  "en": "She told me that it was free.",
+  "ja": "彼女は私に、それは無料だと言いました。",
+  "scene": "人から聞いた話を伝える投稿で",
+  "grammar": [
+    "svoo",
+    "that",
+    "past"
+  ],
+  "aim": "tell＋人＋that〜 で「人に〜だと伝える」。2つ目の「何を」が文になっている。",
+  "pitfall": "that を「あれ」と読んで止まる。ここでは、後ろに文が続く合図。",
+  "chunks": [
+    {
+      "text": "She",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "told",
+      "role": "V",
+      "plain": "伝えた",
+      "why": "tell の過去形。不規則動詞。"
+    },
+    {
+      "text": "me",
+      "role": "O",
+      "plain": "誰に"
+    },
+    {
+      "text": "that it was free",
+      "role": "O",
+      "plain": "何を（言った中身）",
+      "term": "目的語（that＋文）",
+      "why": "told が過去なので、中の is も was に合わせている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "told",
+      "lemma": "tell",
+      "ja": "伝える・言う（told は過去形）"
+    },
+    {
+      "w": "free",
+      "lemma": "free",
+      "ja": "無料の"
+    }
+  ],
+  "question": {
+    "ask": "「無料だ」と言ったのは誰？",
+    "choices": [
+      "彼女",
+      "この文を書いた人",
+      "it が指すもの"
+    ],
+    "answer": 0,
+    "explain": "told の主語は She。me は聞いた側、that 以下が聞いた内容です。"
+  }
+}

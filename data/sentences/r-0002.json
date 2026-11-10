@@ -1,0 +1,60 @@
+{
+  "id": "r-0002",
+  "shelf": "read",
+  "en": "I use this tool every day.",
+  "ja": "私はこのツールを毎日使っています。",
+  "scene": "おすすめを紹介する投稿で",
+  "grammar": [
+    "verb"
+  ],
+  "aim": "「誰が・どうする・何を」の順。動詞の直後にあるものが「何を」。",
+  "pitfall": "日本語の順（私は・このツールを・毎日・使う）で探すと動詞を見失う。動詞は主語のすぐ後ろ。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "use",
+      "role": "V"
+    },
+    {
+      "text": "this tool",
+      "role": "O"
+    },
+    {
+      "text": "every day",
+      "role": "M",
+      "plain": "どのくらい",
+      "why": "骨組みの外。外しても I use this tool. で文が成り立つ。"
+    }
+  ],
+  "words": [
+    {
+      "w": "use",
+      "lemma": "use",
+      "ja": "使う"
+    },
+    {
+      "w": "tool",
+      "lemma": "tool",
+      "ja": "道具・ツール"
+    },
+    {
+      "w": "every day",
+      "lemma": "every day",
+      "ja": "毎日"
+    }
+  ],
+  "question": {
+    "ask": "use（使う）の相手、つまり「何を」にあたるのは？",
+    "choices": [
+      "this tool",
+      "every day",
+      "I"
+    ],
+    "answer": 0,
+    "explain": "動詞 use のすぐ後ろの this tool が「何を」。every day は「どのくらい」という説明で、骨組みの外です。"
+  }
+}

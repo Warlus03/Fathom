@@ -1,0 +1,69 @@
+{
+  "id": "t-0013",
+  "shelf": "talk",
+  "en": "I'm sorry, I can't speak English well.",
+  "ja": "すみません、英語はあまり上手に話せないんです。",
+  "scene": "英語で話しかけられたとき",
+  "grammar": [
+    "can",
+    "negative",
+    "adjective"
+  ],
+  "aim": "not は文末の well まで含めて打ち消す。「上手には」話せない。",
+  "pitfall": "「まったく話せない」と受け取ってしまう。well があるので、打ち消しているのは「上手に」の部分。",
+  "chunks": [
+    {
+      "text": "I'm sorry",
+      "role": "x",
+      "plain": "（前置き）",
+      "term": "前置き"
+    },
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "can't",
+      "role": "neg",
+      "plain": "〜できない",
+      "term": "助動詞＋否定"
+    },
+    {
+      "text": "speak",
+      "role": "V"
+    },
+    {
+      "text": "English",
+      "role": "O"
+    },
+    {
+      "text": "well",
+      "role": "M",
+      "plain": "どのように",
+      "why": "well（上手に）は副詞。can't は「上手に話す」全体を打ち消している。"
+    }
+  ],
+  "words": [
+    {
+      "w": "speak",
+      "lemma": "speak",
+      "ja": "話す"
+    },
+    {
+      "w": "well",
+      "lemma": "well",
+      "ja": "上手に"
+    }
+  ],
+  "question": {
+    "ask": "この人の英語は？",
+    "choices": [
+      "上手には話せない（少しは話せるかもしれない）",
+      "まったく話せない",
+      "上手に話せる"
+    ],
+    "answer": 0,
+    "explain": "can't speak English well は「上手には話せない」。まったく話せないなら I can't speak English at all. です。"
+  }
+}

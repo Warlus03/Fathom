@@ -1,0 +1,58 @@
+{
+  "id": "r-0016",
+  "shelf": "read",
+  "en": "You don't have to pay for it.",
+  "ja": "それにお金を払う必要はありません。",
+  "scene": "無料プランの説明で",
+  "grammar": [
+    "obligation",
+    "negative"
+  ],
+  "aim": "don't have to は「しなくてよい」。禁止ではない。",
+  "pitfall": "「払ってはいけない」と読んでしまう。禁止は must not。",
+  "chunks": [
+    {
+      "text": "You",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "don't have to",
+      "role": "neg",
+      "plain": "〜しなくてよい",
+      "term": "否定＋have to",
+      "why": "have to（しなければならない）を don't で打ち消すと、「その必要がない」になる。"
+    },
+    {
+      "text": "pay",
+      "role": "V"
+    },
+    {
+      "text": "for it",
+      "role": "M",
+      "plain": "何に対して"
+    }
+  ],
+  "words": [
+    {
+      "w": "have to",
+      "lemma": "have to",
+      "ja": "〜しなければならない"
+    },
+    {
+      "w": "pay",
+      "lemma": "pay",
+      "ja": "支払う"
+    }
+  ],
+  "question": {
+    "ask": "お金について、どう言っていますか？",
+    "choices": [
+      "払わなくてよい",
+      "払ってはいけない",
+      "払わなければならない"
+    ],
+    "answer": 0,
+    "explain": "don't have to は「必要がない」。払いたければ払ってもかまいません。禁止なら must not です。"
+  }
+}

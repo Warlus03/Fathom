@@ -1,0 +1,53 @@
+{
+  "id": "r-0010",
+  "shelf": "read",
+  "en": "This looks great.",
+  "ja": "これは良さそうですね。",
+  "scene": "新しい作品への返信で",
+  "grammar": [
+    "svc",
+    "s3"
+  ],
+  "aim": "look＋形容詞は「〜に見える」。This ＝ great の関係。",
+  "pitfall": "look を「見る」と読んで「これは見る」と考えてしまう。後ろが形容詞なら「〜に見える」。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "looks",
+      "role": "V",
+      "plain": "〜に見える",
+      "why": "is を looks に替えた形。主語が This（ひとつ）なので s が付く。"
+    },
+    {
+      "text": "great",
+      "role": "C",
+      "plain": "どういう状態"
+    }
+  ],
+  "words": [
+    {
+      "w": "looks",
+      "lemma": "look",
+      "ja": "〜に見える（後ろが形容詞のとき）"
+    },
+    {
+      "w": "great",
+      "lemma": "great",
+      "ja": "すばらしい"
+    }
+  ],
+  "question": {
+    "ask": "書いた人が言いたいことは？",
+    "choices": [
+      "これは良さそうだ",
+      "これをよく見てほしい",
+      "すばらしい物を探している"
+    ],
+    "answer": 0,
+    "explain": "This ＝ great に「見える」。look の後ろに形容詞が来たら、見る動作ではなく、主語の印象を言っています。"
+  }
+}

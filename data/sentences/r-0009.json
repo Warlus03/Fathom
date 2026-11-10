@@ -1,0 +1,52 @@
+{
+  "id": "r-0009",
+  "shelf": "read",
+  "en": "Try it yourself.",
+  "ja": "自分で試してみてください。",
+  "scene": "使い方を紹介する投稿の最後に",
+  "grammar": [
+    "imperative",
+    "pronoun"
+  ],
+  "aim": "動詞で始まる文は、読んでいる相手への呼びかけ。主語は言わなくても you。",
+  "pitfall": "主語がないので「誰が試すのか」が分からなくなる。",
+  "chunks": [
+    {
+      "text": "Try",
+      "role": "V",
+      "why": "主語なしで動詞の原形から始まる。きつい命令ではなく、すすめる言い方。"
+    },
+    {
+      "text": "it",
+      "role": "O"
+    },
+    {
+      "text": "yourself",
+      "role": "M",
+      "plain": "自分で",
+      "why": "隠れている主語が you なので yourself。"
+    }
+  ],
+  "words": [
+    {
+      "w": "try",
+      "lemma": "try",
+      "ja": "試す"
+    },
+    {
+      "w": "yourself",
+      "lemma": "yourself",
+      "ja": "あなた自身で"
+    }
+  ],
+  "question": {
+    "ask": "試すのは誰？",
+    "choices": [
+      "これを読んでいる人",
+      "これを書いた人",
+      "it が指しているもの"
+    ],
+    "answer": 0,
+    "explain": "動詞から始まる文は、相手（you）への呼びかけ。yourself（あなた自身で）もそれを示しています。"
+  }
+}
