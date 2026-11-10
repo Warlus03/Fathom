@@ -59,6 +59,11 @@ function maybeBackup() {
   } catch { return false; }
 }
 
+// 控えを、端末の共有メニュー（Google ドライブ、メール、近くの端末など）に渡す。別の端末へ移すときに使う。
+// 共有できるファイルの種類が限られているので、中身は同じまま .txt にする（読み込みは .txt も受け付ける）。
+const shareFile = () => new File([store.exportText(S)], 'fathom-backup-' + new Date().toLocaleDateString('sv-SE') + '.txt', { type: 'text/plain' });
+const canShareFile = () => { try { return !!(navigator.canShare && navigator.canShare({ files: [shareFile()] })); } catch { return false; } };
+
 let toastTimer;
 function toast(msg) {
   $toast.textContent = msg;
@@ -578,13 +583,13 @@ function viewMe() {
         しばらく使わないだけで消えることはありません。消えるのは、ブラウザの「サイトのデータを削除」をしたときや、アプリを消したときです。ときどき控えを取っておくと安心です。</p>
       <p class="tip">${S.settings.exportedAt ? '最後に控えを取った日：' + new Date(S.settings.exportedAt).toLocaleDateString('ja-JP') + '（そのあとの記録 ' + S.events.filter((e) => e.t > S.settings.exportedAt).length + ' 件）' : S.events.length ? 'まだ控えを取っていません。' : ''}</p>
       ${persisted === false ? '<div class="row"><button class="ghost" data-act="keep">消さないよう、端末に頼む</button></div>' : ''}
-      <div class="row"><button class="ghost" data-act="export">ファイルに書き出す</button><button class="ghost" data-act="export-show">文字で表示</button></div>
+      <div class="row"><button class="ghost" data-act="export">ファイルに書き出す</button>${canShareFile() ? '<button class="ghost" data-act="share">共有して送る</button>' : ''}<button class="ghost" data-act="export-show">文字で表示</button></div>
       <p class="lab2">控えの自動保存</p>
       <div class="seg"><button data-act="autobackup" data-v="1" class="${S.settings.autoBackup ? 'on' : ''}">する</button><button data-act="autobackup" data-v="0" class="${S.settings.autoBackup ? '' : 'on'}">しない</button></div>
       <p class="tip">「する」にしておくと、1回分を終えたときに、その日の控えを端末の「ダウンロード」に自動で保存します（1日1つまで。ファイル名は fathom-backup-日付.json）。端末の空きが少なくて記録が消えてしまっても、いちばん新しいファイルを下の「ファイルを選ぶ」で読み込めば戻せます。古いファイルは消して構いません。</p>
       ${exportShown ? `<textarea id="exp" readonly rows="5">${esc(store.exportText(S))}</textarea>` : ''}
       <p class="lab2">読み込む（今ある記録は消えず、合流します）</p>
-      <div class="row"><label class="ghost filebtn">ファイルを選ぶ<input type="file" id="imp" accept=".json,application/json"></label></div>
+      <div class="row"><label class="ghost filebtn">ファイルを選ぶ<input type="file" id="imp" accept=".json,.txt,application/json,text/plain"></label></div>
       <textarea id="imptext" rows="3" placeholder="または、書き出した文字をここに貼る"></textarea>
       <div class="row"><button class="ghost" data-act="import-text">貼った文字を読み込む</button></div>
     </section>
@@ -728,6 +733,10 @@ const ACTIONS = {
   sound: (el) => { S.settings.sound = el.dataset.v === '1'; persist(); render(); if (S.settings.sound) chime(); },
   export: () => { download('fathom-progress-' + new Date().toISOString().slice(0, 10) + '.json', store.exportText(S)); S.settings.exportedAt = Date.now(); persist(); render(); },
   theme: (el) => { S.settings.theme = el.dataset.v; persist(); applyTheme(); render(); },
+  share: async () => {
+    try { await navigator.share({ files: [shareFile()], title: 'Fathom の記録' }); S.settings.exportedAt = Date.now(); persist(); render(); }
+    catch (err) { if (err && err.name !== 'AbortError') toast('共有できませんでした。「ファイルに書き出す」を使ってください。'); }
+  },
   autobackup: (el) => { S.settings.autoBackup = el.dataset.v === '1'; persist(); render(); },
   keep: async () => { await checkPersisted(true); toast(persisted ? '端末が、この記録を自動では消さない扱いにしました。' : '今は受け付けてもらえませんでした。ホーム画面に追加して何日か使うと、通りやすくなります。'); render(); },
   'export-show': () => { exportShown = !exportShown; render(); },
