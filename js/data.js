@@ -49,8 +49,9 @@ export function validate(s, grammarIds) {
   if (!q || !str(q.ask) || !str(q.explain)) p.push('question.ask / explain がない');
   else if (!Array.isArray(q.choices) || q.choices.length < 2) p.push('question.choices は2つ以上');
   else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) p.push('question.answer が範囲外');
-  if (q && q.targets !== undefined) {
-    if (!Array.isArray(q.targets) || !q.targets.length) p.push('question.targets は1つ以上の配列（省くなら項目ごと消す）');
+  if (q) {
+    // targets は必須。省くと、文に付いた文法すべてに正誤が数えられてしまう
+    if (!Array.isArray(q.targets) || !q.targets.length) p.push('question.targets がない（その問いが確かめている文法を、1つ以上書く）');
     else for (const g of q.targets) if (!(s.grammar || []).includes(g)) p.push('question.targets の「' + g + '」が、この文の grammar にない');
   }
   return p;
@@ -112,6 +113,16 @@ function checkShape(index, grammar) {
   if (!ok) throw new Error('grammar.json の形が違います。');
 }
 
+// いじれる例文の動詞の表が、変形の関数（js/play.js）でそのまま使える形か
+export function validPlay(p) {
+  const str = (v) => typeof v === 'string' && v !== '';
+  const strs = (a, n) => Array.isArray(a) && a.length === n && a.every(str);
+  if (!p || !Array.isArray(p.verbs) || !p.verbs.length) return false;
+  return p.verbs.every((v) => v && typeof v === 'object' && str(v.id) && str(v.label) && str(v.rest)
+    && (v.jaFuture === undefined || strs(v.jaFuture, 2))
+    && (v.kind === 'be' ? strs(v.ja, 4) : (v.kind === 'regular' || v.kind === 'irregular') && str(v.base) && str(v.s) && str(v.past) && str(v.jaObj) && str(v.jaStem)));
+}
+
 // source: 'cache'（保存済みを優先。無いものだけ取りに行く） | 'net'（全部取り直す。失敗分は保存済みで補う）
 async function gather(source, cache) {
   const texts = {};
@@ -137,7 +148,20 @@ async function gather(source, cache) {
   }));
   // いじれる例文の動詞の表。無くてもアプリは動く
   let play = null;
-  try { play = await get('data/playground.json'); if (!play || !Array.isArray(play.verbs)) play = null; } catch { failed--; }
+  const P = 'data/playground.json';
+  try {
+    play = await get(P);
+    if (!validPlay(play)) {
+      // 取り直した表が壊れていたら、保存済みの正しい表を使う。保存済みは上書きしない
+      const wasNet = fromNet.delete(P);
+      play = null;
+      delete texts[P];
+      if (wasNet) {
+        const old = await fromCache(P, cache);
+        try { const j = JSON.parse(old); if (validPlay(j)) { play = j; texts[P] = old; } } catch {}
+      }
+    }
+  } catch { failed--; }
   return { index, grammar, list, play, texts, fromNet, failed };
 }
 
@@ -148,12 +172,36 @@ async function loadAll(source) {
     if (source !== 'cache') throw err; // 更新の失敗。保存済みには手を付けていない
     r = await gather('net', cache); // 保存済みが開けない形だったら、取り直す
   }
-  const data = build(r.index, r.grammar, r.list);
+  let data = build(r.index, r.grammar, r.list);
+  // 取り直した文が検査に落ちたら、保存済みの正しい版があればそれを使う。落ちた版で保存済みを上書きしない
+  const skip = new Set();
+  if (data.problems.length) {
+    const gids = new Set(r.grammar.items.map((g) => g.id));
+    let restored = false;
+    for (const pr of data.problems) {
+      const url = sUrl(pr.id);
+      if (!r.fromNet.has(url)) continue;
+      skip.add(url);
+      const old = await fromCache(url, cache);
+      if (old == null) continue;
+      try {
+        const json = JSON.parse(old);
+        if (json.id !== pr.id || validate(json, gids).length) continue;
+        const item = r.list.find((x) => x.id === pr.id);
+        item.json = json;
+        delete item.error;
+        r.texts[url] = old;
+        restored = true;
+      } catch {}
+    }
+    if (restored) { const problems = data.problems; data = build(r.index, r.grammar, r.list); data.rejected = problems; }
+  }
   data.play = r.play;
   // 全体を検査し終えてから、新しく取った分だけ端末に保存する。保存できなくても教材は使う。
   let saved = !!cache;
   if (cache) {
     for (const url of r.fromNet) {
+      if (skip.has(url)) continue;
       try { await cache.put(url, new Response(r.texts[url], { headers: { 'Content-Type': 'application/json' } })); } catch { saved = false; }
     }
   }

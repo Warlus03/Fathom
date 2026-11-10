@@ -49,17 +49,16 @@
     }
   ],
   "question": {
-    "ask": "「無料だ」と言ったのは誰？",
+    "ask": "She が me に伝えた中身は、どのまとまり？",
     "choices": [
-      "彼女",
-      "この文を書いた人",
-      "it が指すもの"
+      "that it was free（それは無料だ、ということ）",
+      "that（「あれ」という物）だけ",
+      "me that（「私のあれ」）"
     ],
     "answer": 0,
     "targets": [
-      "svoo",
       "that"
     ],
-    "explain": "told の主語は She。me は聞いた側、that 以下が聞いた内容です。"
+    "explain": "told の後ろは、me（誰に）と that it was free（何を）。この that は「あれ」ではなく、後ろに文が続く合図です。伝えた中身は「それは無料だ」です。"
   }
 }

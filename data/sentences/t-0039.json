@@ -9,7 +9,7 @@
     "preposition"
   ],
   "aim": "be動詞の後ろに場所が来ると「〜にある・いる」。",
-  "pitfall": "near を「近づく」という動きと読んで、職場が動いているように取ってしまう。be動詞は「ある」という状態だけを言う。",
+  "pitfall": "My office を読み飛ばして「（私は）駅の近くにいる」と取ってしまう。is の前の My office が「何が」。",
   "chunks": [
     {
       "text": "My office",

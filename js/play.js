@@ -40,7 +40,7 @@ export function build(v, subj, tense, form) {
       if (form === 'neg') {
         links.add('negative');
         notes.push('be動詞は、すぐ後ろに not を付ける（do は使わない）。');
-        if (b === 'am') { add("I'm", 'S', '主語＋be動詞'); add('not', 'neg', '否定'); notes.push("I am not は I'm not と縮める（amn't という形はない）。"); }
+        if (b === 'am') { add("I'm", 'S', '主語＋be動詞'); add('not', 'neg', '否定'); notes.push("縮めるときは I'm not（amn't という形はない）。I am not のままでもよい。"); }
         else { add(S, 'S', '主語'); add(b + "n't", 'neg', '否定（be動詞＋not）'); }
       }
       if (form === 'q') { links.add('question'); add(b, 'V', 'be動詞'); add(S, 'S', '主語'); notes.push('be動詞を主語の前に出すと質問になる。'); }
@@ -64,7 +64,7 @@ export function build(v, subj, tense, form) {
       links.add('past');
       if (form === 'aff') {
         add(S, 'S', '主語'); add(v.past, 'V', '動詞（過去形）');
-        notes.push(irregular ? `${v.base} の過去形は ${v.past}（不規則動詞）。主語が何でも同じ形。` : `過去形は -ed を付ける（${v.base} → ${v.past}）。主語が何でも同じ形。`);
+        notes.push(irregular ? `${v.base} の過去形は ${v.past}（不規則動詞）。主語が何でも同じ形。` : v.pastNote || `過去形は -ed を付ける（${v.base} → ${v.past}）。主語が何でも同じ形。`);
       } else if (form === 'neg') {
         links.add('negative');
         add(S, 'S', '主語'); add("didn't", 'neg', '否定（did＋not）'); add(v.base, 'V', '動詞（原形）');
@@ -89,7 +89,18 @@ export function build(v, subj, tense, form) {
 
   // 訳: ます形の4つ（〜ます / 〜ません / 〜ました / 〜ませんでした）から作る
   const four = isBe ? v.ja : ['ます', 'ません', 'ました', 'ませんでした'].map((e) => v.jaObj + v.jaStem + e);
-  const pred = four[(tense === 'past' ? 2 : 0) + (form === 'neg' ? 1 : 0)];
-  const ja = subj.ja + 'は' + (tense === 'future' ? '（これから）' : '') + pred + (form === 'q' ? 'か。' : '。');
+  let pred = four[(tense === 'past' ? 2 : 0) + (form === 'neg' ? 1 : 0)];
+  let lead = '';
+  if (tense === 'future') {
+    // 状態（be、have time など）は「〜でしょう」の訳を別に持つ。動作は「（これから）〜ます」
+    if (v.jaFuture) pred = v.jaFuture[form === 'neg' ? 1 : 0];
+    else lead = '（これから）';
+  } else if (tense === 'present' && !isBe && !v.state) {
+    // 動作を表す動詞の現在形は「ふだんそうしている」。日本語の「〜ます」だけだと、これからの話に聞こえるため
+    lead = '（ふだん）';
+  }
+  const ja = subj.ja + 'は' + lead + pred + (form === 'q' ? 'か。' : '。');
+  // I を主語にした質問は、形は正しいが、使う場面が限られる
+  if (subj.id === 'I' && form === 'q') notes.push('形は正しい文ですが、自分のことを相手にたずねる形なので、使う場面は限られます。');
   return { parts, en, ja, notes, links: [...links] };
 }

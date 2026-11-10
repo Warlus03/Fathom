@@ -18,7 +18,7 @@ const $toast = document.getElementById('toast');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const paras = (t) => String(t || '').split('\n').filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join('');
 // 保存できたら true。できなかったら、その場で知らせる。
-const persist = () => { const ok = store.save(S); if (!ok) toast('この端末に保存できませんでした。空き容量を確認してください。'); return ok; };
+const persist = (ownWords = false) => { const ok = store.save(S, { ownWords }); if (!ok) toast('この端末に保存できませんでした。空き容量を確認してください。'); return ok; };
 
 const READ_LABEL = { none: '未探索', learning: '勉強中', solid: '読めば分かる' };
 const LISTEN_LABEL = { none: '未測定', learning: '勉強中', solid: '聞いても分かる' };
@@ -67,8 +67,11 @@ const NO_VOICE = 'この画面には英語の声が入っていません。Edge 
 // en: 読み上げる英文。c: 聞く入口のカード（実際に音が出たかを記録する）
 function speak(s, slow, c) {
   if (playing) { playing.pause(); playing = null; }
+  // heard: 再生が始まり、失敗していない。heardFull: 最後まで再生できたことがある。
+  // 始まったあとで失敗した回は、聞けたことにしない（前に最後まで聞けていれば、それは生きる）。
   const heard = () => { if (c) c.heard = true; };
-  const failed = () => { if (c && !c.heard) { c.audioFailed = true; render(); } toast('音声を再生できませんでした。'); };
+  const ended = () => { if (c) { c.heard = true; c.heardFull = true; } };
+  const failed = () => { if (c && !c.heardFull) { c.heard = false; c.audioFailed = true; render(); } toast('音声を再生できませんでした。'); };
   const tts = () => {
     if (!canSpeak()) { failed(); return; }
     speechSynthesis.cancel();
@@ -80,6 +83,7 @@ function speak(s, slow, c) {
     u.voice = v;
     u.rate = (S.settings.rate || 0.9) * (slow ? 0.72 : 1);
     u.onstart = heard;
+    u.onend = ended;
     u.onerror = (ev) => { if (ev.error !== 'canceled' && ev.error !== 'interrupted') failed(); };
     speechSynthesis.speak(u);
   };
@@ -88,6 +92,8 @@ function speak(s, slow, c) {
     const a = new Audio('audio/' + s.audioId + '.mp3');
     a.playbackRate = slow ? 0.8 : 1;
     a.onplaying = heard;
+    a.onended = ended;
+    a.onerror = failed;
     playing = a;
     a.play().catch(tts);
   } else tts();
@@ -137,7 +143,11 @@ function answer(c, choice) {
   if (c.correct) chime();
 }
 
+// 進行中のカードを捨てて別のことを始める前に、「見た」ことを残す
+const leaveCard = () => { if (ses && ses.i < ses.list.length) logView(ses.card); };
+
 function startSession(opts) {
+  leaveCard();
   const mode = opts.mode || 'read';
   const plan = L.buildSession(D, S, { mode, shelf: opts.focus ? 'both' : S.settings.shelf, focus: opts.focus || null });
   if (!plan.list.length) { toast(mode === 'listen' ? 'まず何文か読むと、聞く入口が開きます。' : '文がありません。'); return; }
@@ -297,6 +307,7 @@ function recordMake(c, correct) {
 }
 
 function startMake() {
+  leaveCard();
   const list = L.makeSession(D, S);
   if (!list.length) { toast('まず何文か読んで正解すると、作る入口が開きます。'); return; }
   slide = null;
@@ -318,7 +329,7 @@ function viewMake(c) {
     const bank = c.tiles.filter((t) => !c.placed.includes(t.key)).map((t) => `<button class="tile2" data-act="tile" data-k="${t.key}">${esc(t.text)}</button>`).join('');
     body = `<div class="slots">${placed || '<span class="tip">下のかたまりを、言う順にタップして並べます。</span>'}</div>
       <div class="bank">${bank}</div>
-      ${c.wrong ? `<p class="tip">惜しいです。点線のかたまりの位置が違います。タップで外して入れ替えるか、最初から並べ直せます。</p>
+      ${c.wrong ? `<p class="tip">お手本の順と違うところが、点線になっています。「いつ・どこで」のようなかたまりは、別の位置でも正しい英語になることがあります。お手本の順を試すなら、タップで外して入れ替えるか、最初から並べ直せます。</p>
         <div class="row"><button class="ghost" data-act="make-retry">最初から並べる</button><button class="ghost" data-act="make-reveal">正解を見る</button></div>` : ''}
       <button class="idk" data-act="make-how" data-v="recall">並べ替えずに、頭の中で言ってから正解を見る</button>`;
   } else if (!c.revealed) {
@@ -327,7 +338,7 @@ function viewMake(c) {
       <button class="idk" data-act="make-how" data-v="order">やっぱり、並べ替えで作る</button>`;
   } else {
     const ask = c.how === 'recall' && !c.recorded;
-    const verdict = c.how === 'recall' ? (ask ? '' : '記録しました。') : c.gaveUp ? 'ここで形を見ておけば十分です。' : c.tries === 0 ? '一度で組み立てられました。' : '組み立てられました。';
+    const verdict = c.how === 'recall' ? (ask ? '' : '記録しました。') : c.gaveUp ? 'ここで形を見ておけば十分です。' : c.tries === 0 ? '一度で組み立てられました。' : 'お手本の順に組み立てられました。';
     body = `<div class="enrow"><p class="en">${esc(s.en)}</p><button class="icon" data-act="speak" aria-label="読み上げる" title="読み上げる">♪</button></div>
       ${viewBreak(c)}
       <div class="after ${!c.gaveUp && c.how === 'order' ? 'ok' : ''}">
@@ -345,6 +356,7 @@ function viewMake(c) {
 // ---------- 流して読む ----------
 // 理解できた文だけを、自分で選んだテンポで流す。判定も記録もしない。
 function startSlide() {
+  leaveCard();
   const pool = L.understood(D, S);
   if (!pool.length) { toast('まず何文か読んで正解すると、流して読めるようになります。'); return; }
   const list = [...pool].sort(() => Math.random() - 0.5).slice(0, 20);
@@ -448,7 +460,7 @@ function viewGrammar(id) {
   const met = all.filter((s) => H.bySid[s.id]);
   const n = all.length;
   const list = met.map((s) => `<li><a href="#s/${s.id}">${esc(s.en)}</a><small>${SHELF_LABEL[s.shelf]}</small></li>`).join('')
-    + (n > met.length ? `<li><small>まだ出会っていない文が ${n - met.length} 本あります。上の「この項目の文を読む」から読めます。</small></li>` : '');
+    + (n > met.length ? `<li><small>まだ出会っていない文が ${n - met.length} 本あります。上の「この項目の文を読む」から読めます。残りが少ない項目は、1日に全部は出さず、日を空けて出します（初めて見る文で確かめるためです）。</small></li>` : '');
   return `<p><a href="#map">← 地図</a></p>
     <header class="vh"><h2>${esc(it.name)}</h2><p class="pattern">${esc(it.pattern)}</p></header>
     ${D.play && ['be', 'verb', 's3', 'past', 'future', 'negative', 'question'].includes(id) ? '<p><a href="#play">🎛️ いじれる例文で、形の変化を確かめる →</a></p>' : ''}
@@ -500,7 +512,7 @@ function viewMe() {
   const voices = englishVoices(), auto = autoVoice();
   const probs = D.problems.length ? `<p class="tip">読み込めなかった文が ${D.problems.length} 件あります：${D.problems.map((p) => esc(p.id + '（' + p.problems[0] + '）')).join('、')}</p>` : '';
   return `<header class="vh"><h2>記録</h2></header>
-    <section class="panel"><p>出会った文　${o.seenCount} / ${D.sentences.length}<br>答えた回数　${answered.length}（読む ${answered.filter((e) => e.mode !== 'listen').length}・聞く ${answered.filter((e) => e.mode === 'listen').length}）<br>単語帳　${Object.keys(S.words).length} 語</p></section>
+    <section class="panel"><p>出会った文　${o.seenCount} / ${D.sentences.length}<br>答えた回数　${answered.filter((e) => e.mode === 'read' || e.mode === 'listen').length}（読む ${answered.filter((e) => e.mode === 'read').length}・聞く ${answered.filter((e) => e.mode === 'listen').length}）　　組み立てた回数　${S.events.filter((e) => e.mode === 'make').length}<br>単語帳　${Object.keys(S.words).length} 語</p></section>
     <section class="panel"><h3>設定</h3>
       <p class="lab2">今日の分に出す棚</p><div class="seg">${chips}</div>
       <p class="lab2">読み上げの速さ</p><div class="seg">${rates}</div>
@@ -595,14 +607,14 @@ const ACTIONS = {
   'start-read': () => startSession({ mode: 'read' }),
   'start-listen': () => startSession({ mode: 'listen' }),
   'start-focus': (el) => startSession({ mode: 'read', focus: el.dataset.g }),
-  home: () => { ses = null; render(true); },
+  home: () => { leaveCard(); ses = null; render(true); },
   end: () => { logView(ses.card); ses = ses.count ? { ...ses, i: ses.list.length } : null; render(true); },
   'start-make': () => startMake(),
   tile: (el, c) => {
     c.placed.push(+el.dataset.k);
     if (c.placed.length === c.tiles.length) {
       const ok = c.placed.every((k, i) => c.tiles.find((t) => t.key === k).text === c.texts[i]);
-      if (ok) { c.revealed = true; c.wrong = false; recordMake(c, c.tries === 0); chime(); }
+      if (ok) { c.revealed = true; c.wrong = false; recordMake(c, c.tries === 0 ? true : null); chime(); } // お手本と違う順を経た回は、正誤を付けない
       else { c.wrong = true; c.tries++; }
     }
     render();
@@ -636,12 +648,12 @@ const ACTIONS = {
   },
   unword: (el, c) => {
     const w = c.s.words[c.word], e = S.words[w.lemma];
-    if (e) { e.metIn = e.metIn.filter((x) => x !== c.s.id); if (!e.metIn.length) delete S.words[w.lemma]; }
+    if (e) { e.metIn = e.metIn.filter((x) => x !== c.s.id); if (!e.metIn.length) { delete S.words[w.lemma]; S.gone[w.lemma] = Date.now(); } }
     c.word = null;
-    persist();
+    persist(true);
     render();
   },
-  'rm-word': (el) => { delete S.words[el.dataset.l]; persist(); render(); },
+  'rm-word': (el) => { delete S.words[el.dataset.l]; S.gone[el.dataset.l] = Date.now(); persist(true); render(); },
   choose: (el, c) => { answer(c, +el.dataset.i); render(); },
   idk: (el, c) => { answer(c, -1); render(); },
   reveal: (el, c) => { c.revealed = true; markHelped(c); render(); },
@@ -685,10 +697,15 @@ document.addEventListener('change', (ev) => {
 window.addEventListener('hashchange', () => render(true));
 // 画面を閉じる・切り替えるとき、読みかけのカードを「見た」として残す
 window.addEventListener('pagehide', () => logView(activeCard()));
+// 別のタブやアプリへ移ったら、流して読むのを止める（見ていない間に進めない）。戻ったら「再開」から
+const pauseSlide = () => { if (slide && !slide.paused && !slide.done) { slide.paused = true; clearTimeout(slideTimer); if (D) render(); } };
+document.addEventListener('visibilitychange', () => { if (document.hidden) pauseSlide(); });
+window.addEventListener('pagehide', pauseSlide);
 // 別の画面（別タブ、ホーム画面のアプリ）で記録が変わったら、こちらも読み直す
 window.addEventListener('storage', (ev) => {
   if (ev.key !== store.KEY || !D) return;
-  S = store.load();
+  // 全消去（newValue が無い）はそのまま従う。それ以外は、こちらでまだ保存できていない記録を落とさないよう、合わせる
+  S = ev.newValue == null ? store.load() : store.merge(store.load(), S);
   if (!activeCard()) render();
 });
 // 声の一覧は遅れて届くことがある。届いたら、声に関わる画面を描き直す

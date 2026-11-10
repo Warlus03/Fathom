@@ -2,7 +2,7 @@
 // 実際の記録（localStorage）には触らない。教材は本物を読み、検査結果も表示する。
 import * as L from './learn.js';
 import * as store from './store.js';
-import { loadData, refreshData, validate } from './data.js';
+import { loadData, refreshData, validate, validPlay } from './data.js';
 import { SUBJECTS, build as buildPlay } from './play.js';
 
 const out = document.getElementById('out');
@@ -27,7 +27,12 @@ const testing = (gid) => D.sentences.filter((s) => L.targetsOf(s).includes(gid))
 const few = D.grammar.items.filter((g) => testing(g.id) < 3).map((g) => g.id + '(' + testing(g.id) + ')');
 check('教材: どの文法項目にも、それを確かめる問いが3本以上ある（「分かる」に届くのに必要）', !few.length, few);
 const withTargets = D.sentences.filter((s) => s.question.targets).length;
-check('教材: 問いが確かめる文法（question.targets）の指定 ' + withTargets + ' / ' + D.sentences.length + ' 文（未指定の文は、付いている文法すべてに正誤が数えられる）', true);
+check('教材: すべての文に、問いが確かめる文法（question.targets）が書いてある（' + withTargets + ' / ' + D.sentences.length + '）', withTargets === D.sentences.length);
+{
+  const s0 = JSON.parse(JSON.stringify(D.sentences[0]));
+  delete s0.question.targets;
+  check('targets を書き忘れた文は、検査で落ちる', validate(s0, null).length > 0);
+}
 
 // be動詞を含む文を4つ使う
 // 以降の確認には、同じ文法を確かめる文が4本要る。いちばん本数の多い項目を使う
@@ -67,6 +72,36 @@ else {
   check('targets に、その文の grammar にない項目を書くと検査で落ちる', validate({ ...D.sentences[0], question: { ...D.sentences[0].question, targets: ['zzz'] } }, null).length > 0);
   check('教材から消えた文の記録があっても壊れない', L.status(g([ev(0, 'zz-9999'), ev(0, a)])) === 'learning');
 
+  // 2回目のレビューで見つかった穴
+  const firstHear = [ev(0, a), { t: at(1, -5), sid: '', gid: G, mode: 'map', helped: false, correct: null, choice: null, ms: null }, ev(2, a, { mode: 'listen' }), ev(5, b, { mode: 'listen' })];
+  check('前の日に地図で解説を読んでいても、初めて聞いた回は聴解の「初見」', g(firstHear, 'listen').map((e) => e.kind).join() === 'first,repeat' || g(firstHear, 'listen')[0].kind === 'first', g(firstHear, 'listen').map((e) => e.kind));
+  const sameDayAll = [ev(0, a), ev(0, b, { min: 2 }), ev(0, c, { min: 4 })];
+  check('項目の文を1日で全部読んでも、日を空けた正解を3回重ねれば「分かる」に届く', L.status(g([...sameDayAll, ev(40, a), ev(80, b)])) === 'learning' && L.status(g([...sameDayAll, ev(40, a), ev(80, b), ev(120, c)])) === 'solid');
+  check('音声が出なかった回しか無いなら、聴解は「未測定」のまま', L.status(g([ev(0, a), { ...ev(1, a, { mode: 'listen' }), heard: false }], 'listen')) === 'none');
+  const few3 = D.grammar.items.map((x) => x.id).find((id) => testing(id) === 3 && D.sentences.filter((s) => L.targetsOf(s).includes(id)).every((s) => L.targetsOf(s).length === 1));
+  if (few3) {
+    const day0 = L.buildSession(D, st([]), { focus: few3, now: at(0) }).list;
+    const used = day0.filter((s) => L.targetsOf(s).includes(few3));
+    check('地図から入っても、3本しかない項目の未見の文を1日で使い切らない（' + few3 + '）', used.length === 1, day0.map((s) => s.id));
+    const again = L.buildSession(D, st([ev(0, used[0].id)]), { focus: few3, now: at(0, 20) }).list;
+    check('同じ日にもう一度入っても、残りの未見の文は出さない', !again.some((s) => s.id !== used[0].id && L.targetsOf(s).includes(few3)), again.map((s) => s.id));
+    const nextDay = L.buildSession(D, st([ev(0, used[0].id)]), { now: at(1) });
+    check('翌日には、取っておいた未見の文が復習として出る', nextDay.list.some((s) => s.id !== used[0].id && L.targetsOf(s).includes(few3)), nextDay.list.map((s) => s.id));
+  }
+  {
+    const w = (addedAt, metIn) => ({ addedAt, metIn, ja: '' });
+    const removed = store.mergeWords({}, { use: at(2) }, { use: w(at(0), [a]) }, {});
+    const readded = store.mergeWords({ use: w(at(3), [b]) }, { use: at(2) }, { use: w(at(0), [a]) }, {});
+    const both = store.mergeWords({ use: w(at(1), [b]) }, {}, { free: w(at(0), [a]) }, {});
+    check('別の画面の古い状態と合わせても、外した単語は戻らない／入れ直した単語は残る／別々に足した単語は両方残る', !removed.words.use && !!readded.words.use && !!both.words.use && !!both.words.free);
+    const wrapS = (state) => JSON.stringify({ app: 'fathom', state: { version: store.VERSION, ...state } });
+    let no = 0;
+    for (const bad of [wrapS({ events: [{ t: at(0), sid: a, mode: 'read', correct: true, helped: 'true' }] }), wrapS({ events: [{ t: at(0), sid: a, mode: 'listen', correct: true, heard: 'false' }] }), wrapS({ events: {} }), wrapS({ events: [], words: [] }), wrapS({ events: [], words: { use: { addedAt: at(0), metIn: [1] } } })]) { try { store.importText(bad, store.blank()); } catch { no++; } }
+    check('型の違う値（helped や heard が文字、一覧が配列でない など）は読み込まない', no === 5, no);
+    const lenient = store.migrate({ version: store.VERSION, events: [{ t: at(0), sid: a, mode: 'listen', correct: true, helped: 'yes', heard: 'no' }] }).events[0];
+    check('端末内の記録で型が違っていたら、「自力で解いた」「聞こえた」側には寄せない', lenient.helped === true && lenient.heard === false);
+    check('いじれる例文の表が壊れていたら使わない（空の一覧、活用形の欠け）', !validPlay({ verbs: [] }) && !validPlay({ verbs: [{ id: 'x', label: 'x', kind: 'regular', rest: 'it', base: 'x' }] }) && validPlay(D.play));
+  }
   // 復習の出し方
   const s0 = st([ev(0, a)]);
   const same = L.buildSession(D, s0, { now: at(0, 30) });

@@ -61,12 +61,13 @@ export function targetsOf(s) {
 //   revisit  REVISIT_DAYS 以上前に見た文に、自力で答えた（＝久しぶりの文）
 export function history(events, data) {
   const g = {}; // gid -> { read:[], listen:[] }
-  const lastDay = {}; // gid -> { read, listen } 最後にその項目に触れた日
+  const lastDay = {}; // gid -> { read, listen } 最後にその項目の問いに触れた日（読む・聞くは別々）
+  const gview = {}; // gid -> 地図で解説を読んだ最後の日。その日の正解は根拠にしないが、読む・聞くの「前に触れた日」にはしない
   const bySid = {}; // sid -> 記録の配列
   for (const e of annotate(events)) {
     const d = dayOf(e.t);
     if (!e.sid) {
-      if (e.gid) lastDay[e.gid] = { read: d, listen: d }; // 解説を読んだ日は、その項目に触れた日
+      if (e.gid) gview[e.gid] = d;
       continue;
     }
     (bySid[e.sid] ||= []).push(e);
@@ -82,7 +83,8 @@ export function history(events, data) {
       else if (e.helped) kind = 'assisted';
       else if (m === 'listen' && e.heard === false) kind = 'unheard';
       else if (e.seen && !e.stale) kind = 'repeat';
-      else if (e.stale) kind = ld != null && ld < d ? 'revisit' : 'repeat';
+      else if (gview[gid] === d && !e.seen) kind = 'sameday'; // 今日、解説を読んだばかり
+      else if (e.stale) kind = ld != null && ld < d && gview[gid] !== d ? 'revisit' : 'repeat';
       else if (ld == null) kind = 'first';
       else if (ld < d) kind = 'delayed';
       else kind = 'sameday';
@@ -98,15 +100,18 @@ const isEvidence = (e) => e.kind === 'delayed' || e.kind === 'revisit';
 // 状態: 'none'（未探索／未測定） | 'learning'（勉強中） | 'solid'（分かる）
 // 一度の正解や偶然の正解では solid にしない:
 //   日を空けた自力正解（delayed / revisit）が、別々の日・別々の文で SOLID_MIN 回以上あり、
-//   そのうち少なくとも1回は初めて見る文（delayed）で、
 //   かつ直近の「日を空けた自力回答」が正解であること。
+//   さらに、初めて見る文での正解（delayed）が1回以上あるか、無ければ日を空けた自力正解が3回以上あること。
+//   （後半の条件は、ある項目の文を先に全部読んでしまった人でも、時間をかければ届くようにするため）
+// 音声が出なかった回しか無い場合は、確かめていないのと同じなので 'none'（未測定）のまま。
 export function status(list) {
-  if (!list || !list.length) return 'none';
+  if (!list || !list.length || list.every((e) => e.kind === 'unheard')) return 'none';
   const ev = list.filter(isEvidence);
   const ok = ev.filter((e) => e.correct);
   const days = new Set(ok.map((e) => e.day));
   const sids = new Set(ok.map((e) => e.sid));
-  if (days.size >= SOLID_MIN && sids.size >= SOLID_MIN && ok.some((e) => e.kind === 'delayed') && ev[ev.length - 1].correct) return 'solid';
+  const enough = ok.some((e) => e.kind === 'delayed') || days.size >= 3;
+  if (days.size >= SOLID_MIN && sids.size >= SOLID_MIN && enough && ev[ev.length - 1].correct) return 'solid';
   return 'learning';
 }
 
@@ -215,10 +220,18 @@ export function buildSession(data, state, opts) {
   }
   // 3) 読みかけで離れた文（見ただけで、分解も答えもまだ）→ まだ見ていない文（index.json の順）
   for (const s of pool) if (seen[s.id] && !seen[s.id].answered && !seen[s.id].helped) add(s);
-  for (const s of unseen) if (add(s)) info.fresh++;
-  // 4) 足りなければ、見た日が古い文から
+  // 「分かる」に届くには、日を空けて、初めて見る文で確かめる必要がある。
+  // だから、1つの項目の未見の文を同じ日に使い切らない: 今日すでに触れた項目で、未見の文が残り2本以下なら、今日は出さない。
+  const touched = new Set();
+  for (const gid in H.g) { const l = H.g[gid].read; if (l.length && l[l.length - 1].day === today) touched.add(gid); }
+  const left = (g) => unseen.filter((s) => !picks.includes(s) && targetsOf(s).includes(g)).length;
+  const wouldBurn = (s) => targetsOf(s).some((g) => left(g) <= 2 && (touched.has(g) || picks.some((p) => targetsOf(p).includes(g))));
+  for (const s of unseen) if (!wouldBurn(s) && add(s)) info.fresh++;
+  // 4) 足りなければ、見たことのある文を、見た日が古い順に
   notToday.forEach(add);
-  [...pool].sort(oldestFirst).forEach(add);
+  pool.filter((s) => seen[s.id]).sort(oldestFirst).forEach(add);
+  // 取っておいた未見の文は、ほかに出す文が1つも無いときだけ使う
+  if (!picks.length) for (const s of unseen) if (add(s)) info.fresh++;
   return { list: picks, info };
 }
 
