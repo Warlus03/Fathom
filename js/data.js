@@ -49,6 +49,10 @@ export function validate(s, grammarIds) {
   if (!q || !str(q.ask) || !str(q.explain)) p.push('question.ask / explain がない');
   else if (!Array.isArray(q.choices) || q.choices.length < 2) p.push('question.choices は2つ以上');
   else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) p.push('question.answer が範囲外');
+  if (q && q.targets !== undefined) {
+    if (!Array.isArray(q.targets) || !q.targets.length) p.push('question.targets は1つ以上の配列（省くなら項目ごと消す）');
+    else for (const g of q.targets) if (!(s.grammar || []).includes(g)) p.push('question.targets の「' + g + '」が、この文の grammar にない');
+  }
   return p;
 }
 
@@ -78,55 +82,91 @@ async function openCache() {
   try { return 'caches' in self ? await caches.open(CACHE) : null; } catch { return null; }
 }
 
-async function fromNet(url, cache) {
+// ネットから取る。JSON として読めることだけ確かめる。端末への保存はここではしない。
+async function fetchText(url) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), 8000);
   try {
     const res = await fetch(url, { cache: 'no-cache', signal: ctl.signal });
     if (!res.ok) throw new Error(url + ' → ' + res.status);
     const text = await res.text();
-    JSON.parse(text); // 壊れたJSONは保存しない
-    if (cache) await cache.put(url, new Response(text, { headers: { 'Content-Type': 'application/json' } }));
+    JSON.parse(text);
     return text;
   } finally { clearTimeout(timer); }
 }
 
 async function fromCache(url, cache) {
   if (!cache) return null;
-  const res = await cache.match(url);
-  return res ? res.text() : null;
+  try { const res = await cache.match(url); return res ? await res.text() : null; } catch { return null; }
 }
 
 const sUrl = (id) => 'data/sentences/' + id + '.json';
 
+// 教材全体が開ける形かどうか。ここで落ちたものは端末に保存しない。
+function checkShape(index, grammar) {
+  if (!index || !Array.isArray(index.sentences) || !index.sentences.every((x) => typeof x === 'string')) throw new Error('index.json の形が違います。');
+  if (index.formatVersion > FORMAT) throw new Error('教材が新しい形式です。アプリを更新してください。');
+  const ok = grammar && Array.isArray(grammar.groups) && Array.isArray(grammar.items)
+    && grammar.groups.every((g) => g && typeof g.id === 'string' && typeof g.name === 'string')
+    && grammar.items.every((g) => g && typeof g.id === 'string' && typeof g.name === 'string' && typeof g.group === 'string');
+  if (!ok) throw new Error('grammar.json の形が違います。');
+}
+
 // source: 'cache'（保存済みを優先。無いものだけ取りに行く） | 'net'（全部取り直す。失敗分は保存済みで補う）
-async function loadAll(source) {
-  const cache = await openCache();
+async function gather(source, cache) {
   const texts = {};
+  const fromNet = new Set();
+  let failed = 0;
   const get = async (url) => {
     let t = null;
     if (source === 'cache') t = await fromCache(url, cache);
     if (t == null) {
-      try { t = await fromNet(url, cache); } catch (err) { if (source === 'net') t = await fromCache(url, cache); if (t == null) throw err; }
+      try { t = await fetchText(url); fromNet.add(url); } catch (err) {
+        failed++;
+        if (source === 'net') t = await fromCache(url, cache);
+        if (t == null) throw err;
+      }
     }
     texts[url] = t;
     return JSON.parse(t);
   };
   const [index, grammar] = await Promise.all([get('data/index.json'), get('data/grammar.json')]);
-  if (index.formatVersion > FORMAT) throw new Error('教材が新しい形式です。アプリを更新してください。');
+  checkShape(index, grammar);
   const list = await Promise.all(index.sentences.map(async (id) => {
     try { return { id, json: await get(sUrl(id)) }; } catch (err) { return { id, error: '読み込めない（' + err.message + '）' }; }
   }));
-  const data = build(index, grammar, list);
-  data.signature = Object.keys(texts).sort().map((u) => u + '\n' + texts[u]).join('\n');
+  return { index, grammar, list, texts, fromNet, failed };
+}
+
+async function loadAll(source) {
+  const cache = await openCache();
+  let r;
+  try { r = await gather(source, cache); } catch (err) {
+    if (source !== 'cache') throw err; // 更新の失敗。保存済みには手を付けていない
+    r = await gather('net', cache); // 保存済みが開けない形だったら、取り直す
+  }
+  const data = build(r.index, r.grammar, r.list);
+  // 全体を検査し終えてから、新しく取った分だけ端末に保存する。保存できなくても教材は使う。
+  let saved = !!cache;
+  if (cache) {
+    for (const url of r.fromNet) {
+      try { await cache.put(url, new Response(r.texts[url], { headers: { 'Content-Type': 'application/json' } })); } catch { saved = false; }
+    }
+  }
+  data.signature = Object.keys(r.texts).sort().map((u) => u + '\n' + r.texts[u]).join('\n');
+  data.net = { fetched: r.fromNet.size, failed: r.failed, saved };
   return data;
 }
 
 // 起動時: 保存済みがあれば即それで開く（オフラインでも可）
 export function loadData() { return loadAll('cache'); }
 
-// 裏での更新確認。変わっていれば新しい data、同じなら null、オフラインなら例外
+// 裏での更新確認。
+// 返り値 { data, verified, saved }
+//   data     : 変わっていれば新しい教材、同じなら null
+//   verified : すべてネットから取り直せた（＝最新だと確かめられた）
+//   saved    : 端末に保存できた（false ならオフラインでは古い版が開く）
 export async function refreshData(current) {
   const fresh = await loadAll('net');
-  return fresh.signature === current.signature ? null : fresh;
+  return { data: fresh.signature === current.signature ? null : fresh, verified: fresh.net.failed === 0, saved: fresh.net.saved };
 }

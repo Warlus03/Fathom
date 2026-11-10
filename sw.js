@@ -1,7 +1,7 @@
 // アプリ本体（HTML・CSS・JS）をオフラインでも開けるようにする。
 // 教材（data/）はここでは扱わない。js/data.js が自分で端末に保存・更新する。
 // 本体はネット優先（つながれば常に最新）、つながらなければ保存済みを使う。
-const SHELL = 'fathom-shell-v1';
+const SHELL = 'fathom-shell-v2';
 const AUDIO = 'fathom-audio';
 const FILES = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/data.js', 'js/learn.js', 'js/store.js',
   'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
@@ -23,13 +23,17 @@ self.addEventListener('fetch', (e) => {
   if (url.pathname.includes('/data/')) return;
 
   if (url.pathname.includes('/audio/')) {
-    // 音声は一度聞いたら端末に残す
+    // 音声は一度聞いたら端末に残す。保存済みをすぐ返しつつ、裏で取り直しておく
+    // （同じ名前で音声を差し替えたとき、次に聞くときから新しい音声になる）。
     e.respondWith(caches.open(AUDIO).then(async (c) => {
       const hit = await c.match(req, { ignoreSearch: true });
-      if (hit) return hit;
-      const res = await fetch(req);
-      if (res.ok && res.status === 200) c.put(req, res.clone());
-      return res;
+      const fresh = fetch(req, { cache: 'no-cache' }).then((res) => {
+        if (res.ok && res.status === 200) c.put(req, res.clone());
+        return res;
+      });
+      if (!hit) return fresh;
+      e.waitUntil(fresh.catch(() => {}));
+      return hit;
     }));
     return;
   }
