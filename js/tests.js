@@ -3,6 +3,7 @@
 import * as L from './learn.js';
 import * as store from './store.js';
 import { loadData, refreshData, validate } from './data.js';
+import { SUBJECTS, build as buildPlay } from './play.js';
 
 const out = document.getElementById('out');
 const results = [];
@@ -120,6 +121,38 @@ else {
   check('書き出しに形式のバージョンが入っている', JSON.parse(text).version === store.VERSION && JSON.parse(text).state.version === store.VERSION);
 }
 
+// いじれる例文の変形
+if (D.play) {
+  const V = (id) => D.play.verbs.find((x) => x.id === id), P = (id) => SUBJECTS.find((x) => x.id === id);
+  const en = (v, s, t, f) => buildPlay(V(v), P(s), t, f).en;
+  const cases = [
+    ['use', 'he', 'present', 'aff', 'He uses it.'], ['use', 'I', 'present', 'neg', "I don't use it."], ['have', 'she', 'present', 'q', 'Does she have time?'],
+    ['try', 'he', 'present', 'aff', 'He tries it.'], ['go', 'he', 'past', 'aff', 'He went there.'], ['go', 'he', 'past', 'neg', "He didn't go there."],
+    ['buy', 'they', 'past', 'q', 'Did they buy it?'], ['see', 'you', 'future', 'neg', "You won't see it."], ['make', 'we', 'future', 'q', 'Will we make it?'],
+    ['be-busy', 'I', 'present', 'aff', 'I am busy.'], ['be-busy', 'I', 'present', 'neg', "I'm not busy."], ['be-busy', 'I', 'present', 'q', 'Am I busy?'],
+    ['be-home', 'they', 'past', 'q', 'Were they at home?'], ['be-home', 'she', 'past', 'neg', "She wasn't at home."], ['be-ready', 'he', 'future', 'aff', 'He will be ready.'],
+    ['be-ready', 'we', 'present', 'neg', "We aren't ready."],
+  ];
+  const wrong = cases.filter(([v, s, t, f, want]) => en(v, s, t, f) !== want).map(([v, s, t, f, want]) => want + ' ← ' + en(v, s, t, f));
+  check('いじれる例文: 主語・時・形の組み合わせで正しい文になる（' + cases.length + '例）', !wrong.length, wrong);
+  let all = 0;
+  for (const v of D.play.verbs) for (const s of SUBJECTS) for (const t of ['present', 'past', 'future']) for (const f of ['aff', 'neg', 'q']) { const r = buildPlay(v, s, t, f); if (r.en && r.ja && r.notes.length && /^[A-Z]/.test(r.en)) all++; }
+  check('いじれる例文: 全部の組み合わせ（' + D.play.verbs.length * 54 + '通り）で、文・訳・説明が出る', all === D.play.verbs.length * 54, all);
+  check('いじれる例文: 訳も形に合わせて変わる', buildPlay(V('go'), P('he'), 'past', 'neg').ja === '彼はそこへ行きませんでした。' && buildPlay(V('be-busy'), P('you'), 'present', 'q').ja === 'あなたは忙しいですか。');
+} else check('いじれる例文のデータ（data/playground.json）が読み込める', false);
+
+// 作る入口・流して読む
+{
+  const s1 = D.sentences[0].id, s2 = D.sentences[1].id;
+  const base = [ev(0, s1), ev(0, s2, { correct: false, min: 3 })];
+  check('作る・流すの対象は、読んで正解した文だけ', L.understood(D, st(base)).map((s) => s.id).join() === s1 && L.understood(D, st([])).length === 0);
+  const made = [...base, { t: at(1), sid: s1, mode: 'make', helped: false, correct: true, choice: null, ms: 5000, how: 'order' }];
+  const gid = L.targetsOf(D.byId[s1])[0];
+  const h1 = L.history(base, D).g[gid], h2 = L.history(made, D).g[gid];
+  check('「作る」の記録は、読解・聴解の判定に数えない', h2.read.length === h1.read.length && h2.listen.length === h1.listen.length);
+  const round = store.importText(store.exportText(st(made)), store.blank()).state.events.find((e) => e.mode === 'make');
+  check('「作る」の記録も、書き出しと読み込みで残る', round && round.how === 'order' && round.correct === true);
+}
 const ng = results.filter((r) => !r.ok).length;
 document.getElementById('sum').textContent = ng ? `${results.length} 件中 ${ng} 件が失敗` : `${results.length} 件すべて通りました`;
 window.testResults = { total: results.length, failed: results.filter((r) => !r.ok).map((r) => r.name) };

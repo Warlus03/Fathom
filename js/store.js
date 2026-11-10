@@ -7,7 +7,7 @@ export const KEY = 'fathom.progress';
 // MIGRATIONS[n] は version n のデータを n+1 に直す関数
 const MIGRATIONS = {};
 
-const MODES = ['read', 'listen', 'map'];
+const MODES = ['read', 'listen', 'map', 'make'];
 const SHELVES = ['both', 'read', 'talk'];
 
 export function blank() {
@@ -16,7 +16,7 @@ export function blank() {
     createdAt: Date.now(),
     events: [],
     words: {}, // lemma -> { addedAt, metIn:[sid], ja }
-    settings: { shelf: 'both', sound: true, labels: 'plain', rate: 0.9, voice: '' },
+    settings: { shelf: 'both', sound: true, labels: 'plain', rate: 0.9, voice: '', slideSec: 3 },
   };
 }
 
@@ -30,6 +30,7 @@ function cleanEvent(e) {
   const o = { t: e.t, sid: e.sid, mode: e.mode, helped: e.helped === true, correct, choice: Number.isInteger(e.choice) ? e.choice : null, ms: Number.isFinite(e.ms) ? e.ms : null };
   if (typeof e.gid === 'string') o.gid = e.gid;
   if (e.heard === false) o.heard = false;
+  if (e.how === 'order' || e.how === 'recall') o.how = e.how; // 作る入口: 並べ替えか、頭の中で言ったか
   return o;
 }
 
@@ -47,6 +48,7 @@ function cleanSettings(s) {
     labels: s.labels === 'term' ? 'term' : 'plain',
     rate: Number.isFinite(s.rate) && s.rate > 0.3 && s.rate < 2 ? s.rate : b.rate,
     voice: typeof s.voice === 'string' ? s.voice : '',
+    slideSec: [2, 3, 5, 8].includes(s.slideSec) ? s.slideSec : 3,
   };
 }
 

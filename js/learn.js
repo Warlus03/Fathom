@@ -16,7 +16,7 @@ export const SOLID_MIN = 2; // 「分かる」に必要な、日を空けた自�
 export function dayOf(t) {
   return Math.floor((t - new Date(t).getTimezoneOffset() * 6e4) / DAY);
 }
-const modeOf = (e) => (e.mode === 'listen' ? 'listen' : 'read');
+const modeOf = (e) => (e.mode === 'listen' ? 'listen' : e.mode === 'read' ? 'read' : e.mode);
 
 // 各記録に seen（その文を前に見聞きしたか）と stale（それが十分に昔か）を付ける
 export function annotate(events) {
@@ -73,6 +73,7 @@ export function history(events, data) {
     const s = data.byId[e.sid];
     if (!s) continue; // 教材から消えた文の記録は残すが、計算には使わない
     const m = modeOf(e);
+    if (m !== 'read' && m !== 'listen') continue; // 「作る」などは、読解・聴解の判定には数えない（文を見た事実は bySid に残る）
     for (const gid of targetsOf(s)) {
       if (!s.grammar.includes(gid)) continue;
       const ld = (lastDay[gid] || {})[m];
@@ -159,7 +160,7 @@ export function buildSession(data, state, opts) {
   for (const sid in H.bySid) {
     const evs = H.bySid[sid];
     const ls = evs.filter((e) => e.mode === 'listen');
-    seen[sid] = { any: evs[evs.length - 1].t, listen: ls.length ? ls[ls.length - 1].t : null, read: evs.some((e) => e.mode !== 'listen'), answered: evs.some((e) => e.correct != null), helped: evs.some((e) => e.helped) };
+    seen[sid] = { any: evs[evs.length - 1].t, listen: ls.length ? ls[ls.length - 1].t : null, read: evs.some((e) => e.mode === 'read'), made: evs.filter((e) => e.mode === 'make').map((e) => e.t).pop() || 0, answered: evs.some((e) => e.correct != null), helped: evs.some((e) => e.helped) };
   }
   const pool = data.sentences.filter((s) => (shelf === 'both' || s.shelf === shelf) && (!focus || s.grammar.includes(focus)));
   // 地図から入ったときは、その項目を確かめる問いの文を先に（sort は安定なので、ほかの順は index.json のまま）
@@ -228,6 +229,19 @@ export function overview(data, state, now = Date.now()) {
   let dueCount = 0;
   for (const gid in H.g) { const d = dueDay(H.g[gid].read); if (d != null && d <= today) dueCount++; }
   const seenIds = Object.keys(H.bySid).filter((id) => data.byId[id]);
-  const readIds = seenIds.filter((id) => H.bySid[id].some((e) => e.mode !== 'listen'));
+  const readIds = seenIds.filter((id) => H.bySid[id].some((e) => e.mode === 'read'));
   return { H, dueCount, seenCount: seenIds.length, readCount: readIds.length };
+}
+
+// 「理解できた文」＝読んで、問いに正解したことのある文。作る入口と、流して読む入口で使う。
+export function understood(data, state) {
+  const ok = new Set(state.events.filter((e) => e.mode === 'read' && e.correct === true).map((e) => e.sid));
+  return data.sentences.filter((s) => ok.has(s.id));
+}
+
+// 作る入口の1回分: 理解できた文から、まだ作っていない文 → 作った日が古い文の順に
+export function makeSession(data, state, size = 5) {
+  const last = {};
+  for (const e of state.events) if (e.mode === 'make') last[e.sid] = Math.max(last[e.sid] || 0, e.t);
+  return understood(data, state).sort((a, b) => (last[a.id] || 0) - (last[b.id] || 0)).slice(0, size);
 }

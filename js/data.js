@@ -135,7 +135,10 @@ async function gather(source, cache) {
   const list = await Promise.all(index.sentences.map(async (id) => {
     try { return { id, json: await get(sUrl(id)) }; } catch (err) { return { id, error: '読み込めない（' + err.message + '）' }; }
   }));
-  return { index, grammar, list, texts, fromNet, failed };
+  // いじれる例文の動詞の表。無くてもアプリは動く
+  let play = null;
+  try { play = await get('data/playground.json'); if (!play || !Array.isArray(play.verbs)) play = null; } catch { failed--; }
+  return { index, grammar, list, play, texts, fromNet, failed };
 }
 
 async function loadAll(source) {
@@ -146,6 +149,7 @@ async function loadAll(source) {
     r = await gather('net', cache); // 保存済みが開けない形だったら、取り直す
   }
   const data = build(r.index, r.grammar, r.list);
+  data.play = r.play;
   // 全体を検査し終えてから、新しく取った分だけ端末に保存する。保存できなくても教材は使う。
   let saved = !!cache;
   if (cache) {

@@ -1,0 +1,20 @@
+{
+  "formatVersion": 1,
+  "note": "いじれる例文の動詞の表。kind は be / regular / irregular。一般動詞は base（原形）, s（三単現）, past（過去形）, rest（後ろに続く語句）, jaObj と jaStem（訳。jaStem に ます・ません・ました を付ける）。be は rest と ja（です・ではない・でした・ではなかった の4つ）。",
+  "verbs": [
+    { "id": "be-busy", "kind": "be", "label": "be busy", "rest": "busy", "ja": ["忙しいです", "忙しくありません", "忙しかったです", "忙しくありませんでした"] },
+    { "id": "be-home", "kind": "be", "label": "be at home", "rest": "at home", "ja": ["家にいます", "家にいません", "家にいました", "家にいませんでした"] },
+    { "id": "be-ready", "kind": "be", "label": "be ready", "rest": "ready", "ja": ["準備ができています", "準備ができていません", "準備ができていました", "準備ができていませんでした"] },
+    { "id": "use", "kind": "regular", "label": "use", "base": "use", "s": "uses", "past": "used", "rest": "it", "jaObj": "それを", "jaStem": "使い" },
+    { "id": "work", "kind": "regular", "label": "work", "base": "work", "s": "works", "past": "worked", "rest": "here", "jaObj": "ここで", "jaStem": "働き" },
+    { "id": "try", "kind": "regular", "label": "try", "base": "try", "s": "tries", "past": "tried", "rest": "it", "jaObj": "それを", "jaStem": "試し" },
+    { "id": "watch", "kind": "regular", "label": "watch", "base": "watch", "s": "watches", "past": "watched", "rest": "the video", "jaObj": "その動画を", "jaStem": "見" },
+    { "id": "go", "kind": "irregular", "label": "go", "base": "go", "s": "goes", "past": "went", "rest": "there", "jaObj": "そこへ", "jaStem": "行き" },
+    { "id": "make", "kind": "irregular", "label": "make", "base": "make", "s": "makes", "past": "made", "rest": "it", "jaObj": "それを", "jaStem": "作り" },
+    { "id": "have", "kind": "irregular", "label": "have", "base": "have", "s": "has", "past": "had", "rest": "time", "jaObj": "時間が", "jaStem": "あり" },
+    { "id": "see", "kind": "irregular", "label": "see", "base": "see", "s": "sees", "past": "saw", "rest": "it", "jaObj": "それを", "jaStem": "見" },
+    { "id": "take", "kind": "irregular", "label": "take", "base": "take", "s": "takes", "past": "took", "rest": "a picture", "jaObj": "写真を", "jaStem": "撮り" },
+    { "id": "buy", "kind": "irregular", "label": "buy", "base": "buy", "s": "buys", "past": "bought", "rest": "it", "jaObj": "それを", "jaStem": "買い" },
+    { "id": "get", "kind": "irregular", "label": "get", "base": "get", "s": "gets", "past": "got", "rest": "the message", "jaObj": "そのメッセージを", "jaStem": "受け取り" }
+  ]
+}

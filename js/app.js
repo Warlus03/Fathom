@@ -2,12 +2,16 @@
 import * as store from './store.js';
 import { loadData, refreshData, ROLES } from './data.js';
 import * as L from './learn.js';
+import { SUBJECTS, TENSES, FORMS, build as buildPlay } from './play.js';
 
 let S = store.load();
 let D = null;
 let ses = null; // 進行中の1回分 { mode, list, i, card, count }
 let walk = null; // 地図や単語帳から開いた1文 { card }
 let exportShown = false;
+let slide = null; // 流して読む { list, i, sec, paused, done }
+let slideTimer = null;
+const play = { v: 'use', s: 'he', t: 'present', f: 'aff' }; // いじれる例文の今の選択
 
 const $view = document.getElementById('view');
 const $toast = document.getElementById('toast');
@@ -137,6 +141,7 @@ function startSession(opts) {
   const mode = opts.mode || 'read';
   const plan = L.buildSession(D, S, { mode, shelf: opts.focus ? 'both' : S.settings.shelf, focus: opts.focus || null });
   if (!plan.list.length) { toast(mode === 'listen' ? 'まず何文か読むと、聞く入口が開きます。' : '文がありません。'); return; }
+  slide = null;
   ses = { mode, list: plan.list, i: 0, count: 0, card: newCard(plan.list[0], mode) };
   location.hash = '#today';
   render(true);
@@ -234,9 +239,16 @@ function viewHome() {
   const doneToday = S.events.filter((e) => e.correct != null && L.dayOf(e.t) === today).length;
   const chips = ['both', 'read', 'talk'].map((v) => `<button data-act="shelf" data-v="${v}" class="${shelf === v ? 'on' : ''}">${SHELF_LABEL[v]}</button>`).join('');
   const hasAudio = englishVoices().length > 0 || D.audio.size > 0;
-  const listen = !hasAudio ? `<p class="tip">${NO_VOICE}</p>`
-    : lplan.list.length ? `<button class="ghost wide" data-act="start-listen">聞いてみる（${lplan.list.length}文）</button>`
-    : '<p class="tip">まず何文か読むと開きます。</p>';
+  const und = L.understood(D, S).length;
+  // 入口のタイル。off のときは理由を出す（押せない）
+  const entry = (act, emoji, title, desc, note, off) => {
+    const inner = `<i>${emoji}</i><b>${title}</b><span>${desc}</span><small>${note}</small>`;
+    return off ? `<div class="entry off">${inner}</div>` : act[0] === '#' ? `<a class="entry" href="${act}">${inner}</a>` : `<button class="entry" data-act="${act}">${inner}</button>`;
+  };
+  const entries = entry('start-listen', '🎧', '聞く', '読んだ文を、耳だけで', !hasAudio ? '英語の声が必要です' : lplan.list.length ? `${lplan.list.length} 文` : '何文か読むと開きます', !hasAudio || !lplan.list.length)
+    + entry('start-make', '🧩', '作る', '日本語から英語を組み立てる', und ? `${und} 文から` : '読んで正解すると開きます', !und)
+    + entry('start-slide', '🌊', '流す', '分かった文をテンポよく眺める', und ? `${und} 文から` : '読んで正解すると開きます', !und)
+    + entry('#play', '🎛️', 'いじる', '主語や時を替えて、形の変化を見る', 'いつでも', false);
   return `<section class="hero">
       <p class="kicker">${doneToday ? `今日は ${doneToday} 文に答えました` : '今日の分'}</p>
       <h2>${plan.list.length} つの文を読む</h2>
@@ -244,8 +256,9 @@ function viewHome() {
       <button class="primary" data-act="start-read">読みはじめる</button>
       <div class="seg shelf" role="group" aria-label="棚">${chips}</div>
     </section>
-    <section class="panel"><h3>聞く入口</h3>
-      <p>読んだことのある文を、英文を見ずに耳だけで確かめます。読む記録とは別に残ります。</p>${listen}</section>
+    <h3 class="lh">ほかの入口</h3>
+    <p class="tip">どれも、やってもやらなくても大丈夫です。${hasAudio ? '' : NO_VOICE}</p>
+    <div class="entries">${entries}</div>
     <section class="panel quiet"><p>これまでに出会った文　${o.seenCount} / ${D.sentences.length}　　単語帳　${Object.keys(S.words).length} 語</p>
       <p><a href="#map">文法の地図を歩く →</a></p></section>`;
 }
@@ -253,11 +266,150 @@ function viewHome() {
 function viewDone() {
   return `<section class="hero">
       <p class="kicker">おつかれさまでした ✨</p>
-      <h2>${ses.count} 文に答えました</h2>
+      <h2>${ses.count} 文${ses.mode === 'make' ? 'を組み立てました' : 'に答えました'}</h2>
       <p class="sub">ここで終わって大丈夫です。<br>続けたいときは、好きなところへどうぞ。</p>
       <button class="primary" data-act="start-read">もう少し読む</button>
       <div class="row"><a class="ghost" href="#map">地図を歩く</a><a class="ghost" href="#words">単語帳</a><button class="ghost" data-act="home">ホームへ</button></div>
     </section>`;
+}
+
+// ---------- 作る入口 ----------
+// 理解できた文を、日本語の場面から英語に組み立てる。判定は読解・聴解には数えない。
+function newMake(s) {
+  const texts = s.chunks.map((c) => c.text);
+  // 文頭の大文字で先頭が分かってしまわないよう、小文字にする（I は除く）
+  if (!/^I\b/.test(texts[0])) texts[0] = texts[0].charAt(0).toLowerCase() + texts[0].slice(1);
+  const tiles = texts.map((text, key) => ({ text, key }));
+  const same = () => tiles.every((t, i) => t.text === texts[i]);
+  for (let n = 0; n < 8 && (n === 0 || (same() && tiles.length > 1)); n++) {
+    for (let i = tiles.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [tiles[i], tiles[j]] = [tiles[j], tiles[i]]; }
+  }
+  // answered / viewLogged は、読むカード用の記録処理（logView など）が働かないようにするため
+  return { s, mode: 'make', texts, tiles, placed: [], tries: 0, wrong: false, how: 'order', revealed: false, recorded: false, gaveUp: false, answered: true, viewLogged: true, word: null, open: true, t0: Date.now() };
+}
+
+function recordMake(c, correct) {
+  if (c.recorded) return;
+  c.recorded = true;
+  S.events.push({ t: Date.now(), sid: c.s.id, mode: 'make', helped: false, correct, choice: null, ms: Date.now() - c.t0, how: c.how });
+  persist();
+  if (ses && ses.card === c) ses.count++;
+}
+
+function startMake() {
+  const list = L.makeSession(D, S);
+  if (!list.length) { toast('まず何文か読んで正解すると、作る入口が開きます。'); return; }
+  slide = null;
+  ses = { mode: 'make', list, i: 0, count: 0, card: newMake(list[0]) };
+  location.hash = '#today';
+  render(true);
+}
+
+function viewMake(c) {
+  const s = c.s;
+  const dots = ses.list.map((_, i) => `<i class="${i < ses.i ? 'done' : i === ses.i ? 'now' : ''}"></i>`).join('');
+  let body;
+  if (!c.revealed && c.how === 'order') {
+    const placed = c.placed.map((k, i) => {
+      const t = c.tiles.find((x) => x.key === k);
+      const bad = c.wrong && t.text !== c.texts[i];
+      return `<button class="tile2${bad ? ' bad' : ''}" data-act="untile" data-k="${k}">${esc(t.text)}</button>`;
+    }).join('');
+    const bank = c.tiles.filter((t) => !c.placed.includes(t.key)).map((t) => `<button class="tile2" data-act="tile" data-k="${t.key}">${esc(t.text)}</button>`).join('');
+    body = `<div class="slots">${placed || '<span class="tip">下のかたまりを、言う順にタップして並べます。</span>'}</div>
+      <div class="bank">${bank}</div>
+      ${c.wrong ? `<p class="tip">惜しいです。点線のかたまりの位置が違います。タップで外して入れ替えるか、最初から並べ直せます。</p>
+        <div class="row"><button class="ghost" data-act="make-retry">最初から並べる</button><button class="ghost" data-act="make-reveal">正解を見る</button></div>` : ''}
+      <button class="idk" data-act="make-how" data-v="recall">並べ替えずに、頭の中で言ってから正解を見る</button>`;
+  } else if (!c.revealed) {
+    body = `<p>頭の中で（声に出しても）、英語にしてみてください。言えなくても大丈夫です。</p>
+      <button class="primary" data-act="make-reveal">正解を見る</button>
+      <button class="idk" data-act="make-how" data-v="order">やっぱり、並べ替えで作る</button>`;
+  } else {
+    const ask = c.how === 'recall' && !c.recorded;
+    const verdict = c.how === 'recall' ? (ask ? '' : '記録しました。') : c.gaveUp ? 'ここで形を見ておけば十分です。' : c.tries === 0 ? '一度で組み立てられました。' : '組み立てられました。';
+    body = `<div class="enrow"><p class="en">${esc(s.en)}</p><button class="icon" data-act="speak" aria-label="読み上げる" title="読み上げる">♪</button></div>
+      ${viewBreak(c)}
+      <div class="after ${!c.gaveUp && c.how === 'order' ? 'ok' : ''}">
+        ${ask ? `<p class="ask">言えましたか？</p>
+          <div class="row"><button class="ghost" data-act="self" data-v="yes">言えた</button><button class="ghost" data-act="self" data-v="almost">だいたい</button><button class="ghost" data-act="self" data-v="no">まだ</button></div>
+          <p class="tip">判定はしません。自分のための記録です。</p>`
+        : `<p class="verdict">${verdict}</p><button class="primary" data-act="next">${ses.i + 1 < ses.list.length ? '次の文へ' : '終わる'}</button>`}
+      </div>`;
+  }
+  return `<article class="card"><div class="prog"><span><span class="dots">${dots}</span>作る</span><button class="link" data-act="end">ここでやめる</button></div>
+    ${s.scene ? `<p class="scene">${esc(s.scene)}</p>` : ''}
+    <p class="jabig">${esc(s.ja)}</p>${body}</article>`;
+}
+
+// ---------- 流して読む ----------
+// 理解できた文だけを、自分で選んだテンポで流す。判定も記録もしない。
+function startSlide() {
+  const pool = L.understood(D, S);
+  if (!pool.length) { toast('まず何文か読んで正解すると、流して読めるようになります。'); return; }
+  const list = [...pool].sort(() => Math.random() - 0.5).slice(0, 20);
+  ses = null;
+  slide = { list, i: 0, sec: S.settings.slideSec || 3, paused: false, done: false };
+  location.hash = '#today';
+  render(true);
+  slideTick();
+}
+
+function slideTick() {
+  clearTimeout(slideTimer);
+  if (!slide || slide.paused || slide.done) return;
+  slideTimer = setTimeout(() => {
+    if (!slide) return;
+    if (slide.i + 1 >= slide.list.length) slide.done = true; else slide.i++;
+    render();
+    slideTick();
+  }, slide.sec * 1000);
+}
+
+function viewSlide() {
+  if (slide.done) return `<section class="hero"><p class="kicker">ひとまわりしました ✨</p><h2>${slide.list.length} 文を眺めました</h2>
+    <button class="primary" data-act="start-slide">もう一度流す</button>
+    <div class="row"><button class="ghost" data-act="slide-end">ホームへ</button></div></section>`;
+  const s = slide.list[slide.i];
+  const secs = [2, 3, 5, 8].map((n) => `<button data-act="slide-sec" data-v="${n}" class="${slide.sec === n ? 'on' : ''}">${n}秒</button>`).join('');
+  return `<article class="slide" style="--sec:${slide.sec}">
+    <div class="prog"><span>流して読む　${slide.i + 1} / ${slide.list.length}</span><button class="link" data-act="slide-end">終わる</button></div>
+    <div class="stage"><p class="en">${esc(s.en)}</p><p class="ja">${esc(s.ja)}</p></div>
+    <div class="row center"><button class="ghost" data-act="slide-step" data-v="-1">← 前</button>
+      <button class="ghost" data-act="slide-pause">${slide.paused ? '▶ 再開' : '⏸ 止める'}</button>
+      <button class="ghost" data-act="slide-step" data-v="1">次 →</button></div>
+    <div class="row center"><div class="seg">${secs}</div></div>
+    ${slide.paused ? `<p class="center"><a href="#s/${s.id}">この文を分解して見る →</a></p>` : ''}
+    <p class="tip center">判定も記録もありません。眺めるだけで大丈夫です。訳は少し遅れて出ます。</p></article>`;
+}
+
+// ---------- いじれる例文 ----------
+function viewPlay() {
+  if (!D.play) return '<p><a href="#map">← 地図</a></p><p>いじれる例文のデータを読み込めませんでした。</p>';
+  const v = D.play.verbs.find((x) => x.id === play.v) || D.play.verbs[0];
+  const subj = SUBJECTS.find((x) => x.id === play.s) || SUBJECTS[0];
+  const r = buildPlay(v, subj, play.t, play.f);
+  const seg = (list, k) => `<div class="seg">${list.map(([id, name]) => `<button data-act="play" data-k="${k}" data-v="${id}" class="${play[k] === id ? 'on' : ''}">${name}</button>`).join('')}</div>`;
+  const chips = (list, k) => `<div class="chips">${list.map(([id, name]) => `<button data-act="play" data-k="${k}" data-v="${id}" class="${play[k] === id ? 'on' : ''}">${esc(name)}</button>`).join('')}</div>`;
+  const verbs = (kind) => chips(D.play.verbs.filter((x) => x.kind === kind).map((x) => [x.id, x.label]), 'v');
+  const parts = r.parts.map((p) => `<div class="chunk role-${p.role}"><span class="lab">${esc(p.lab) || '&nbsp;'}</span><span class="tx">${esc(p.t)}</span></div>`).join('');
+  const links = r.links.map((g) => { const it = D.grammar.items.find((x) => x.id === g); return it ? `<a class="tag" href="#map/${g}">${esc(it.name)}</a>` : ''; }).join('');
+  return `<p><a href="#map">← 地図</a></p>
+    <header class="vh"><h2>いじれる例文</h2><p>主語・時・形を切り替えると、文が変わります。どの部品が動いたかを見てください。</p></header>
+    <div class="break playbox">
+      <div class="enrow"><p class="en">${esc(r.en)}</p><button class="icon" data-act="play-speak" aria-label="読み上げる" title="読み上げる">♪</button></div>
+      <div class="chunks">${parts}</div>
+      <p class="playja">${esc(r.ja)}</p>
+      <ul class="whys">${r.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
+    </div>
+    <p class="lab2">形</p>${seg(FORMS, 'f')}
+    <p class="lab2">時</p>${seg(TENSES, 't')}
+    <p class="lab2">主語</p>${chips(SUBJECTS.map((x) => [x.id, x.en]), 's')}
+    <p class="lab2">be動詞</p>${verbs('be')}
+    <p class="lab2">ふつうの動詞（規則どおりに変わる）</p>${verbs('regular')}
+    <p class="lab2">不規則動詞（過去形が特別な形）</p>${verbs('irregular')}
+    <p class="lab2">くわしい説明</p><div class="tags">${links}</div>
+    <p class="tip">おすすめの見方：「過去」にして、「肯定」と「否定」を行き来してみてください。went が didn't go に変わるように、過去の印が動詞から did へ移るのが見えます。</p>`;
 }
 
 // ---------- 地図 ----------
@@ -275,6 +427,7 @@ function viewMap() {
   }).join('');
   return `<header class="vh"><h2>文法の地図</h2>
       <p>中学で習う文法の全体です。順番はありません。気になったところから入ってください。</p>
+      <p><a class="ghost" href="#play">🎛️ いじれる例文</a></p>
       <p class="legend"><i class="mk none">読</i>未探索・未測定　<i class="mk learning">読</i>勉強中　<i class="mk solid">読</i>分かる　（読解と聴解は別々に記録）</p>
     </header>${groups}`;
 }
@@ -298,6 +451,7 @@ function viewGrammar(id) {
     + (n > met.length ? `<li><small>まだ出会っていない文が ${n - met.length} 本あります。上の「この項目の文を読む」から読めます。</small></li>` : '');
   return `<p><a href="#map">← 地図</a></p>
     <header class="vh"><h2>${esc(it.name)}</h2><p class="pattern">${esc(it.pattern)}</p></header>
+    ${D.play && ['be', 'verb', 's3', 'past', 'future', 'negative', 'question'].includes(id) ? '<p><a href="#play">🎛️ いじれる例文で、形の変化を確かめる →</a></p>' : ''}
     <div class="status2">
       <div><b>読解</b><span class="st ${r}">${READ_LABEL[r]}</span><small>${line(h.read) || 'まだ記録がありません'}</small></div>
       <div><b>聴解</b><span class="st ${l}">${LISTEN_LABEL[l]}</span><small>${line(h.listen) || '音声で確かめた記録がまだありません（読解からは推測しません）'}</small></div>
@@ -390,9 +544,13 @@ function render(top) {
       if (!walk || walk.card.s.id !== arg) { if (walk) logView(walk.card); walk = { card: newCard(s, 'read') }; }
       html = viewCard(walk.card, true);
     }
-  } else html = ses ? (ses.i < ses.list.length ? viewCard(ses.card, false) : viewDone()) : viewHome();
+  } else if (name === 'play') html = viewPlay();
+  else if (slide) html = viewSlide();
+  else html = ses ? (ses.i < ses.list.length ? (ses.mode === 'make' ? viewMake(ses.card) : viewCard(ses.card, false)) : viewDone()) : viewHome();
+  // 流して読む途中で別の画面へ行ったら、止めておく
+  if (slide && ['map', 'words', 'me', 's', 'play'].includes(name) && !slide.paused) { slide.paused = true; clearTimeout(slideTimer); }
   $view.innerHTML = html;
-  const tab = name === 's' ? 'map' : ['map', 'words', 'me'].includes(name) ? name : 'today';
+  const tab = name === 's' || name === 'play' ? 'map' : ['map', 'words', 'me'].includes(name) ? name : 'today';
   document.querySelectorAll('.tabs a').forEach((a) => a.classList.toggle('on', a.dataset.tab === tab));
   if (top) window.scrollTo(0, 0);
 }
@@ -439,6 +597,31 @@ const ACTIONS = {
   'start-focus': (el) => startSession({ mode: 'read', focus: el.dataset.g }),
   home: () => { ses = null; render(true); },
   end: () => { logView(ses.card); ses = ses.count ? { ...ses, i: ses.list.length } : null; render(true); },
+  'start-make': () => startMake(),
+  tile: (el, c) => {
+    c.placed.push(+el.dataset.k);
+    if (c.placed.length === c.tiles.length) {
+      const ok = c.placed.every((k, i) => c.tiles.find((t) => t.key === k).text === c.texts[i]);
+      if (ok) { c.revealed = true; c.wrong = false; recordMake(c, c.tries === 0); chime(); }
+      else { c.wrong = true; c.tries++; }
+    }
+    render();
+  },
+  untile: (el, c) => { c.placed = c.placed.filter((k) => k !== +el.dataset.k); c.wrong = false; render(); },
+  'make-retry': (el, c) => { c.placed = []; c.wrong = false; render(); },
+  'make-how': (el, c) => { c.how = el.dataset.v; c.placed = []; c.wrong = false; render(); },
+  'make-reveal': (el, c) => { c.revealed = true; if (c.how === 'order') { c.gaveUp = true; recordMake(c, false); } render(); },
+  self: (el, c) => { recordMake(c, el.dataset.v === 'yes' ? true : el.dataset.v === 'no' ? false : null); if (el.dataset.v === 'yes') chime(); render(); },
+  'start-slide': () => startSlide(),
+  'slide-end': () => { clearTimeout(slideTimer); slide = null; render(true); },
+  'slide-pause': () => { slide.paused = !slide.paused; render(); slideTick(); },
+  'slide-step': (el) => { slide.i = Math.max(0, Math.min(slide.list.length - 1, slide.i + +el.dataset.v)); render(); slideTick(); },
+  'slide-sec': (el) => { slide.sec = +el.dataset.v; S.settings.slideSec = slide.sec; persist(); render(); slideTick(); },
+  play: (el) => { play[el.dataset.k] = el.dataset.v; render(); },
+  'play-speak': () => {
+    const v = D.play.verbs.find((x) => x.id === play.v) || D.play.verbs[0];
+    speak({ en: buildPlay(v, SUBJECTS.find((x) => x.id === play.s) || SUBJECTS[0], play.t, play.f).en, audioId: '' }, false, null);
+  },
   back: () => { history.length > 1 ? history.back() : (location.hash = '#map'); },
   break: (el, c) => { c.open = !c.open; if (c.open) markHelped(c); render(); },
   labels: (el) => { S.settings.labels = el.dataset.v; persist(); render(); },
@@ -468,7 +651,7 @@ const ACTIONS = {
   next: (el, c) => {
     if (walk) { ACTIONS.back(); return; }
     ses.i++;
-    if (ses.i < ses.list.length) { ses.card = newCard(ses.list[ses.i], ses.mode); render(true); if (ses.mode === 'listen') speak(ses.card.s, false, ses.card); }
+    if (ses.i < ses.list.length) { ses.card = ses.mode === 'make' ? newMake(ses.list[ses.i]) : newCard(ses.list[ses.i], ses.mode); render(true); if (ses.mode === 'listen') speak(ses.card.s, false, ses.card); }
     else render(true);
   },
   shelf: (el) => { S.settings.shelf = el.dataset.v; persist(); render(); },
