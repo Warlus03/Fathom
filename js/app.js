@@ -43,6 +43,22 @@ async function checkPersisted(ask) {
   } catch {}
 }
 
+// 控えの自動保存。端末の空きが少ないと、ブラウザが保存データを整理して記録が消えることがある。
+// 「ダウンロード」に置いたファイルは、その整理の対象にならない。
+// 1回分を終えたとき（＝利用者の操作の直後）に、その日まだ控えを取っていなければ、ファイルを保存する。1日1つまで。
+function maybeBackup() {
+  if (!S.settings.autoBackup) return false;
+  const last = S.settings.exportedAt || 0;
+  if (!S.events.some((e) => e.t > last)) return false;
+  if (L.dayOf(last) === L.dayOf(Date.now())) return false;
+  try {
+    download('fathom-backup-' + new Date().toLocaleDateString('sv-SE') + '.json', store.exportText(S));
+    S.settings.exportedAt = Date.now();
+    persist();
+    return true;
+  } catch { return false; }
+}
+
 let toastTimer;
 function toast(msg) {
   $toast.textContent = msg;
@@ -300,6 +316,7 @@ function viewHome() {
     <h3 class="lh">ほかの入口</h3>
     <p class="tip">どれも、やってもやらなくても大丈夫です。${hasAudio ? '' : NO_VOICE}</p>
     <div class="entries">${entries}</div>
+    ${S.events.length ? '' : '<section class="panel quiet"><p>前に使っていた記録が見当たらないときは、<a href="#me">「記録」で控えのファイルを読み込む</a>と戻せます。</p></section>'}
     <section class="panel quiet"><p>これまでに出会った文　${o.seenCount} / ${D.sentences.length}　　単語帳　${Object.keys(S.words).length} 語</p>
       <p><a href="#map">文法の地図を歩く →</a></p></section>`;
 }
@@ -309,6 +326,7 @@ function viewDone() {
       <p class="kicker">おつかれさまでした ✨</p>
       <h2>${ses.count} 文${ses.mode === 'make' ? 'を組み立てました' : 'に答えました'}</h2>
       <p class="sub">ここで終わって大丈夫です。<br>続けたいときは、好きなところへどうぞ。</p>
+      ${ses.backedUp ? '<p class="sub"><small>今日の控えを、端末の「ダウンロード」に保存しました。記録が消えても、このファイルから戻せます。</small></p>' : ''}
       <button class="primary" data-act="start-read">もう少し読む</button>
       <div class="row"><a class="ghost" href="#map">地図を歩く</a><a class="ghost" href="#words">単語帳</a><button class="ghost" data-act="home">ホームへ</button></div>
     </section>`;
@@ -561,6 +579,9 @@ function viewMe() {
       <p class="tip">${S.settings.exportedAt ? '最後に控えを取った日：' + new Date(S.settings.exportedAt).toLocaleDateString('ja-JP') + '（そのあとの記録 ' + S.events.filter((e) => e.t > S.settings.exportedAt).length + ' 件）' : S.events.length ? 'まだ控えを取っていません。' : ''}</p>
       ${persisted === false ? '<div class="row"><button class="ghost" data-act="keep">消さないよう、端末に頼む</button></div>' : ''}
       <div class="row"><button class="ghost" data-act="export">ファイルに書き出す</button><button class="ghost" data-act="export-show">文字で表示</button></div>
+      <p class="lab2">控えの自動保存</p>
+      <div class="seg"><button data-act="autobackup" data-v="1" class="${S.settings.autoBackup ? 'on' : ''}">する</button><button data-act="autobackup" data-v="0" class="${S.settings.autoBackup ? '' : 'on'}">しない</button></div>
+      <p class="tip">「する」にしておくと、1回分を終えたときに、その日の控えを端末の「ダウンロード」に自動で保存します（1日1つまで。ファイル名は fathom-backup-日付.json）。端末の空きが少なくて記録が消えてしまっても、いちばん新しいファイルを下の「ファイルを選ぶ」で読み込めば戻せます。古いファイルは消して構いません。</p>
       ${exportShown ? `<textarea id="exp" readonly rows="5">${esc(store.exportText(S))}</textarea>` : ''}
       <p class="lab2">読み込む（今ある記録は消えず、合流します）</p>
       <div class="row"><label class="ghost filebtn">ファイルを選ぶ<input type="file" id="imp" accept=".json,application/json"></label></div>
@@ -644,7 +665,7 @@ const ACTIONS = {
   'start-listen': () => startSession({ mode: 'listen' }),
   'start-focus': (el) => startSession({ mode: 'read', focus: el.dataset.g }),
   home: () => { leaveCard(); ses = null; render(true); },
-  end: () => { logView(ses.card); ses = ses.count ? { ...ses, i: ses.list.length } : null; render(true); },
+  end: () => { logView(ses.card); ses = ses.count ? { ...ses, i: ses.list.length, backedUp: maybeBackup() } : null; render(true); },
   'start-make': () => startMake(),
   tile: (el, c) => {
     c.placed.push(+el.dataset.k);
@@ -700,13 +721,14 @@ const ACTIONS = {
     if (walk) { ACTIONS.back(); return; }
     ses.i++;
     if (ses.i < ses.list.length) { ses.card = ses.mode === 'make' ? newMake(ses.list[ses.i]) : newCard(ses.list[ses.i], ses.mode); render(true); if (ses.mode === 'listen') speak(ses.card.s, false, ses.card); }
-    else render(true);
+    else { ses.backedUp = maybeBackup(); render(true); }
   },
   shelf: (el) => { S.settings.shelf = el.dataset.v; persist(); render(); },
   rate: (el) => { S.settings.rate = +el.dataset.v; persist(); render(); },
   sound: (el) => { S.settings.sound = el.dataset.v === '1'; persist(); render(); if (S.settings.sound) chime(); },
   export: () => { download('fathom-progress-' + new Date().toISOString().slice(0, 10) + '.json', store.exportText(S)); S.settings.exportedAt = Date.now(); persist(); render(); },
   theme: (el) => { S.settings.theme = el.dataset.v; persist(); applyTheme(); render(); },
+  autobackup: (el) => { S.settings.autoBackup = el.dataset.v === '1'; persist(); render(); },
   keep: async () => { await checkPersisted(true); toast(persisted ? '端末が、この記録を自動では消さない扱いにしました。' : '今は受け付けてもらえませんでした。ホーム画面に追加して何日か使うと、通りやすくなります。'); render(); },
   'export-show': () => { exportShown = !exportShown; render(); },
   'import-text': () => { const t = document.getElementById('imptext').value.trim(); if (t) doImport(t); else toast('貼り付け欄が空です。'); },
