@@ -56,6 +56,18 @@ function chime() {
 let playing = null;
 const canSpeak = () => 'speechSynthesis' in window;
 const englishVoices = () => (canSpeak() ? speechSynthesis.getVoices().filter((v) => /^en/i.test(v.lang)) : []);
+// Android のブラウザでは、声を名前で選んでも反映されず、言語（en-US など）ごとに端末の既定の声が使われる。
+// だから Android では、名前の一覧ではなく「発音の地域」を1つずつ並べる（選べるのは実際に変わるものだけにする）。
+const IS_ANDROID = /Android/i.test(navigator.userAgent);
+const ACCENTS = { 'en-us': 'アメリカの英語', 'en-gb': 'イギリスの英語', 'en-au': 'オーストラリアの英語', 'en-in': 'インドの英語', 'en-ca': 'カナダの英語', 'en-ie': 'アイルランドの英語', 'en-nz': 'ニュージーランドの英語', 'en-za': '南アフリカの英語', 'en-sg': 'シンガポールの英語', 'en-ng': 'ナイジェリアの英語' };
+const langKey = (v) => v.lang.replace('_', '-').toLowerCase();
+const voiceLabel = (v) => (IS_ANDROID ? ACCENTS[langKey(v)] || v.lang : v.name);
+function voiceChoices() {
+  const vs = englishVoices();
+  if (!IS_ANDROID) return vs;
+  const seen = new Set();
+  return vs.filter((v) => !seen.has(langKey(v)) && seen.add(langKey(v))).sort((a, b) => (langKey(a) === 'en-us' ? -1 : langKey(b) === 'en-us' ? 1 : 0));
+}
 // 声の選び方: 設定で選んだ声 → 無ければ、自然な声らしいものを優先しておまかせ
 function autoVoice() {
   const score = (v) => (/natural|neural/i.test(v.name) ? 8 : 0) + (/google/i.test(v.name) ? 4 : 0) + (/premium|enhanced/i.test(v.name) ? 3 : 0) + (/^en[-_]US/i.test(v.lang) ? 2 : 0);
@@ -79,7 +91,7 @@ function speak(s, slow, c) {
     const v = pickVoice();
     // 英語の声が無いと、日本語の声が英文を読んでしまう。それは聞かせない。
     if (!v) { if (c && !c.heard) { c.audioFailed = true; render(); } toast(NO_VOICE); return; }
-    u.lang = v.lang;
+    u.lang = v.lang.replace('_', '-');
     u.voice = v;
     u.rate = (S.settings.rate || 0.9) * (slow ? 0.72 : 1);
     u.onstart = heard;
@@ -509,7 +521,7 @@ function viewMe() {
   const answered = S.events.filter((e) => e.correct != null);
   const chips = ['both', 'read', 'talk'].map((v) => `<button data-act="shelf" data-v="${v}" class="${S.settings.shelf === v ? 'on' : ''}">${SHELF_LABEL[v]}</button>`).join('');
   const rates = [[0.75, 'ゆっくり'], [0.9, 'ふつう'], [1.05, '速め']].map(([v, n]) => `<button data-act="rate" data-v="${v}" class="${S.settings.rate === v ? 'on' : ''}">${n}</button>`).join('');
-  const voices = englishVoices(), auto = autoVoice();
+  const voices = voiceChoices(), auto = autoVoice();
   const probs = D.problems.length ? `<p class="tip">読み込めなかった文が ${D.problems.length} 件あります：${D.problems.map((p) => esc(p.id + '（' + p.problems[0] + '）')).join('、')}</p>` : '';
   return `<header class="vh"><h2>記録</h2></header>
     <section class="panel"><p>出会った文　${o.seenCount} / ${D.sentences.length}<br>答えた回数　${answered.filter((e) => e.mode === 'read' || e.mode === 'listen').length}（読む ${answered.filter((e) => e.mode === 'read').length}・聞く ${answered.filter((e) => e.mode === 'listen').length}）　　組み立てた回数　${S.events.filter((e) => e.mode === 'make').length}<br>単語帳　${Object.keys(S.words).length} 語</p></section>
@@ -517,9 +529,9 @@ function viewMe() {
       <p class="lab2">今日の分に出す棚</p><div class="seg">${chips}</div>
       <p class="lab2">読み上げの速さ</p><div class="seg">${rates}</div>
       <p class="lab2">読み上げの声</p>
-      ${voices.length ? `<select id="voice" aria-label="読み上げの声"><option value="">おまかせ${auto ? '（' + esc(auto.name) + '）' : ''}</option>${voices.map((v) => `<option value="${esc(v.voiceURI)}" ${v.voiceURI === S.settings.voice ? 'selected' : ''}>${esc(v.name)}</option>`).join('')}</select>
+      ${voices.length ? `<select id="voice" aria-label="読み上げの声"><option value="">おまかせ${auto ? '（' + esc(voiceLabel(auto)) + '）' : ''}</option>${voices.map((v) => `<option value="${esc(v.voiceURI)}" ${v.voiceURI === S.settings.voice ? 'selected' : ''}>${esc(voiceLabel(v))}</option>`).join('')}</select>
       <div class="row"><button class="ghost" data-act="voice-test">この声を聞いてみる</button></div>
-      <p class="tip">声の種類と自然さは、ブラウザと端末で変わります。名前に Natural や Google と付く声は、比較的なめらかです。</p>` : `<p class="tip">${NO_VOICE}</p>`}
+      <p class="tip">${IS_ANDROID ? 'この端末（Android）では、声そのものは端末の設定で決まり、ここで選べるのは発音の地域です。声を替えたいときは、端末の「設定」で「テキスト読み上げ」を探し、音声エンジン（Google の音声サービスなど）の設定から、英語の声を選びます。場所は機種によって少し違います。' : '声の種類と自然さは、ブラウザと端末で変わります。名前に Natural や Google と付く声は、比較的なめらかです。'}</p>` : `<p class="tip">${NO_VOICE}</p>`}
       <p class="lab2">正解のときの音</p><div class="seg"><button data-act="sound" data-v="1" class="${S.settings.sound ? 'on' : ''}">鳴らす</button><button data-act="sound" data-v="0" class="${S.settings.sound ? '' : 'on'}">鳴らさない</button></div>
     </section>
     <section class="panel"><h3>記録の引き継ぎ</h3>
