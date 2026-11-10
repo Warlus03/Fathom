@@ -29,11 +29,13 @@ const withTargets = D.sentences.filter((s) => s.question.targets).length;
 check('教材: 問いが確かめる文法（question.targets）の指定 ' + withTargets + ' / ' + D.sentences.length + ' 文（未指定の文は、付いている文法すべてに正誤が数えられる）', true);
 
 // be動詞を含む文を4つ使う
-const be = (D.byGrammar.be || []).map((s) => s.id);
-if (be.length < 4) check('be動詞の文が4本以上ある（以降の確認に必要）', false, be);
+// 以降の確認には、同じ文法を確かめる文が4本要る。いちばん本数の多い項目を使う
+const G = D.grammar.items.map((x) => x.id).sort((x, y) => testing(y) - testing(x))[0];
+const be = D.sentences.filter((s) => L.targetsOf(s).includes(G)).map((s) => s.id);
+if (be.length < 4) check('同じ文法を確かめる文が4本以上ある（以降の確認に必要）', false, be);
 else {
   const [a, b, c, d] = be;
-  const g = (events, mode = 'read') => (L.history(events, D).g.be || {})[mode];
+  const g = (events, mode = 'read') => (L.history(events, D).g[G] || {})[mode];
 
   check('記録なし → 未探索', L.status(g([])) === 'none');
   check('一度の正解では「分かる」にならない', L.status(g([ev(0, a)])) === 'learning');
@@ -55,7 +57,7 @@ else {
   check('音声が再生されなかった回は、聴解の根拠にしない', g([...heard, { ...ev(12, c, { mode: 'listen' }), heard: false }], 'listen')[2].kind === 'unheard' && L.status(g([...heard, { ...ev(12, c, { mode: 'listen' }), heard: false }], 'listen')) === 'learning');
   check('14日後に同じ文へ正解しても、初見には数えない', L.status(g([ev(0, a), ev(1, b), ev(15, a)])) === 'learning' && g([ev(0, a), ev(1, b), ev(15, a)])[2].kind === 'repeat');
   check('30日以上空いた文は「久しぶりの文」として数える（初めて見る文での正解が別に1回必要）', L.status(g([ev(0, a), ev(1, b), ev(40, a)])) === 'solid' && g([ev(0, a), ev(1, b), ev(40, a)])[2].kind === 'revisit' && L.status(g([ev(0, a), ev(40, a), ev(80, a)])) === 'learning');
-  const gview = (day) => ({ t: at(day, -5), sid: '', gid: 'be', mode: 'map', helped: false, correct: null, choice: null, ms: null });
+  const gview = (day) => ({ t: at(day, -5), sid: '', gid: G, mode: 'map', helped: false, correct: null, choice: null, ms: null });
   check('地図で解説を読んだその日の正解は、数日後の初見に数えない', g([ev(0, a), gview(1), ev(1, b)])[1].kind === 'sameday' && g([ev(0, a), ev(1, b)])[1].kind === 'delayed');
   check('答えずに見ただけの文は、次に答えても初見に数えない', g([ev(0, a), { ...ev(1, b), correct: null }, ev(3, b)])[2].kind === 'repeat');
   const mini = { byId: { x: { id: 'x', grammar: ['be', 'article'], question: { targets: ['be'] }, words: [] } } };
@@ -69,7 +71,7 @@ else {
   const same = L.buildSession(D, s0, { now: at(0, 30) });
   const next = L.buildSession(D, s0, { now: at(1) });
   check('同じ日のうちは復習を出さない', same.info.review === 0, same.info);
-  check('翌日、同じ文法を含む「別の文」が復習に出る', next.info.review >= 1 && next.list.some((s) => s.id !== a && s.grammar.includes('be')) && !next.list.some((s) => s.id === a), next.list.map((s) => s.id));
+  check('翌日、同じ文法を含む「別の文」が復習に出る', next.info.review >= 1 && next.list.some((s) => s.id !== a && L.targetsOf(s).includes(G)) && !next.list.some((s) => s.id === a), next.list.map((s) => s.id));
   const after = st(solid);
   const dueAfter = L.dueDay(g(solid));
   check('連続して正解すると間隔が伸びる（1→3→7日）', dueAfter === L.dayOf(at(4)) + 7, dueAfter - L.dayOf(at(4)));
@@ -83,7 +85,7 @@ else {
   check('1回分は5文以内', L.buildSession(D, after, { now: at(20) }).list.length <= 5);
   check('棚をしぼると、その棚の文だけ出る', L.buildSession(D, st([]), { shelf: 'talk', now: at(0) }).list.every((s) => s.shelf === 'talk'));
   check('聞く入口は、読んだことのある文だけ', L.buildSession(D, s0, { mode: 'listen', now: at(1) }).list.map((s) => s.id).join() === a && L.buildSession(D, st([]), { mode: 'listen', now: at(1) }).list.length === 0);
-  check('地図から入ると、その項目の文だけ出る', L.buildSession(D, st([]), { focus: 'be', now: at(0) }).list.every((s) => s.grammar.includes('be')));
+  check('地図から入ると、その項目の文だけ出る', L.buildSession(D, st([]), { focus: G, now: at(0) }).list.every((s) => s.grammar.includes(G)));
 
   // 単語帳の再会
   const lemma = Object.keys(D.byLemma).find((l) => D.byLemma[l].length >= 2);
@@ -105,7 +107,7 @@ else {
   check('同じファイルを2回読み込んでも重複しない', r2.state.events.length === 3 && r2.added === 0);
   const r3 = store.importText(text, st([ev(20, d)]));
   check('読み込みは合流（今ある記録は消えない）', r3.state.events.length === 4);
-  check('復元後も状態は同じ', L.status((L.history(r1.state.events, D).g.be || {}).read) === 'solid');
+  check('復元後も状態は同じ', L.status((L.history(r1.state.events, D).g[G] || {}).read) === 'solid');
   let threw = 0;
   for (const bad of ['こんにちは', '{}', JSON.stringify({ app: 'fathom', state: { version: store.VERSION + 1, events: [] } })]) { try { store.importText(bad, store.blank()); } catch { threw++; } }
   check('関係ないファイルや、新しすぎる形式は読み込まない', threw === 3);

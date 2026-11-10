@@ -55,6 +55,9 @@
       "駅へはバスでしか行けない"
     ],
     "answer": 0,
+    "targets": [
+      "relative"
+    ],
     "explain": "the bus that goes to the station で「駅へ行くバス」。to は行き先を表します。"
   }
 }

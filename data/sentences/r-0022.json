@@ -58,6 +58,9 @@
       "メッセージそのもの"
     ],
     "answer": 0,
+    "targets": [
+      "preposition"
+    ],
     "explain": "the link in that message で「そのメッセージの中のリンク」。名詞の直後の in 〜 は、その名詞をしぼり込む説明です。"
   }
 }

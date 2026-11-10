@@ -51,6 +51,10 @@
       "使っている人"
     ],
     "answer": 0,
+    "targets": [
+      "there",
+      "infinitive"
+    ],
     "explain": "ある物は many ways。to use it がその ways を「それを使う方法」としぼり込んでいます。"
   }
 }

@@ -55,6 +55,9 @@
       "午後、雨の中を出かける"
     ],
     "answer": 0,
+    "targets": [
+      "future"
+    ],
     "explain": "be going to は「これから」のこと。降ったあとなら It rained this afternoon. です。"
   }
 }

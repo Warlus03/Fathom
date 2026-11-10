@@ -1,0 +1,62 @@
+{
+  "id": "t-0039",
+  "shelf": "talk",
+  "en": "My office is near the station.",
+  "ja": "私の職場は駅の近くにあります。",
+  "scene": "どこで働いているか聞かれて",
+  "grammar": [
+    "be",
+    "preposition"
+  ],
+  "aim": "be動詞の後ろに場所が来ると「〜にある・いる」。",
+  "pitfall": "is を「〜です」とだけ覚えていると、場所が続いたときに訳せなくなる。",
+  "chunks": [
+    {
+      "text": "My office",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "ある",
+      "term": "be動詞",
+      "why": "be動詞の後ろが場所のときは「〜にある・いる」。動きは表さない。"
+    },
+    {
+      "text": "near the station",
+      "role": "C",
+      "plain": "どこに"
+    }
+  ],
+  "words": [
+    {
+      "w": "office",
+      "lemma": "office",
+      "ja": "職場・事務所"
+    },
+    {
+      "w": "near",
+      "lemma": "near",
+      "ja": "〜の近くに"
+    },
+    {
+      "w": "station",
+      "lemma": "station",
+      "ja": "駅"
+    }
+  ],
+  "question": {
+    "ask": "この文が伝えているのは？",
+    "choices": [
+      "職場は駅の近くにある",
+      "職場が駅に近づいている",
+      "駅の近くで職場を探している"
+    ],
+    "answer": 0,
+    "targets": [
+      "be"
+    ],
+    "explain": "My office ＝ near the station（駅の近く）。be動詞は「ある」という状態を言うだけで、「近づく」「探す」のような動きは表しません。"
+  }
+}

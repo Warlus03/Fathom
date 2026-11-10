@@ -162,6 +162,8 @@ export function buildSession(data, state, opts) {
     seen[sid] = { any: evs[evs.length - 1].t, listen: ls.length ? ls[ls.length - 1].t : null, read: evs.some((e) => e.mode !== 'listen'), answered: evs.some((e) => e.correct != null), helped: evs.some((e) => e.helped) };
   }
   const pool = data.sentences.filter((s) => (shelf === 'both' || s.shelf === shelf) && (!focus || s.grammar.includes(focus)));
+  // 地図から入ったときは、その項目を確かめる問いの文を先に（sort は安定なので、ほかの順は index.json のまま）
+  if (focus) pool.sort((a, b) => targetsOf(b).includes(focus) - targetsOf(a).includes(focus));
   const picks = [];
   const info = { review: 0, fresh: 0 };
   const add = (s) => { if (s && !picks.includes(s) && picks.length < size) { picks.push(s); return true; } return false; };

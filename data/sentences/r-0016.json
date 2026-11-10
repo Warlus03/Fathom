@@ -53,6 +53,9 @@
       "払わなければならない"
     ],
     "answer": 0,
+    "targets": [
+      "obligation"
+    ],
     "explain": "don't have to は「必要がない」。払いたければ払ってもかまいません。禁止なら must not です。"
   }
 }

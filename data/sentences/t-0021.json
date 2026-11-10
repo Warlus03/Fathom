@@ -58,6 +58,9 @@
       "乗り換えてはいけない"
     ],
     "answer": 0,
+    "targets": [
+      "obligation"
+    ],
     "explain": "have to は「しなければならない」＝必要。「しなくてもよい」なら don't have to、「してはいけない」なら must not です。change trains は「電車を乗り換える」。"
   }
 }

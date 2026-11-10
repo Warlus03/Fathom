@@ -58,6 +58,10 @@
       "コンビニは近いと教えてくれた"
     ],
     "answer": 0,
+    "targets": [
+      "there",
+      "question"
+    ],
     "explain": "There is a convenience store near here.（この近くにコンビニがある）を質問にした形です。"
   }
 }

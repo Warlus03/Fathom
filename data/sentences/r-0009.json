@@ -47,6 +47,9 @@
       "it が指しているもの"
     ],
     "answer": 0,
+    "targets": [
+      "imperative"
+    ],
     "explain": "動詞から始まる文は、相手（you）への呼びかけ。yourself（あなた自身で）もそれを示しています。"
   }
 }

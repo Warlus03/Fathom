@@ -59,6 +59,9 @@
       "落ちないように保たれている"
     ],
     "answer": 0,
+    "targets": [
+      "gerund"
+    ],
     "explain": "keep crashing で「落ち続ける」。一度きりなら Why did it crash? です。"
   }
 }

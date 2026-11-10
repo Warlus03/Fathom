@@ -59,6 +59,9 @@
       "情報源は確かめなくてもよい、という説明"
     ],
     "answer": 0,
+    "targets": [
+      "obligation"
+    ],
     "explain": "should は「〜したほうがいい」という助言で、must や have to（しなければならない）ほど強くありません。「確かめなくてもよい」なら You don't have to check 〜 です。"
   }
 }

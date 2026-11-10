@@ -56,6 +56,9 @@
       "スマホでは仕事をしないことにしている"
     ],
     "answer": 0,
+    "targets": [
+      "preposition"
+    ],
     "explain": "主語は The update。それが on my phone（私のスマホの上で）動かない、と言っています。"
   }
 }

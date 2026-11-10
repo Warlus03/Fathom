@@ -53,6 +53,9 @@
       "話している人"
     ],
     "answer": 0,
+    "targets": [
+      "svoo"
+    ],
     "explain": "teaches の直後の my son が教わる人、その次の English が教える内容です。"
   }
 }

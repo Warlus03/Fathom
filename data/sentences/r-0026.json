@@ -59,6 +59,9 @@
       "記事を書いた人"
     ],
     "answer": 0,
+    "targets": [
+      "infinitive"
+    ],
     "explain": "頼んだのは I、頼まれたのは the AI。to summarize は、頼まれた側がすることです。"
   }
 }

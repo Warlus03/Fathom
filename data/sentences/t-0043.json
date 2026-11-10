@@ -1,0 +1,59 @@
+{
+  "id": "t-0043",
+  "shelf": "talk",
+  "en": "Is this seat taken?",
+  "ja": "この席は空いていますか。",
+  "scene": "電車や店で、空いていそうな席を見つけて",
+  "grammar": [
+    "question",
+    "passive"
+  ],
+  "aim": "be動詞が文頭に出たら質問。This seat is taken. をひっくり返した形。",
+  "pitfall": "taken（取られている）に引っぱられて、「席を取って」という頼みごとに読んでしまう。",
+  "chunks": [
+    {
+      "text": "Is",
+      "role": "V",
+      "plain": "＝（質問なので前へ）",
+      "term": "be動詞",
+      "why": "This seat is taken. の is を主語の前に出すと質問になる。"
+    },
+    {
+      "text": "this seat",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "taken",
+      "role": "C",
+      "plain": "どういう状態",
+      "term": "過去分詞（受け身）",
+      "why": "take の過去分詞。「取られている」＝誰かが使っている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "seat",
+      "lemma": "seat",
+      "ja": "席"
+    },
+    {
+      "w": "taken",
+      "lemma": "take",
+      "ja": "（席を）取る（taken は過去分詞）"
+    }
+  ],
+  "question": {
+    "ask": "この人がしていることは？",
+    "choices": [
+      "この席を誰かが使っているかどうか、たずねている",
+      "この席はもう取られている、と伝えている",
+      "この席を取っておいて、と頼んでいる"
+    ],
+    "answer": 0,
+    "targets": [
+      "question"
+    ],
+    "explain": "Is が文頭にあるので質問。伝えるなら This seat is taken. 、頼むなら動詞から始めて Save this seat, please. のようになります。"
+  }
+}

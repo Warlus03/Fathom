@@ -75,6 +75,10 @@
       "まだ分からない"
     ],
     "answer": 0,
+    "targets": [
+      "svc",
+      "conjunction"
+    ],
     "explain": "sounds correct は「正しそうに聞こえる」という印象。事実は but の後ろの it's wrong です。"
   }
 }

@@ -1,0 +1,87 @@
+{
+  "id": "r-0058",
+  "shelf": "read",
+  "en": "I tried it yesterday, but it didn't work.",
+  "ja": "昨日試してみましたが、動きませんでした。",
+  "scene": "助言への返信で",
+  "grammar": [
+    "past",
+    "negative",
+    "conjunction"
+  ],
+  "aim": "tried と didn't は、どちらも過去の印。済んだ出来事を報告している。",
+  "pitfall": "didn't work の work が原形なので、今の話だと思ってしまう。過去は did が引き受けている。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "tried",
+      "role": "V",
+      "why": "try の過去形（y を i に変えて ed）。"
+    },
+    {
+      "text": "it",
+      "role": "O"
+    },
+    {
+      "text": "yesterday",
+      "role": "M",
+      "plain": "いつ"
+    },
+    {
+      "text": "but",
+      "role": "conj",
+      "plain": "しかし"
+    },
+    {
+      "text": "it",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "didn't",
+      "role": "neg",
+      "plain": "〜しなかった",
+      "term": "否定（did＋not）",
+      "why": "過去の否定は didn't。did が「過去」を引き受けるので、後ろの動詞は原形に戻る。"
+    },
+    {
+      "text": "work",
+      "role": "V",
+      "why": "didn't の後ろなので原形（worked にしない）。"
+    }
+  ],
+  "words": [
+    {
+      "w": "tried",
+      "lemma": "try",
+      "ja": "試す"
+    },
+    {
+      "w": "yesterday",
+      "lemma": "yesterday",
+      "ja": "昨日"
+    },
+    {
+      "w": "work",
+      "lemma": "work",
+      "ja": "動く・機能する"
+    }
+  ],
+  "question": {
+    "ask": "いつの出来事ですか？",
+    "choices": [
+      "昨日試して、そのときは動かなかった",
+      "今試しているが、動かない",
+      "明日試すつもりだが、動かないだろう"
+    ],
+    "answer": 0,
+    "targets": [
+      "past"
+    ],
+    "explain": "tried も didn't work も過去の形。今のことなら I'm trying it, but it doesn't work. になります。"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "r-0056",
+  "shelf": "read",
+  "en": "This is a pretty good app.",
+  "ja": "これはなかなか良いアプリです。",
+  "scene": "アプリの感想で",
+  "grammar": [
+    "adjective",
+    "be"
+  ],
+  "aim": "pretty は good の前に置くと「かなり」。形容詞を強める副詞として働く。",
+  "pitfall": "pretty を「きれいな」と読んで「きれいで良いアプリ」と取ってしまう。",
+  "chunks": [
+    {
+      "text": "This",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "is",
+      "role": "V",
+      "plain": "＝（〜だ）",
+      "term": "be動詞"
+    },
+    {
+      "text": "a pretty good app",
+      "role": "C",
+      "plain": "何",
+      "why": "pretty は直後の good を強めている（かなり良い）。「きれいな」の意味なら、a pretty app のように名詞を直接説明する。"
+    }
+  ],
+  "words": [
+    {
+      "w": "pretty",
+      "lemma": "pretty",
+      "ja": "かなり・なかなか（名詞を説明するときは「きれいな」）"
+    },
+    {
+      "w": "good",
+      "lemma": "good",
+      "ja": "良い"
+    },
+    {
+      "w": "app",
+      "lemma": "app",
+      "ja": "アプリ"
+    }
+  ],
+  "question": {
+    "ask": "pretty は、この文で何をしていますか？",
+    "choices": [
+      "good を強めている（かなり良い）",
+      "app を説明している（きれいなアプリ）",
+      "This を説明している（これはきれいだ）"
+    ],
+    "answer": 0,
+    "targets": [
+      "adjective"
+    ],
+    "explain": "pretty good で「かなり良い」。形容詞のすぐ前にある pretty は、その形容詞を強める副詞です。"
+  }
+}

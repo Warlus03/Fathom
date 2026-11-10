@@ -56,6 +56,10 @@
       "直さないと決まった"
     ],
     "answer": 0,
+    "targets": [
+      "perfect",
+      "negative"
+    ],
     "explain": "hasn't 〜 yet で「今のところまだ〜されていない」。これから直る可能性は残っています。"
   }
 }

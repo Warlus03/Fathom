@@ -48,6 +48,9 @@
       "次のバスの行き先"
     ],
     "answer": 0,
+    "targets": [
+      "wh"
+    ],
     "explain": "When は時をたずねます。場所なら Where、行き先なら Where does the next bus go? です。"
   }
 }

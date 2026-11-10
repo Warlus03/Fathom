@@ -1,0 +1,71 @@
+{
+  "id": "t-0042",
+  "shelf": "talk",
+  "en": "You can pay by card here.",
+  "ja": "ここはカードで支払えますよ。",
+  "scene": "店で支払い方を聞かれて",
+  "grammar": [
+    "can",
+    "preposition"
+  ],
+  "aim": "can は「できる・してよい」。しなければならない、ではない。",
+  "pitfall": "「カードで払ってください」という指示だと受け取ってしまう。",
+  "chunks": [
+    {
+      "text": "You",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "can",
+      "role": "aux",
+      "plain": "できる・してよい",
+      "why": "選べる、という意味。必ずそうしなさい、なら have to や must。"
+    },
+    {
+      "text": "pay",
+      "role": "V",
+      "why": "助動詞の後ろは原形。"
+    },
+    {
+      "text": "by card",
+      "role": "M",
+      "plain": "どうやって"
+    },
+    {
+      "text": "here",
+      "role": "M",
+      "plain": "どこで"
+    }
+  ],
+  "words": [
+    {
+      "w": "pay",
+      "lemma": "pay",
+      "ja": "支払う"
+    },
+    {
+      "w": "by",
+      "lemma": "by",
+      "ja": "〜で（手段）"
+    },
+    {
+      "w": "card",
+      "lemma": "card",
+      "ja": "カード"
+    }
+  ],
+  "question": {
+    "ask": "カードでの支払いについて、どう言っていますか？",
+    "choices": [
+      "カードで払える（払ってもよい）",
+      "カードで払わなければならない",
+      "カードでは払えない"
+    ],
+    "answer": 0,
+    "targets": [
+      "can"
+    ],
+    "explain": "can は「できる・してよい」。現金でもかまいません。「払わなければならない」なら have to、「払えない」なら can't です。"
+  }
+}

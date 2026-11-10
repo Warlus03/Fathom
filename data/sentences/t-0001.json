@@ -51,6 +51,10 @@
       "ここから何が見えるか"
     ],
     "answer": 0,
+    "targets": [
+      "be",
+      "preposition"
+    ],
     "explain": "You are from around here.（あなたはこのあたりの人だ）を質問にした形です。"
   }
 }

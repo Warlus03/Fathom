@@ -63,6 +63,9 @@
       "まだ誰も受け取っていない"
     ],
     "answer": 0,
+    "targets": [
+      "svoo"
+    ],
     "explain": "gave の直後の everyone が受け取る人、その次の a free trial が渡された物です。"
   }
 }

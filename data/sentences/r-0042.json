@@ -60,6 +60,9 @@
       "これを見ている人"
     ],
     "answer": 0,
+    "targets": [
+      "relative"
+    ],
     "explain": "骨組みは The person is a student. 。who made this が、どの人かを説明しています。"
   }
 }

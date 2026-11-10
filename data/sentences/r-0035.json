@@ -54,6 +54,9 @@
       "新しい版を持っているかどうか"
     ],
     "answer": 0,
+    "targets": [
+      "perfect"
+    ],
     "explain": "Have you tried で「もう試した？」。持っているかを聞くなら Do you have the new version? です。"
   }
 }

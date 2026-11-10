@@ -54,6 +54,10 @@
       "英語を話す機会を減らすこと"
     ],
     "answer": 0,
+    "targets": [
+      "subjunctive",
+      "comparison"
+    ],
     "explain": "I wish の後ろは、現実とは違う、望んでいること。could は過去の話ではなく「（今）〜できたら」、better は「もっと上手に」。今より上手に話せたら、と願っています。"
   }
 }

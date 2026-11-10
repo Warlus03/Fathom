@@ -49,6 +49,9 @@
       "どちらでもない"
     ],
     "answer": 0,
+    "targets": [
+      "that"
+    ],
     "explain": "like の主語は you。うれしい（glad）のは I です。"
   }
 }

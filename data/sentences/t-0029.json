@@ -49,6 +49,9 @@
       "It が指す乗り物"
     ],
     "answer": 0,
+    "targets": [
+      "it-to"
+    ],
     "explain": "to cross here（ここを渡ること）＝ dangerous。It は形だけの主語です。"
   }
 }

@@ -46,6 +46,9 @@
       "駅までかかる時間"
     ],
     "answer": 0,
+    "targets": [
+      "wh"
+    ],
     "explain": "Where は場所をたずねる言葉。名前なら What、時間なら How long で始まります。"
   }
 }

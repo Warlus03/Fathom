@@ -60,6 +60,9 @@
       "どちらも同じ"
     ],
     "answer": 0,
+    "targets": [
+      "comparison"
+    ],
     "explain": "主語の The new model が faster。than の後ろの the old one は、比べられている相手です。"
   }
 }

@@ -50,6 +50,9 @@
       "誰のために見ているか"
     ],
     "answer": 0,
+    "targets": [
+      "wh"
+    ],
     "explain": "look for は「探す」。What がその「何を」にあたります。"
   }
 }

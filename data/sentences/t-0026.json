@@ -56,6 +56,9 @@
       "これからここに住む"
     ],
     "answer": 0,
+    "targets": [
+      "perfect"
+    ],
     "explain": "I've lived は現在完了で、今も続いています。昔の話なら I lived here for ten years. です。"
   }
 }

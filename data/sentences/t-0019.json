@@ -64,6 +64,9 @@
       "店と銀行の両方"
     ],
     "answer": 0,
+    "targets": [
+      "preposition"
+    ],
     "explain": "骨組みは The shop is closed. 。next to the bank は、どの店かを説明しているだけです。"
   }
 }

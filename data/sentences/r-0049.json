@@ -54,6 +54,9 @@
       "見た目より難しい"
     ],
     "answer": 0,
+    "targets": [
+      "comparison"
+    ],
     "explain": "as hard as it looks（見た目と同じくらい難しい）を not で打ち消しています。"
   }
 }

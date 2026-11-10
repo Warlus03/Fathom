@@ -56,6 +56,10 @@
       "it が指すもの"
     ],
     "answer": 0,
+    "targets": [
+      "svoo",
+      "that"
+    ],
     "explain": "told の主語は She。me は聞いた側、that 以下が聞いた内容です。"
   }
 }

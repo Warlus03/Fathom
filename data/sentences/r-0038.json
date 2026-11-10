@@ -49,6 +49,9 @@
       "バグではないと思っている"
     ],
     "answer": 0,
+    "targets": [
+      "that"
+    ],
     "explain": "I think を付けると「私はそう思う」という意見になります。断定なら This is a bug. です。"
   }
 }

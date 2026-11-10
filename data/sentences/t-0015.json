@@ -49,6 +49,9 @@
       "私たちのグループの名前"
     ],
     "answer": 0,
+    "targets": [
+      "svoc"
+    ],
     "explain": "call の後ろに名詞が2つ並び、him ＝ Taro の関係。電話なら We call him. で終わります。"
   }
 }

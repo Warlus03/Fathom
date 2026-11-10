@@ -55,6 +55,9 @@
       "I"
     ],
     "answer": 0,
+    "targets": [
+      "verb"
+    ],
     "explain": "動詞 use のすぐ後ろの this tool が「何を」。every day は「どのくらいの頻度で」という説明で、骨組みの外です。"
   }
 }

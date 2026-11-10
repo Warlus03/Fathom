@@ -60,6 +60,10 @@
       "立ったまま10分ほど待つ"
     ],
     "answer": 0,
+    "targets": [
+      "verb",
+      "preposition"
+    ],
     "explain": "take の後ろに時間が来たら「かかる」。on foot は「歩いて」という手段です。"
   }
 }

@@ -1,0 +1,59 @@
+{
+  "id": "r-0053",
+  "shelf": "read",
+  "en": "Everyone knows this trick.",
+  "ja": "このコツはみんな知っています。",
+  "scene": "よく知られた使い方についての投稿で",
+  "grammar": [
+    "s3"
+  ],
+  "aim": "everyone は意味は「みんな」でも、動詞には s が付く。s は人数の印ではない。",
+  "pitfall": "knows の s を見て、知っているのは一人だけだと思ってしまう。",
+  "chunks": [
+    {
+      "text": "Everyone",
+      "role": "S",
+      "plain": "誰が",
+      "why": "意味は大勢だが、形の上では he / she / it の仲間として扱う。"
+    },
+    {
+      "text": "knows",
+      "role": "V",
+      "why": "主語が Everyone なので s が付く。s は「一人」という意味ではなく、主語の種類に合わせた形。"
+    },
+    {
+      "text": "this trick",
+      "role": "O"
+    }
+  ],
+  "words": [
+    {
+      "w": "Everyone",
+      "lemma": "everyone",
+      "ja": "みんな・全員"
+    },
+    {
+      "w": "knows",
+      "lemma": "know",
+      "ja": "知っている"
+    },
+    {
+      "w": "trick",
+      "lemma": "trick",
+      "ja": "コツ・技"
+    }
+  ],
+  "question": {
+    "ask": "このコツを知っているのは？",
+    "choices": [
+      "大勢の人（みんな）",
+      "ある一人の人",
+      "この文を書いた人だけ"
+    ],
+    "answer": 0,
+    "targets": [
+      "s3"
+    ],
+    "explain": "Everyone は「みんな」。動詞に s が付くのは、everyone を形の上で he / she / it の仲間として扱うからで、人数が一人という意味ではありません。"
+  }
+}

@@ -54,6 +54,9 @@
       "何を質問すればいいのか"
     ],
     "answer": 0,
+    "targets": [
+      "indirect"
+    ],
     "explain": "what this means で「これが何を意味するのか」。それが know の相手です。"
   }
 }

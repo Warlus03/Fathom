@@ -1,0 +1,65 @@
+{
+  "id": "r-0052",
+  "shelf": "read",
+  "en": "The update fixes several bugs.",
+  "ja": "このアップデートは、いくつかのバグを修正します。",
+  "scene": "アップデートのお知らせで",
+  "grammar": [
+    "s3",
+    "verb"
+  ],
+  "aim": "主語の直後の s は動詞の目印。名詞の複数形の s と見分ける。",
+  "pitfall": "fixes を名詞（修正点）と読んで、文の動詞が見つからなくなる。",
+  "chunks": [
+    {
+      "text": "The update",
+      "role": "S",
+      "plain": "何が"
+    },
+    {
+      "text": "fixes",
+      "role": "V",
+      "why": "fix（直す）＋es。主語が The update（he / she / it の仲間）なので付く。主語のすぐ後ろにあるので、これが動詞。"
+    },
+    {
+      "text": "several bugs",
+      "role": "O",
+      "why": "こちらの s は名詞の複数形。several（いくつかの）の後ろなので、数えられる物が複数ある。"
+    }
+  ],
+  "words": [
+    {
+      "w": "update",
+      "lemma": "update",
+      "ja": "更新・アップデート"
+    },
+    {
+      "w": "fixes",
+      "lemma": "fix",
+      "ja": "直す・修正する"
+    },
+    {
+      "w": "several",
+      "lemma": "several",
+      "ja": "いくつかの"
+    },
+    {
+      "w": "bugs",
+      "lemma": "bug",
+      "ja": "不具合・バグ"
+    }
+  ],
+  "question": {
+    "ask": "この文が伝えているのは？",
+    "choices": [
+      "アップデートが、いくつかのバグを直す",
+      "アップデートの修正点に、いくつかバグがある",
+      "アップデートを直すと、バグがいくつか出る"
+    ],
+    "answer": 0,
+    "targets": [
+      "s3"
+    ],
+    "explain": "fixes は動詞（直す）。主語 The update のすぐ後ろにあり、主語に合わせて es が付いています。bugs の s は複数形で、別のものです。"
+  }
+}

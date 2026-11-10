@@ -53,6 +53,9 @@
       "オフラインで作業してと頼んでいる"
     ],
     "answer": 0,
+    "targets": [
+      "question"
+    ],
     "explain": "Does が文頭にあるので質問。説明なら This works offline. 、頼むなら Work offline. になります。"
   }
 }

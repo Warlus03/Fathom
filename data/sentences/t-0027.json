@@ -54,6 +54,9 @@
       "日本のどこにいたか"
     ],
     "answer": 0,
+    "targets": [
+      "perfect"
+    ],
     "explain": "have been は「今までずっといる」。これからの予定なら How long will you be in Japan? です。"
   }
 }

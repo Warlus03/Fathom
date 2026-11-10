@@ -61,6 +61,10 @@
       "そこにあるのは、いい公園だ"
     ],
     "answer": 0,
+    "targets": [
+      "there",
+      "preposition"
+    ],
     "explain": "ある物は a nice park。behind the station は「駅の裏に」で、前置詞の後ろの名詞が基準の場所です。"
   }
 }

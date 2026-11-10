@@ -61,6 +61,10 @@
       "前にゆっくり言えたかどうか、答えること"
     ],
     "answer": 0,
+    "targets": [
+      "request",
+      "comparison"
+    ],
     "explain": "say that again（それをもう一度言う）に、more slowly（もっとゆっくり）が足されています。"
   }
 }

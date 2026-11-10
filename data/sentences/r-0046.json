@@ -64,6 +64,9 @@
       "コツを考えた人"
     ],
     "answer": 0,
+    "targets": [
+      "participle"
+    ],
     "explain": "explaining this trick は直前の a post にかかります。書いた人はそれを「見た」だけです。"
   }
 }

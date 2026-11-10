@@ -57,6 +57,9 @@
       "別の誰か"
     ],
     "answer": 0,
+    "targets": [
+      "request"
+    ],
     "explain": "主語は I。show の後ろの you が案内を受ける人、the way が見せる物です。"
   }
 }

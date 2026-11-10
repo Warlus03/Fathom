@@ -50,6 +50,9 @@
       "AIが、人の手を借りずに自分でこの動画を作った"
     ],
     "answer": 0,
+    "targets": [
+      "passive"
+    ],
     "explain": "主語の This video は作られた側。with AI は道具で、AIを使って作った人はこの文には出てきません。AI自身が作り手だと言うなら made by AI です。"
   }
 }

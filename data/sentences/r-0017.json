@@ -52,6 +52,9 @@
       "人に教えなければならない"
     ],
     "answer": 0,
+    "targets": [
+      "obligation"
+    ],
     "explain": "must not は禁止です。「教えなくてもよい」なら don't have to になります。"
   }
 }

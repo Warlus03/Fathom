@@ -64,6 +64,10 @@
       "上手に話せる"
     ],
     "answer": 0,
+    "targets": [
+      "negative",
+      "adjective"
+    ],
     "explain": "can't speak English well は「上手には話せない」。まったく話せないなら I can't speak English at all. です。"
   }
 }

@@ -56,6 +56,9 @@
       "明日の朝は寒くなる、と言っている"
     ],
     "answer": 0,
+    "targets": [
+      "past"
+    ],
     "explain": "was は過去の形なので、すでに過ぎた今朝を振り返っています。朝のうちに今の寒さを言うなら It's really cold this morning. 、明日の予想なら It will be cold tomorrow morning. です。"
   }
 }

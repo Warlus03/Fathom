@@ -58,6 +58,9 @@
       "質問した人どうし"
     ],
     "answer": 0,
+    "targets": [
+      "imperative"
+    ],
     "explain": "let me know は相手への呼びかけ。知る側は me（書いた人）、知らせる側は読んでいる人です。"
   }
 }

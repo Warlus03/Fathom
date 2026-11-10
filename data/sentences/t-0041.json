@@ -1,0 +1,58 @@
+{
+  "id": "t-0041",
+  "shelf": "talk",
+  "en": "I'm waiting for my friend.",
+  "ja": "友人を待っているところです。",
+  "scene": "駅前で声をかけられて",
+  "grammar": [
+    "progressive",
+    "preposition"
+  ],
+  "aim": "be動詞＋ing で「今している途中」。",
+  "pitfall": "I'm を「私は〜です」と読んで止まる。後ろの ing とセットで「〜している」。",
+  "chunks": [
+    {
+      "text": "I'm",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "waiting for",
+      "role": "V",
+      "plain": "待っている",
+      "term": "動詞（進行形）",
+      "why": "I'm と組んで進行形。今、待っている最中。wait for 〜 で「〜を待つ」。"
+    },
+    {
+      "text": "my friend",
+      "role": "O",
+      "plain": "誰を"
+    }
+  ],
+  "words": [
+    {
+      "w": "waiting",
+      "lemma": "wait",
+      "ja": "待つ"
+    },
+    {
+      "w": "friend",
+      "lemma": "friend",
+      "ja": "友人"
+    }
+  ],
+  "question": {
+    "ask": "この人の今の状況は？",
+    "choices": [
+      "今、友人を待っているところ",
+      "いつも友人を待つことにしている",
+      "友人を待ち終わった"
+    ],
+    "answer": 0,
+    "targets": [
+      "progressive"
+    ],
+    "explain": "I'm waiting は進行形で「今、待っている途中」。習慣なら I wait for my friend. 、過去なら I waited for my friend. です。"
+  }
+}

@@ -51,6 +51,9 @@
       "書かれていない"
     ],
     "answer": 0,
+    "targets": [
+      "passive"
+    ],
     "explain": "受け身では、した人は by の後ろに来ます。My mother made this cake. と同じ出来事です。"
   }
 }

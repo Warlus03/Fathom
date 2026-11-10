@@ -1,0 +1,62 @@
+{
+  "id": "r-0055",
+  "shelf": "read",
+  "en": "Did you see the email?",
+  "ja": "あのメールは見ましたか。",
+  "scene": "仕事仲間への確認で",
+  "grammar": [
+    "article",
+    "question",
+    "past"
+  ],
+  "aim": "the email は「相手もどれのことか分かるはずの、あのメール」。",
+  "pitfall": "the を気にせず「メールを見た？」と読むと、どのメールの話かが抜ける。",
+  "chunks": [
+    {
+      "text": "Did",
+      "role": "aux",
+      "plain": "質問の合図（過去）",
+      "why": "do の過去形。過去のことをたずねている。"
+    },
+    {
+      "text": "you",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "see",
+      "role": "V",
+      "why": "did が過去を引き受けたので、see は原形（saw にしない）。"
+    },
+    {
+      "text": "the email",
+      "role": "O",
+      "why": "the が付いている＝相手もどれのことか分かる、決まった1通。"
+    }
+  ],
+  "words": [
+    {
+      "w": "see",
+      "lemma": "see",
+      "ja": "見る・目にする"
+    },
+    {
+      "w": "email",
+      "lemma": "email",
+      "ja": "メール"
+    }
+  ],
+  "question": {
+    "ask": "どのメールの話ですか？",
+    "choices": [
+      "相手も知っているはずの、あのメール",
+      "どれでもいい、何か1通のメール",
+      "届いたメール全部"
+    ],
+    "answer": 0,
+    "targets": [
+      "article"
+    ],
+    "explain": "the email は、お互いにどれのことか分かっている1通。どれか1通なら an email、全部なら the emails や all the emails になります。"
+  }
+}

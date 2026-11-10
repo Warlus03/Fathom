@@ -62,6 +62,9 @@
       "説明を見るのはこれが初めてだ"
     ],
     "answer": 0,
+    "targets": [
+      "comparison"
+    ],
     "explain": "the best 〜 I've seen で「私が見てきた中でいちばんの〜」。強いほめ言葉です。"
   }
 }

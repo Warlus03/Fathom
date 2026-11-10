@@ -58,6 +58,9 @@
       "私の性格"
     ],
     "answer": 0,
+    "targets": [
+      "svoc"
+    ],
     "explain": "my work ＝ easier。It（そのツール）が、仕事をその状態に「する」と言っています。"
   }
 }

@@ -53,6 +53,9 @@
       "市役所とは何か"
     ],
     "answer": 0,
+    "targets": [
+      "indirect"
+    ],
     "explain": "know の「何を」が where the city hall is（市役所がどこにあるか）。知っていれば教えてほしい、という意味です。"
   }
 }

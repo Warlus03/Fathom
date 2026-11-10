@@ -52,6 +52,9 @@
       "I（私）"
     ],
     "answer": 0,
+    "targets": [
+      "gerund"
+    ],
     "explain": "talking から neighbors までがひとかたまりで「近所の人と話すこと」。それ全体が enjoy の相手です。"
   }
 }

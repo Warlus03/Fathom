@@ -39,6 +39,9 @@
       "まだ誰も共有していない"
     ],
     "answer": 0,
+    "targets": [
+      "gerund"
+    ],
     "explain": "相手がしてくれたこと（sharing this）に対して、お礼を言っています。"
   }
 }

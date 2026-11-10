@@ -42,6 +42,9 @@
       "良い一日だったか、という質問"
     ],
     "answer": 0,
+    "targets": [
+      "imperative"
+    ],
     "explain": "主語がなく動詞から始まるので、相手への呼びかけ。報告なら I had a nice day. 、質問なら Did you have a nice day? です。"
   }
 }

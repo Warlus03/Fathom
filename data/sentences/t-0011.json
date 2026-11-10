@@ -55,6 +55,9 @@
       "正面"
     ],
     "answer": 0,
+    "targets": [
+      "pronoun"
+    ],
     "explain": "your right は「あなたの右」。進んでいく人（you）を基準にしています。"
   }
 }

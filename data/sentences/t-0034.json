@@ -55,6 +55,9 @@
       "話している人"
     ],
     "answer": 0,
+    "targets": [
+      "participle"
+    ],
     "explain": "骨組みは The man is my neighbor. 。walking the dog が、どの男性かを説明しています。"
   }
 }

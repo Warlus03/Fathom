@@ -79,6 +79,10 @@
       "まったく分からない"
     ],
     "answer": 0,
+    "targets": [
+      "negative",
+      "conjunction"
+    ],
     "explain": "but の前が「話せない」、後ろが「少し分かる」。否定は前半だけです。"
   }
 }

@@ -49,6 +49,9 @@
       "これからテストする予定"
     ],
     "answer": 0,
+    "targets": [
+      "progressive"
+    ],
     "explain": "are testing は進行形で「今、テストしている途中」。テストが済んだと言うなら have tested（現在完了）、これからなら will test や are going to test になります。"
   }
 }

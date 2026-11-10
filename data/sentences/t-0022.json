@@ -53,6 +53,9 @@
       "書かれていない"
     ],
     "answer": 0,
+    "targets": [
+      "svoo"
+    ],
     "explain": "made の直後の me が受け取る人、this card が作られた物。作ったのは My son です。"
   }
 }

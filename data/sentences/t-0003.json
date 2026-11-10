@@ -68,6 +68,10 @@
       "角を通り過ぎたあと"
     ],
     "answer": 0,
+    "targets": [
+      "conjunction",
+      "preposition"
+    ],
     "explain": "and は順番につなぎます。まず Go straight、それから turn left。at the corner が曲がる地点です。"
   }
 }

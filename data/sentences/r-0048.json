@@ -60,6 +60,9 @@
       "彼の職場"
     ],
     "answer": 0,
+    "targets": [
+      "indirect"
+    ],
     "explain": "how it works で「それがどう動くか」。works の主語は he ではなく it です。"
   }
 }

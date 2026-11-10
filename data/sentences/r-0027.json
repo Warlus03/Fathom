@@ -52,6 +52,9 @@
       "AIを使ってみた感想"
     ],
     "answer": 0,
+    "targets": [
+      "infinitive"
+    ],
     "explain": "to save time は「時間を節約するために」。なぜ使うのか、を足しています。"
   }
 }

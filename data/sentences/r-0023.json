@@ -60,6 +60,9 @@
       "人気がすぐになくなった"
     ],
     "answer": 0,
+    "targets": [
+      "svc"
+    ],
     "explain": "It ＝ popular に「なった」。quickly はその変化が速かったことを足しています。"
   }
 }

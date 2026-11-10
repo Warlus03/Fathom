@@ -59,6 +59,9 @@
       "I（どんな人か）"
     ],
     "answer": 0,
+    "targets": [
+      "relative"
+    ],
     "explain": "the tool の直後に置かれて「私が毎日使っている」ツール、と説明しています。"
   }
 }

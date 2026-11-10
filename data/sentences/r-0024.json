@@ -51,6 +51,9 @@
       "新しいゲーム"
     ],
     "answer": 0,
+    "targets": [
+      "svoc"
+    ],
     "explain": "call の後ろの it が呼ばれる対象、a game changer がその呼び名です。"
   }
 }

@@ -1,0 +1,59 @@
+{
+  "id": "t-0040",
+  "shelf": "talk",
+  "en": "I bought this at the hundred-yen shop.",
+  "ja": "これは百円ショップで買ったんです。",
+  "scene": "持ち物をほめられて",
+  "grammar": [
+    "past",
+    "preposition"
+  ],
+  "aim": "bought は buy の過去形。もう済んだ買い物の話。",
+  "pitfall": "不規則な形なので buy と結びつかず、いつの話かが取れなくなる。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "bought",
+      "role": "V",
+      "why": "buy（買う）の過去形。-ed を付けない不規則動詞。いつも買う、なら I buy。"
+    },
+    {
+      "text": "this",
+      "role": "O"
+    },
+    {
+      "text": "at the hundred-yen shop",
+      "role": "M",
+      "plain": "どこで"
+    }
+  ],
+  "words": [
+    {
+      "w": "bought",
+      "lemma": "buy",
+      "ja": "買う（bought は過去形）"
+    },
+    {
+      "w": "shop",
+      "lemma": "shop",
+      "ja": "店"
+    }
+  ],
+  "question": {
+    "ask": "買い物について分かることは？",
+    "choices": [
+      "もう買った（過去のこと）",
+      "いつもそこで買っている（習慣）",
+      "これから買いに行く"
+    ],
+    "answer": 0,
+    "targets": [
+      "past"
+    ],
+    "explain": "bought は過去形。習慣なら I buy this at 〜、これからなら I'm going to buy this at 〜 です。"
+  }
+}

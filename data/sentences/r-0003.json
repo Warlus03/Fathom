@@ -54,6 +54,10 @@
       "まだ誰も受け取っていない"
     ],
     "answer": 0,
+    "targets": [
+      "svoo",
+      "pronoun"
+    ],
     "explain": "sent の直後の me が受け取る人、その次の the link が送られた物。送ったのは She です。"
   }
 }

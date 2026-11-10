@@ -1,0 +1,57 @@
+{
+  "id": "t-0038",
+  "shelf": "talk",
+  "en": "I'm looking for a pharmacy.",
+  "ja": "薬局を探しているんです。",
+  "scene": "道で困っている人から",
+  "grammar": [
+    "article",
+    "progressive"
+  ],
+  "aim": "a pharmacy は「どこでもいいから薬局を一軒」。決まった店なら the を使う。",
+  "pitfall": "a を気にせず読むと、特定の薬局への行き方を聞かれたと思ってしまう。",
+  "chunks": [
+    {
+      "text": "I'm",
+      "role": "S",
+      "plain": "誰が",
+      "term": "主語＋be動詞"
+    },
+    {
+      "text": "looking for",
+      "role": "V",
+      "plain": "探している",
+      "term": "動詞（進行形）"
+    },
+    {
+      "text": "a pharmacy",
+      "role": "O",
+      "why": "a が付いている＝特定の店ではなく、どれか一軒。決まった店を探しているなら the pharmacy。"
+    }
+  ],
+  "words": [
+    {
+      "w": "looking for",
+      "lemma": "look for",
+      "ja": "〜を探す"
+    },
+    {
+      "w": "pharmacy",
+      "lemma": "pharmacy",
+      "ja": "薬局"
+    }
+  ],
+  "question": {
+    "ask": "この人が探しているのは？",
+    "choices": [
+      "薬局ならどこでもよい、どれか一軒",
+      "前に話に出た、決まった薬局",
+      "薬局で働いている人"
+    ],
+    "answer": 0,
+    "targets": [
+      "article"
+    ],
+    "explain": "a pharmacy は「ある薬局・どれか一軒」。いちばん近い薬局を教えれば役に立ちます。決まった店なら the pharmacy と言います。"
+  }
+}

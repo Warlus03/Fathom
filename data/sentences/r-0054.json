@@ -1,0 +1,66 @@
+{
+  "id": "r-0054",
+  "shelf": "read",
+  "en": "I found a bug in the app.",
+  "ja": "そのアプリでバグを見つけました。",
+  "scene": "不具合を報告する投稿で",
+  "grammar": [
+    "article",
+    "past"
+  ],
+  "aim": "a は「初めて話に出る、ある1つ」。the は「どれのことか、もう分かっている」。",
+  "pitfall": "a と the を読み飛ばすと、どれが新しい話でどれが既に出た話かを取りそこねる。",
+  "chunks": [
+    {
+      "text": "I",
+      "role": "S",
+      "plain": "誰が"
+    },
+    {
+      "text": "found",
+      "role": "V",
+      "why": "find（見つける）の過去形。不規則動詞。"
+    },
+    {
+      "text": "a bug",
+      "role": "O",
+      "why": "a が付いている＝読む人がまだ知らない、あるバグ。ここで初めて話に出る。"
+    },
+    {
+      "text": "in the app",
+      "role": "M",
+      "plain": "どこで",
+      "why": "the が付いている＝どのアプリのことか、読む人にも分かっている。"
+    }
+  ],
+  "words": [
+    {
+      "w": "found",
+      "lemma": "find",
+      "ja": "見つける（found は過去形）"
+    },
+    {
+      "w": "bug",
+      "lemma": "bug",
+      "ja": "不具合・バグ"
+    },
+    {
+      "w": "app",
+      "lemma": "app",
+      "ja": "アプリ"
+    }
+  ],
+  "question": {
+    "ask": "a と the から分かることは？",
+    "choices": [
+      "バグは初めて話に出る。アプリは、どれのことかもう分かっている",
+      "バグもアプリも、初めて話に出る",
+      "バグもアプリも、すでに話に出ている"
+    ],
+    "answer": 0,
+    "targets": [
+      "article"
+    ],
+    "explain": "a bug は「あるバグ（初めて言う）」、the app は「（さっきから話している）そのアプリ」。両方初めてなら a bug in an app になります。"
+  }
+}

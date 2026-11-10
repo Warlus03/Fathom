@@ -54,6 +54,9 @@
       "多くの人が、これから話す予定だ"
     ],
     "answer": 0,
+    "targets": [
+      "progressive"
+    ],
     "explain": "are talking は進行形で「今（このところ）、話題にしている」。過去のことなら talked、これからなら will talk です。"
   }
 }

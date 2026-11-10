@@ -1,0 +1,66 @@
+{
+  "id": "t-0037",
+  "shelf": "talk",
+  "en": "It rains a lot here in June.",
+  "ja": "このあたりは6月によく雨が降ります。",
+  "scene": "この町の気候を聞かれて",
+  "grammar": [
+    "s3",
+    "preposition"
+  ],
+  "aim": "現在形（rains）は「ふだん・いつも」のこと。今この瞬間の話ではない。",
+  "pitfall": "現在形だからと、今降っている雨の話だと思ってしまう。",
+  "chunks": [
+    {
+      "text": "It",
+      "role": "S",
+      "plain": "（天気の it）"
+    },
+    {
+      "text": "rains",
+      "role": "V",
+      "plain": "雨が降る",
+      "why": "主語が It なので s が付く。現在形は「毎年そうだ」という、いつものことを表す。"
+    },
+    {
+      "text": "a lot",
+      "role": "M",
+      "plain": "どのくらい"
+    },
+    {
+      "text": "here",
+      "role": "M",
+      "plain": "どこで"
+    },
+    {
+      "text": "in June",
+      "role": "M",
+      "plain": "いつ"
+    }
+  ],
+  "words": [
+    {
+      "w": "rains",
+      "lemma": "rain",
+      "ja": "雨が降る"
+    },
+    {
+      "w": "a lot",
+      "lemma": "a lot",
+      "ja": "たくさん・よく"
+    }
+  ],
+  "question": {
+    "ask": "いつの雨の話ですか？",
+    "choices": [
+      "毎年6月の、いつものこと",
+      "今ちょうど降っている雨",
+      "去年の6月に降った雨"
+    ],
+    "answer": 0,
+    "targets": [
+      "s3"
+    ],
+    "explain": "現在形の rains は「ふだん・いつも」。今降っているなら It's raining. 、去年のことなら It rained a lot. です。"
+  }
+}
