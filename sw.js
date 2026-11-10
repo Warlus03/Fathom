@@ -1,7 +1,7 @@
 // アプリ本体（HTML・CSS・JS）をオフラインでも開けるようにする。
 // 教材（data/）はここでは扱わない。js/data.js が自分で端末に保存・更新する。
 // 本体はネット優先（つながれば常に最新）、つながらなければ保存済みを使う。
-const SHELL = 'fathom-shell-v4';
+const SHELL = 'fathom-shell-v5';
 const AUDIO = 'fathom-audio';
 const FILES = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/data.js', 'js/learn.js', 'js/store.js', 'js/play.js',
   'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];

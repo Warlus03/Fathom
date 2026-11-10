@@ -24,6 +24,25 @@ const READ_LABEL = { none: '未探索', learning: '勉強中', solid: '読めば
 const LISTEN_LABEL = { none: '未測定', learning: '勉強中', solid: '聞いても分かる' };
 const SHELF_LABEL = { read: '読む棚', talk: '話す棚', both: '両方' };
 
+// 見た目（明るい／暗い／端末に合わせる）を当てる。既定は明るい配色
+function applyTheme() {
+  const t = S.settings.theme || 'light';
+  document.documentElement.dataset.theme = t;
+  const dark = t === 'dark' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  const meta = document.getElementById('themecolor');
+  if (meta) meta.content = dark ? '#121428' : '#f3f4fc';
+}
+
+// 端末が、この記録を「勝手に消さないもの」として扱っているか（true / false / 分からないときは null）
+let persisted = null;
+async function checkPersisted(ask) {
+  try {
+    if (!navigator.storage || !navigator.storage.persisted) return;
+    persisted = await navigator.storage.persisted();
+    if (!persisted && ask && navigator.storage.persist) persisted = await navigator.storage.persist();
+  } catch {}
+}
+
 let toastTimer;
 function toast(msg) {
   $toast.textContent = msg;
@@ -526,6 +545,7 @@ function viewMe() {
   return `<header class="vh"><h2>記録</h2></header>
     <section class="panel"><p>出会った文　${o.seenCount} / ${D.sentences.length}<br>答えた回数　${answered.filter((e) => e.mode === 'read' || e.mode === 'listen').length}（読む ${answered.filter((e) => e.mode === 'read').length}・聞く ${answered.filter((e) => e.mode === 'listen').length}）　　組み立てた回数　${S.events.filter((e) => e.mode === 'make').length}<br>単語帳　${Object.keys(S.words).length} 語</p></section>
     <section class="panel"><h3>設定</h3>
+      <p class="lab2">見た目</p><div class="seg">${[['light', '明るい'], ['dark', '暗い'], ['auto', '端末に合わせる']].map(([v, n]) => `<button data-act="theme" data-v="${v}" class="${(S.settings.theme || 'light') === v ? 'on' : ''}">${n}</button>`).join('')}</div>
       <p class="lab2">今日の分に出す棚</p><div class="seg">${chips}</div>
       <p class="lab2">読み上げの速さ</p><div class="seg">${rates}</div>
       <p class="lab2">読み上げの声</p>
@@ -536,6 +556,10 @@ function viewMe() {
     </section>
     <section class="panel"><h3>記録の引き継ぎ</h3>
       <p>記録はこの端末の中だけにあります。別の端末へ移すとき、または控えを取るときに使います。</p>
+      <p class="tip">${persisted === true ? 'この端末は、この記録を「自動では消さないもの」として扱っています。' : persisted === false ? 'この端末は、空き容量がひどく足りなくなったときに、この記録を消すことがあります。ホーム画面に追加して使うと、消されにくくなります。' : ''}
+        しばらく使わないだけで消えることはありません。消えるのは、ブラウザの「サイトのデータを削除」をしたときや、アプリを消したときです。ときどき控えを取っておくと安心です。</p>
+      <p class="tip">${S.settings.exportedAt ? '最後に控えを取った日：' + new Date(S.settings.exportedAt).toLocaleDateString('ja-JP') + '（そのあとの記録 ' + S.events.filter((e) => e.t > S.settings.exportedAt).length + ' 件）' : S.events.length ? 'まだ控えを取っていません。' : ''}</p>
+      ${persisted === false ? '<div class="row"><button class="ghost" data-act="keep">消さないよう、端末に頼む</button></div>' : ''}
       <div class="row"><button class="ghost" data-act="export">ファイルに書き出す</button><button class="ghost" data-act="export-show">文字で表示</button></div>
       ${exportShown ? `<textarea id="exp" readonly rows="5">${esc(store.exportText(S))}</textarea>` : ''}
       <p class="lab2">読み込む（今ある記録は消えず、合流します）</p>
@@ -681,7 +705,9 @@ const ACTIONS = {
   shelf: (el) => { S.settings.shelf = el.dataset.v; persist(); render(); },
   rate: (el) => { S.settings.rate = +el.dataset.v; persist(); render(); },
   sound: (el) => { S.settings.sound = el.dataset.v === '1'; persist(); render(); if (S.settings.sound) chime(); },
-  export: () => download('fathom-progress-' + new Date().toISOString().slice(0, 10) + '.json', store.exportText(S)),
+  export: () => { download('fathom-progress-' + new Date().toISOString().slice(0, 10) + '.json', store.exportText(S)); S.settings.exportedAt = Date.now(); persist(); render(); },
+  theme: (el) => { S.settings.theme = el.dataset.v; persist(); applyTheme(); render(); },
+  keep: async () => { await checkPersisted(true); toast(persisted ? '端末が、この記録を自動では消さない扱いにしました。' : '今は受け付けてもらえませんでした。ホーム画面に追加して何日か使うと、通りやすくなります。'); render(); },
   'export-show': () => { exportShown = !exportShown; render(); },
   'import-text': () => { const t = document.getElementById('imptext').value.trim(); if (t) doImport(t); else toast('貼り付け欄が空です。'); },
   refresh: () => checkUpdate(true),
@@ -689,6 +715,7 @@ const ACTIONS = {
     if (!confirm('この端末の記録（答えた履歴と単語帳）をすべて消します。元に戻せません。先に書き出しておくことをおすすめします。消しますか？')) return;
     store.clearAll();
     S = store.load();
+    applyTheme();
     ses = null;
     render(true);
     toast('記録を消しました。');
@@ -718,6 +745,7 @@ window.addEventListener('storage', (ev) => {
   if (ev.key !== store.KEY || !D) return;
   // 全消去（newValue が無い）はそのまま従う。それ以外は、こちらでまだ保存できていない記録を落とさないよう、合わせる
   S = ev.newValue == null ? store.load() : store.merge(store.load(), S);
+  applyTheme();
   if (!activeCard()) render();
 });
 // 声の一覧は遅れて届くことがある。届いたら、声に関わる画面を描き直す
@@ -730,8 +758,10 @@ if (canSpeak()) speechSynthesis.addEventListener('voiceschanged', () => { if (D 
     $view.innerHTML = `<section class="hero"><h2>教材を読み込めませんでした</h2><p class="sub">最初の一度だけ、ネットにつながった状態で開く必要があります。<br><small>${esc(err.message)}</small></p><button class="primary" onclick="location.reload()">もう一度試す</button></section>`;
     return;
   }
+  applyTheme();
   render(true);
   checkUpdate(false);
+  checkPersisted(S.events.length > 0).then(() => { if (location.hash === '#me') render(); });
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();
 

@@ -17,7 +17,7 @@ export function blank() {
     events: [],
     words: {}, // lemma -> { addedAt, metIn:[sid], ja }
     gone: {}, // lemma -> 単語帳から外した時刻（別の画面の古い状態と合わせたとき、外した単語が戻らないようにする）
-    settings: { shelf: 'both', sound: true, labels: 'plain', rate: 0.9, voice: '', slideSec: 3 },
+    settings: { shelf: 'both', sound: true, labels: 'plain', rate: 0.9, voice: '', slideSec: 3, theme: 'light', exportedAt: 0 },
   };
 }
 
@@ -62,6 +62,8 @@ function cleanSettings(s) {
     rate: Number.isFinite(s.rate) && s.rate > 0.3 && s.rate < 2 ? s.rate : b.rate,
     voice: typeof s.voice === 'string' ? s.voice : '',
     slideSec: [2, 3, 5, 8].includes(s.slideSec) ? s.slideSec : 3,
+    theme: s.theme === 'dark' || s.theme === 'auto' ? s.theme : 'light', // 見た目。既定は明るい配色（端末がダークモードでも）
+    exportedAt: Number.isFinite(s.exportedAt) ? s.exportedAt : 0, // 最後に書き出した時刻
   };
 }
 

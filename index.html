@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fathom</title>
 <meta name="description" content="見た瞬間に分かる英語へ。文の骨組みから読む、大人のための英語。">
-<meta name="theme-color" content="#f3f4fc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121428" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" id="themecolor" content="#f3f4fc">
+<script>
+// 見た目の設定を、画面が出る前に当てる（暗い画面が一瞬出るのを防ぐ）。既定は明るい配色。
+try { var t = (JSON.parse(localStorage.getItem('fathom.progress') || '{}').settings || {}).theme; document.documentElement.dataset.theme = t === 'dark' || t === 'auto' ? t : 'light'; }
+catch (e) { document.documentElement.dataset.theme = 'light'; }
+</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
