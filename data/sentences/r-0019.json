@@ -50,9 +50,9 @@
     "choices": [
       "画像が相手に表示されているか、確かめている",
       "画像をじっくり見てほしいと頼んでいる",
-      "画像を見てもよい、と許可している"
+      "画像を見たかどうか、過去のことを聞いている"
     ],
     "answer": 0,
-    "explain": "see は「見える」。じっくり見てほしいなら Can you look at the image? 、許可なら You can see the image. です。"
+    "explain": "see は「見える」。じっくり見てほしいなら Can you look at the image? 、見たかどうかなら Did you see the image? です。"
   }
 }

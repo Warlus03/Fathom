@@ -2,7 +2,7 @@
   "id": "t-0031",
   "shelf": "talk",
   "en": "He doesn't speak Japanese, but he understands a little.",
-  "ja": "彼は日本語を話しませんが、少しは分かります。",
+  "ja": "彼は日本語は話せませんが、少しは分かります。",
   "scene": "家族や友人を紹介するとき",
   "grammar": [
     "negative",
@@ -21,7 +21,8 @@
       "text": "doesn't",
       "role": "neg",
       "plain": "〜しない",
-      "term": "否定（does＋not）"
+      "term": "否定（does＋not）",
+      "why": "speak＋言語を doesn't で打ち消すと、ふつう「（その言語を）話せない」の意味になる。"
     },
     {
       "text": "speak",
@@ -73,11 +74,11 @@
   "question": {
     "ask": "彼の日本語は？",
     "choices": [
-      "話さないが、聞けば少し分かる",
+      "話せないが、聞けば少し分かる",
       "話すが、聞き取れない",
       "まったく分からない"
     ],
     "answer": 0,
-    "explain": "but の前が「話さない」、後ろが「少し分かる」。否定は前半だけです。"
+    "explain": "but の前が「話せない」、後ろが「少し分かる」。否定は前半だけです。"
   }
 }

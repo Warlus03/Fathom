@@ -26,7 +26,7 @@
     {
       "text": "every day",
       "role": "M",
-      "plain": "どのくらい",
+      "plain": "どのくらいの頻度で",
       "why": "骨組みの外。外しても I use this tool. で文が成り立つ。"
     }
   ],
@@ -55,6 +55,6 @@
       "I"
     ],
     "answer": 0,
-    "explain": "動詞 use のすぐ後ろの this tool が「何を」。every day は「どのくらい」という説明で、骨組みの外です。"
+    "explain": "動詞 use のすぐ後ろの this tool が「何を」。every day は「どのくらいの頻度で」という説明で、骨組みの外です。"
   }
 }

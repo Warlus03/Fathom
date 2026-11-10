@@ -15,7 +15,7 @@
       "text": "Does",
       "role": "aux",
       "plain": "質問の合図",
-      "why": "一般動詞の質問は do を主語の前に置く。主語が this（ひとつ）なので does。"
+      "why": "一般動詞の質問は do を主語の前に置く。主語が this（he / she / it の仲間）なので does。"
     },
     {
       "text": "this",

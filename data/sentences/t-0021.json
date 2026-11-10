@@ -20,7 +20,8 @@
       "text": "have to",
       "role": "aux",
       "plain": "〜しなければならない",
-      "why": "have to の後ろは動詞の原形。事情や決まりによる必要を表す。"
+      "term": "have to（形は一般動詞）",
+      "why": "have to の後ろは動詞の原形。事情や決まりによる必要を表す。can などの助動詞と違い、主語が he / she なら has to、否定は don't have to、質問は Do I have to? になる。"
     },
     {
       "text": "change",
@@ -50,13 +51,13 @@
     }
   ],
   "question": {
-    "ask": "新宿ですることは？",
+    "ask": "新宿での乗り換えについて、どう言っていますか？",
     "choices": [
-      "別の電車に乗り換える",
-      "電車を降りて、そこが目的地",
-      "電車の中でそのまま待つ"
+      "乗り換えが必要",
+      "乗り換えても、乗り換えなくてもよい",
+      "乗り換えてはいけない"
     ],
     "answer": 0,
-    "explain": "change trains で「電車を乗り換える」。have to はそれが必要だ、と言っています。"
+    "explain": "have to は「しなければならない」＝必要。「しなくてもよい」なら don't have to、「してはいけない」なら must not です。change trains は「電車を乗り換える」。"
   }
 }

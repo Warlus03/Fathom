@@ -15,8 +15,8 @@
       "text": "There are",
       "role": "x",
       "plain": "〜がある",
-      "term": "There are",
-      "why": "後ろの主語が複数（ways）なので are。"
+      "term": "形だけの there＋are",
+      "why": "is / are は後ろの名詞に合わせる。many ways が複数なので are。"
     },
     {
       "text": "many ways",
