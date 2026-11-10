@@ -26,7 +26,7 @@
       "text": "a pretty good app",
       "role": "C",
       "plain": "何",
-      "why": "pretty は直後の good を強めている（かなり良い）。「きれいな」の意味なら、a pretty app のように名詞を直接説明する。"
+      "why": "pretty は直後の good を強めている（なかなか良い）。「きれいな」の意味なら、a pretty app のように名詞を直接説明する。"
     }
   ],
   "words": [
@@ -49,7 +49,7 @@
   "question": {
     "ask": "pretty は、この文で何をしていますか？",
     "choices": [
-      "good を強めている（かなり良い）",
+      "good を強めている（なかなか良い）",
       "app を説明している（きれいなアプリ）",
       "This を説明している（これはきれいだ）"
     ],
@@ -57,6 +57,6 @@
     "targets": [
       "adjective"
     ],
-    "explain": "pretty good で「かなり良い」。形容詞のすぐ前にある pretty は、その形容詞を強める副詞です。"
+    "explain": "pretty good で「なかなか良い」。形容詞のすぐ前にある pretty は、その形容詞を強める副詞です。very good ほど強くはなく、控えめなほめ方にもなります。"
   }
 }

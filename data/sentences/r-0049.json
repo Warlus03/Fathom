@@ -55,7 +55,8 @@
     ],
     "answer": 0,
     "targets": [
-      "comparison"
+      "comparison",
+      "negative"
     ],
     "explain": "as hard as it looks（見た目と同じくらい難しい）を not で打ち消しています。"
   }

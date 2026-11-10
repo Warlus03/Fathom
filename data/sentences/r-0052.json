@@ -58,7 +58,8 @@
     ],
     "answer": 0,
     "targets": [
-      "s3"
+      "s3",
+      "verb"
     ],
     "explain": "fixes は動詞（直す）。主語 The update のすぐ後ろにあり、主語に合わせて es が付いています。bugs の s は複数形で、別のものです。"
   }

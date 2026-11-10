@@ -55,7 +55,8 @@
     ],
     "answer": 0,
     "targets": [
-      "perfect"
+      "perfect",
+      "wh"
     ],
     "explain": "have been は「今までずっといる」。これからの予定なら How long will you be in Japan? です。"
   }

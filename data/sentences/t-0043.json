@@ -9,7 +9,7 @@
     "passive"
   ],
   "aim": "be動詞が文頭に出たら質問。This seat is taken. をひっくり返した形。",
-  "pitfall": "taken（取られている）に引っぱられて、「席を取って」という頼みごとに読んでしまう。",
+  "pitfall": "taken（取られている）に引っぱられて、「席を取って」という頼みごとに読んでしまう。また、答えるときの Yes / No が、日本語の「空いていますか」とは逆になる。",
   "chunks": [
     {
       "text": "Is",
@@ -54,6 +54,6 @@
     "targets": [
       "question"
     ],
-    "explain": "Is が文頭にあるので質問。伝えるなら This seat is taken. 、頼むなら動詞から始めて Save this seat, please. のようになります。"
+    "explain": "Is が文頭にあるので質問。伝えるなら This seat is taken. 、頼むなら動詞から始めて Save this seat, please. のようになります。英語は「使われていますか」とたずねているので、空いていれば No（No, go ahead.）、ふさがっていれば Yes と答えます。"
   }
 }

@@ -65,7 +65,8 @@
     ],
     "answer": 0,
     "targets": [
-      "preposition"
+      "preposition",
+      "be"
     ],
     "explain": "骨組みは The shop is closed. 。next to the bank は、どの店かを説明しているだけです。"
   }

@@ -61,6 +61,6 @@
     "targets": [
       "article"
     ],
-    "explain": "a bug は「あるバグ（初めて言う）」、the app は「（さっきから話している）そのアプリ」。両方初めてなら a bug in an app になります。"
+    "explain": "a bug は「あるバグ（初めて言う）」、the app は「（読む人にもどれか分かる）そのアプリ」。両方初めてなら a bug in an app になります。"
   }
 }

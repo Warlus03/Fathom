@@ -68,17 +68,16 @@
     }
   ],
   "question": {
-    "ask": "実際のところ、その答えは？",
+    "ask": "sounds correct が表しているのは？",
     "choices": [
-      "間違っている",
-      "正しい",
-      "まだ分からない"
+      "正しそうだ、という印象",
+      "正しい、という事実",
+      "正しい音が鳴っている、ということ"
     ],
     "answer": 0,
     "targets": [
-      "svc",
-      "conjunction"
+      "svc"
     ],
-    "explain": "sounds correct は「正しそうに聞こえる」という印象。事実は but の後ろの it's wrong です。"
+    "explain": "sound＋形容詞は「〜に聞こえる・〜そうだ」という印象で、事実とは限りません。事実は but の後ろの it's wrong（is）のほうです。"
   }
 }

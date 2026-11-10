@@ -72,16 +72,16 @@
     }
   ],
   "question": {
-    "ask": "いつの出来事ですか？",
+    "ask": "it didn't work が言っているのは？",
     "choices": [
-      "昨日試して、そのときは動かなかった",
-      "今試しているが、動かない",
-      "明日試すつもりだが、動かないだろう"
+      "昨日試したときに動かなかった（今どうかは言っていない）",
+      "今、動かない",
+      "これから先も動かない"
     ],
     "answer": 0,
     "targets": [
       "past"
     ],
-    "explain": "tried も didn't work も過去の形。今のことなら I'm trying it, but it doesn't work. になります。"
+    "explain": "didn't は過去の否定。did が過去を引き受けるので work は原形ですが、話は昨日のことです。今も動かないと言うなら it doesn't work です。"
   }
 }

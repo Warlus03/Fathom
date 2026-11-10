@@ -48,16 +48,16 @@
     }
   ],
   "question": {
-    "ask": "この文から分かることは？",
+    "ask": "that goes to the station は、何を説明している？",
     "choices": [
-      "このバスは駅へ行く",
-      "このバスは駅から来た",
-      "駅へはバスでしか行けない"
+      "the bus（どんなバスか）",
+      "This（これは何か）",
+      "別の何か（「あれは駅へ行く」という、もう1つの文）"
     ],
     "answer": 0,
     "targets": [
       "relative"
     ],
-    "explain": "the bus that goes to the station で「駅へ行くバス」。to は行き先を表します。"
+    "explain": "the bus の直後の that から、バスの説明が始まります。the bus that goes to the station で「駅へ行くバス」。この that は「あれ」ではありません。"
   }
 }

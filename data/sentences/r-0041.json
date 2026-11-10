@@ -6,7 +6,8 @@
   "scene": "説明の投稿の最後に",
   "grammar": [
     "conjunction",
-    "imperative"
+    "imperative",
+    "pronoun"
   ],
   "aim": "let me know で「私に知らせて」。動詞から始まる、相手への呼びかけ。",
   "pitfall": "let me know を「私に知らせます」と読んで、向きを逆に取ってしまう。",
@@ -59,7 +60,8 @@
     ],
     "answer": 0,
     "targets": [
-      "imperative"
+      "imperative",
+      "pronoun"
     ],
     "explain": "let me know は相手への呼びかけ。知る側は me（書いた人）、知らせる側は読んでいる人です。"
   }
